@@ -1,0 +1,4 @@
+
+Warnings: 
+
+File: D:\Coding_Projects\EdgeBeamforming\Simulation\search_lms_cordic.m, line : 91, column : 15. The expression 'value = 0' was not executed during simulation. Consider using a more thorough testbench.
