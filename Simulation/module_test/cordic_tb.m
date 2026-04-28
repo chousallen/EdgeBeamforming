@@ -2,7 +2,7 @@
 clear; clc; close all;
 
 % Parameters
-num_iterations = 16; % Number of CORDIC iterations
+num_iterations = 10; % Number of CORDIC iterations
 angles = linspace(-pi/2, pi/2, 1000); % Test angles in radians
 
 % Initialize input vectors
@@ -19,7 +19,7 @@ expected_sin = sin(angles);
 
 % Run CORDIC for each angle
 for idx = 1:length(angles)
-    [z_q(idx), z_i(idx)] = cordic(x_q(idx), x_i(idx), angles(idx), num_iterations);
+    [z_q(idx), z_i(idx), ~] = cordic(x_q(idx), x_i(idx), angles(idx), num_iterations, 0); % mode=0 for rotation
 end
 
 % Calculate errors

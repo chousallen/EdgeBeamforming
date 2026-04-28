@@ -3,7 +3,6 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
     % Inputs:
     %   x_in, y_in : Input vector coordinates (Real and Imaginary)
     %   z_in       : Target angle (Rotation) or Initial angle offset (Vectoring)
-    %   num_iterations : Number of iterations for the CORDIC algorithm (accuracy vs. complexity)
     %   mode       : 0: rotation mode or 1: vector mode
     % Outputs:
     %   out_x, out_y : Output vector coordinates (Real and Imaginary)

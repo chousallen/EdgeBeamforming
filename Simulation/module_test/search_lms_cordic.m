@@ -1,4 +1,17 @@
 function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, num_iterations, N, step)
+    % Multiplier-less LMS beamforming using CORDIC for phase rotation and vectoring.
+    % Usage:
+    %   [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, num_iterations, N, step)
+    % Inputs:
+    %   x1_q, x1_i, ..., x4_q, x4_i: Real and imaginary parts of the received signals for 4 channels (each should be a vector of length num_iterations + scan_points)
+    %   mu: LMS step size
+    %   num_iterations: Number of LMS iterations for tracking
+    %   N: Number of antenna elements (should be 4 for this implementation)
+    %   step: Scan resolution in degrees for the initial search phase
+    % Outputs:
+    %   E: Energy values for each scanned angle during the initial search phase
+    %   error: Power of the output signal at each iteration of the LMS loop
+    %   W_history: History of the weight vector W across iterations (N x num_iterations)
 
     %% 1. System & Environment Parameters Setup
     % --- Search Parameters ---
@@ -31,7 +44,7 @@ function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q,
             phi = 2 * pi * 0.5 * (k-1) * sind_lut(current_angle);
 
             % CORDIC Rotation (Implemented as a function for clarity)
-            [Q_rot, I_rot] = cordic(real(X(k, i)), imag(X(k, i)), phi, 10);
+            [Q_rot, I_rot, ~] = cordic(real(X(k, i)), imag(X(k, i)), phi, 10, 0); % mode=0 for rotation
 
             SUM_I = SUM_I + I_rot;
             SUM_Q = SUM_Q + Q_rot;
@@ -82,7 +95,7 @@ function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q,
             i_in = imag(X(k, time_idx));
             
             % Rotate using the pre-calculated phase phi_target(k)
-            [Q_rot, I_rot] = cordic(q_in, i_in, phi_target(k), 10);
+            [Q_rot, I_rot, ~] = cordic(q_in, i_in, phi_target(k), 10, 0); % mode=0 for rotation
             
             % Recombine into complex format for matrix operations
             X_steered(k) = Q_rot + 1j * I_rot;
