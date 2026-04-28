@@ -15,6 +15,8 @@ function [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, 
     % Initialize array to store calculated energy for each scanned angle
 
     scan_energy = zeros(1, num_scan_points);
+    max_degree = 0;
+    max_energy = 0;
 
     % Sweep through all angles
     for i = 1:num_scan_points
@@ -34,6 +36,11 @@ function [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, 
 
         % Store the energy for this angle
         scan_energy(i) = energy_approx;
+
+        if energy_approx > max_energy
+            max_degree = current_angle;
+            max_energy = energy_approx;
+        end
     end
 
     %% 3. Peak Detection
@@ -50,7 +57,8 @@ function [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, 
     %% 5. LMS Main Loop
     for n = 1:num_iterations
         % --- Apply Weights ---
-        y = W' * X(:, n+num_scan_points); 
+        X_steered = diag(max_degree) * X(:, n+num_scan_points);
+        y = W' * X_steered(); 
 
         % Record Squared Error (Output Power) for the Learning Curve
         error_power(n) = abs(y)^2;
@@ -59,7 +67,7 @@ function [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, 
         error_lms = y;
         Z = zeros(N-1, 1);
         for k = 1:N-1
-            Z(k) = X(k+1, n+num_scan_points) - X(k, n+num_scan_points);   % Use Target Blocking Matrix to block the target signal and prevent the elimination of target signal
+            Z(k) = X_steered(k+1) - X_steered(k);   % Use Target Blocking Matrix to block the target signal and prevent the elimination of target signal
         end
         W(2:4) = W(2:4) - mu * conj(csign(error_lms)) .* csign(Z);
 

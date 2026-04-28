@@ -15,6 +15,8 @@ function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q,
     % Initialize array to store calculated energy for each scanned angle
 
     scan_energy = zeros(1, num_scan_points);
+    max_degree = 0;
+    max_energy = 0;
 
     % Sweep through all angles
     for i = 1:num_scan_points
@@ -29,17 +31,22 @@ function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q,
             phi = 2 * pi * 0.5 * (k-1) * sind_lut(current_angle);
 
             % CORDIC Rotation (Implemented as a function for clarity)
-            [Q_rot, I_rot] = cordic(real(X(k, i)), imag(X(k, i)), phi, 12);
+            [Q_rot, I_rot] = cordic(real(X(k, i)), imag(X(k, i)), phi, 10);
 
             SUM_I = SUM_I + I_rot;
             SUM_Q = SUM_Q + Q_rot;
         end
 
         % Energy Estimation (Accumulate energy over the sample window)
-        energy_approx = sum(abs(SUM_I) + abs(SUM_Q)); 
+        energy_approx = sum(abs(SUM_I + SUM_Q)); 
+        % energy_approx = sum(sqrt(SUM_I.^2 + SUM_Q.^2));
 
         % Store the energy for this angle
         scan_energy(i) = energy_approx;
+        if energy_approx > max_energy
+            max_degree = current_angle;
+            max_energy = energy_approx;
+        end
     end
 
     %% 3. Peak Detection
@@ -51,24 +58,55 @@ function [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q,
     W_history = zeros(N, num_iterations) + 1j*zeros(N, num_iterations);
     error_power = zeros(1, num_iterations); % To store the "Error Function
     
-    % csign = @(x) (sign(real(x)+(real(x)==0)) + 1j * sign(imag(x)+(imag(x)==0)));
-    % csign_sep = @(q, i) (sign(q+(q==0)) + 1j * sign(i+(i==0)));
+    % --- Hardware-efficient approach: Pre-compute the rotation phases ---
+    % Once the target is locked, sin(theta) is constant. 
+    % We should not look it up for every sample in the LMS loop.
+    sin_target = sind_lut(max_degree);
+    phi_target = zeros(N, 1);
+    for k = 1:N
+        phi_target(k) = 2 * pi * 0.5 * (k-1) * sin_target;
+    end
 
-    %% 5. LMS Main Loop
+    %% 6. LMS Main Loop (Tracking & Nulling)
     for n = 1:num_iterations
-        % --- Apply Weights ---
-        y = W' * X(:, n+num_scan_points); 
+        % Current time index (offset by the scanning period)
+        time_idx = n + num_scan_points;
+        
+        % Temporary array to store the phase-aligned signals
+        X_steered = zeros(N, 1) + 1j*zeros(N, 1);
+        
+        % --- Step A: Steer input signals to the target angle using CORDIC ---
+        for k = 1:N
+            % Extract real and imaginary parts of the incoming signal
+            q_in = real(X(k, time_idx));
+            i_in = imag(X(k, time_idx));
+            
+            % Rotate using the pre-calculated phase phi_target(k)
+            [Q_rot, I_rot] = cordic(q_in, i_in, phi_target(k), 10);
+            
+            % Recombine into complex format for matrix operations
+            X_steered(k) = Q_rot + 1j * I_rot;
+        end
 
-        % Record Squared Error (Output Power) for the Learning Curve
+        % --- Step B: Apply Weights ---
+        % Calculate total output using the phase-aligned signals
+        y = W' * X_steered; 
+
+        % Record Output Power for the Learning Curve
         error_power(n) = abs(y)^2;
 
-        % --- Sign-LMS Update ---
+        % --- Step C: Sign-LMS Update with Target Blocking Matrix (TBM) ---
         error_lms = y;
         for k = 1:N-1
-            Z = X(k+1, n+num_scan_points) - X(k, n+num_scan_points);   % Use Target Blocking Matrix to block the target signal and prevent the elimination of target signal
+            % At this point, the target signals in X_steered are in-phase. 
+            % Subtraction between adjacent channels cancels out the target signal.
+            Z = X_steered(k+1) - X_steered(k);   
+            
+            % Update weights using the blocked signal Z
             W(k+1) = W(k+1) - mu * conj(csign(error_lms)) * csign(Z);
         end
 
+        % Record weight history
         W_history(:, n) = W;
     end
     error = error_power;

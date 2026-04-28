@@ -7,10 +7,23 @@ function [z_q, z_i] = cordic(x_q, x_i, y, num_iterations)
     % atan_table = atan(2.^-(0:num_iterations-1));
     atan_table = [0.7854  0.4636  0.2450  0.1244  0.0624  0.0312  0.0156  0.0078  0.0039  0.0020  0.0018  0.0005 ];
 
-    % Initialize CORDIC registers
-    x_reg = x_q;
-    y_reg = x_i;
-    z_reg = y;
+    % 1. Converge y  to [-pi, pi]
+    y = mod(y + pi, 2*pi) - pi;
+
+    % 2. Pre-rotation to assure angle in [-pi/2, pi/2]
+    if y > pi/2
+        x_reg = -x_q;
+        y_reg = -x_i;
+        z_reg = y - pi;
+    elseif y < -pi/2
+        x_reg = -x_q;
+        y_reg = -x_i;
+        z_reg = y + pi;
+    else
+        x_reg = x_q;
+        y_reg = x_i;
+        z_reg = y;
+    end
 
     for i = 0:num_iterations-1
         if z_reg > 0

@@ -49,8 +49,8 @@ x4_q = real(X_raw(4, :)); x4_i = imag(X_raw(4, :));
 
 % Call the search_lms function
 % [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
-% [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
-[E, error, W_history] = search_lms_cordic_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
+[E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
+% [E, error, W_history] = search_lms_cordic_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
 
 %% Search Results Visualization
 % Find the maximum energy and its corresponding angle

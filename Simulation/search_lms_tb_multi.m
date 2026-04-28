@@ -24,7 +24,7 @@ mu = 2^(-6); % LMS step size
 steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th));
 result_angle_history = zeros(1, 100);
 
-for i = 1:20
+for i = 1:100
     fprintf('Test Bench Run #%d\n', i);
     % Generate QPSK signal
     sig_val = 10^(SNR/20) * (1+1j)/2; % QPSK symbol with power based on SNR
@@ -52,8 +52,8 @@ for i = 1:20
 
     % Call the search_lms function
     % [E, error, W_history] = search_lms(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
-    % [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
-    [E, error, W_history] = search_lms_cordic_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
+    [E, error, W_history] = search_lms_cordic(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
+    % [E, error, W_history] = search_lms_cordic_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, mu, NUM_ITERATIONS, N, scan_step);
     [max_energy, max_idx] = max(E);
     scan_angles = -60:scan_step:60;
     detected_angle = scan_angles(max_idx);
