@@ -3,6 +3,10 @@
 
 clear; clc; close all;
 
+% Add the generated code path
+script_dir = fileparts(mfilename('fullpath'));
+addpath(genpath(fullfile(script_dir, 'codegen')));
+
 % Parameters
 N = 4;                  % Number of antennas
 d_lambda = 0.5;         % Antenna spacing (d/lambda)
