@@ -13,7 +13,7 @@ NUM_SAMPLES = NUM_SCAN + NUM_ITERATIONS; % Total number of samples (
 
 % Signal Settings
 theta_s = 20; % Desired signal angle
-theta_i = -10; % Interferer signal angle
+theta_i = -30; % Interferer signal angle
 SNR = 20; % Signal-to-Noise Ratio (dB)
 INR = 35; % Interference-to-Noise Ratio (dB)
 
