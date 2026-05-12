@@ -27,21 +27,21 @@ function [E, degrees] = search_with_mono_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_
     cordic_iter = fi(10, 0, 4, 0, fm);    % Number of iterations for the cordic algorithm
 
     %% 2. Signal Setup
-    X = fi([fi(x1_q + fi(1j, 0, 1, 0, fm)*x1_i, 1, 10, 6, fm); x2_q + fi(1j, 0, 1, 0, fm)*x2_i; x3_q + fi(1j, 0, 1, 0, fm)*x3_i; x4_q + fi(1j, 0, 1, 0, fm)*x4_i], 1, 10, 4, fm);
+    X = fi([fi(x1_q + fi(1j, 0, 1, 0, fm)*x1_i, 1, 10, 6, fm); x2_q + fi(1j, 0, 1, 0, fm)*x2_i; x3_q + fi(1j, 0, 1, 0, fm)*x3_i; x4_q + fi(1j, 0, 1, 0, fm)*x4_i], 1, 10, 6, fm);
 
     %% 2. Hardware Algo: Sequential Scanning & Energy Estimation
     % Initialize array to store calculated energy for each scanned angle
 
-    scan_energy = fi(zeros(1, fi_toint(num_scan_points)), 0, 10, 4, fm);
+    scan_energy = fi(zeros(1, fi_toint(num_scan_points)), 0, 10, 6, fm);
     max_degree = fi(0, 1, 7, 0, fm);
-    max_energy = fi(0, 0, 10, 4, fm);
+    max_energy = fi(0, 0, 10, 6, fm);
 
     % Sweep through all angles
     for i = fi(1, 0, 1, 0, fm):num_scan_points
         current_angle = fi(scan_angles(i), 1, 7, 0, fm);
 
-        SUM_Q = fi(0, 1, 10, 4, fm);
-        SUM_I = fi(0, 1, 10, 4, fm);
+        SUM_Q = fi(0, 1, 10, 5, fm);
+        SUM_I = fi(0, 1, 10, 5, fm);
 
         for k = fi(1, 0, 1, 0, fm):N
             % Calculate phase: phi = 2*pi * d/L * (k-1) * (theta)
@@ -50,19 +50,19 @@ function [E, degrees] = search_with_mono_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_
 
             % CORDIC Rotation (Implemented as a function for clarity)
             [fmo_1, fmo_2, ~] = cordic_s1(fi(real(X(k, i)), 1, 10, 3, fm), fi(imag(X(k, i)), 1, 10, 3, fm), phi, fi(10, 0, 4, 0, fm), fi(0, 0, 1, 0, fm));
-            Q_rot = fi(fmo_1, 1, 10, 6, fm);
-            I_rot = fi(fmo_2, 1, 10, 6, fm); % mode=0 for rotation
+            Q_rot = fi(fmo_1, 1, 10, 7, fm);
+            I_rot = fi(fmo_2, 1, 10, 7, fm); % mode=0 for rotation
 
             SUM_I(:) = SUM_I + I_rot;
             SUM_Q(:) = SUM_Q + Q_rot;
         end
 
         % Energy Estimation (Accumulate energy over the sample window)
-        energy_approx = fi(sum(abs(SUM_I) + abs(SUM_Q)), 0, 10, 4, fm); 
+        energy_approx = fi(sum(abs(SUM_I) + abs(SUM_Q)), 0, 10, 6, fm); 
         % energy_approx = sum(sqrt(SUM_I.^2 + SUM_Q.^2));
 
         % Store the energy for this angle
-        scan_energy(i) = fi(energy_approx, 0, 10, 4, fm);
+        scan_energy(i) = fi(energy_approx, 0, 10, 6, fm);
         if energy_approx > max_energy
             max_degree(:) = current_angle;
             max_energy(:) = energy_approx;
@@ -71,10 +71,10 @@ function [E, degrees] = search_with_mono_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_
 
     %% 3. Peak Detection
     % Find the maximum energy and its corresponding angle
-    E = fi(scan_energy, 0, 10, 4, fm);
+    E = fi(scan_energy, 0, 10, 6, fm);
 
     %% 4. Tracking with Monopulse
-    X_track = fi(X(:, num_scan_points+fi(1, 0, 1, 0, fm):fi(end, 0, 9, 0, fm)), 1, 10, 4, fm); % Use the remaining samples for tracking
+    X_track = fi(X(:, num_scan_points+fi(1, 0, 1, 0, fm):fi(end, 0, 9, 0, fm)), 1, 10, 6, fm); % Use the remaining samples for tracking
     theta_track = fi(monopulse_tracking(X_track, N, fi(0.5, 0, 10, 10, fm), cordic_iter, max_degree, fi(2^(-4) * (180/pi), 0, 10, 8, fm)), 1, 8, 0, fm);
     degrees = fi(theta_track, 1, 8, 0, fm);
 end
@@ -261,17 +261,17 @@ theta_track(1) = fi(theta_init, 1, 8, 0, fm);
 
 for n = fi(1, 0, 1, 0, fm):num_samples-fi(1, 0, 1, 0, fm)
     % Use the pre-generated received sample for this time index
-    X_sample = fi(X(:, n), 1, 10, 4, fm);
+    X_sample = fi(X(:, n), 1, 10, 6, fm);
 
     % Beam steering (CORDIC rotation mode)
-    X_steered = fi(zeros(fi_toint(N), 1) + 1j*zeros(fi_toint(N), 1), 1, 10, 4, fm);
+    X_steered = fi(zeros(fi_toint(N), 1) + 1j*zeros(fi_toint(N), 1), 1, 10, 6, fm);
     for k = fi(1, 0, 1, 0, fm):N
         phi_target = fi(fi(fi(2 * pi, 0, 10, 7, fm) * d_lambda * (k-fi(1, 0, 1, 0, fm)), 'SumMode', 'KeepLSB') * fi(sind_lut_s2(theta_track(n)), 'SumMode', 'KeepLSB'), 1, 10, 5, fm);
-        q_in = fi(real(X_sample(k)), 1, 10, 4, fm);
-        i_in = fi(imag(X_sample(k)), 1, 10, 4, fm);
+        q_in = fi(real(X_sample(k)), 1, 10, 6, fm);
+        i_in = fi(imag(X_sample(k)), 1, 10, 6, fm);
         [fmo_3, fmo_4, ~] = cordic_s1(fi(q_in, 1, 10, 3, fm), fi(i_in, 1, 10, 3, fm), phi_target, cordic_iters, fi(0, 0, 1, 0, fm));
-        Q_rot = fi(fmo_3, 1, 10, 4, fm);
-        I_rot = fi(fmo_4, 1, 10, 4, fm);
+        Q_rot = fi(fmo_3, 1, 10, 6, fm);
+        I_rot = fi(fmo_4, 1, 10, 6, fm);
         X_steered(k) = Q_rot + fi(1j, 0, 1, 0, fm) * I_rot;
     end
 
@@ -282,22 +282,22 @@ for n = fi(1, 0, 1, 0, fm):num_samples-fi(1, 0, 1, 0, fm)
         error('monopulse_tracking requires N >= 4 for 2x2 subarray grouping');
         %F2F: End block
     end
-    L = fi(X_steered(1) + X_steered(2), 1, 10, 3, fm);
-    R = fi(X_steered(3) + X_steered(4), 1, 10, 3, fm);
+    L = fi(X_steered(1) + X_steered(2), 1, 10, 6, fm);
+    R = fi(X_steered(3) + X_steered(4), 1, 10, 6, fm);
 
     % Phase extraction (CORDIC vectoring mode)
-    [~, ~, fmo_5] = cordic_s2(real(L), imag(L), fi(fi(0, 0, 1, 0, fm), 1, 10, 5, fm), cordic_iters, fi(1, 0, 1, 0, fm));
-    phi_L = fi(fmo_5, 1, 10, 7, fm);
-    [~, ~, fmo_6] = cordic_s2(real(R), imag(R), fi(fi(0, 0, 1, 0, fm), 1, 10, 5, fm), cordic_iters, fi(1, 0, 1, 0, fm));
+    [~, ~, fmo_5] = cordic_s2(fi(real(L), 1, 10, 3, fm), imag(L), fi(fi(0, 0, 1, 0, fm), 1, 10, 5, fm), cordic_iters, fi(1, 0, 1, 0, fm));
+    phi_L = fi(fmo_5, 0, 10, 8, fm);
+    [~, ~, fmo_6] = cordic_s2(fi(real(R), 1, 10, 3, fm), imag(R), fi(fi(0, 0, 1, 0, fm), 1, 10, 5, fm), cordic_iters, fi(1, 0, 1, 0, fm));
     phi_R = fi(fmo_6, 1, 10, 7, fm);
     % phase_diff = wrapToPi(phi_L - phi_R);
     % Fixed-point friendly phase wrapping to [-pi, pi]
-    phase_diff = fi(phi_L - phi_R, 1, 10, 6, fm);
+    phase_diff = fi(phi_L - phi_R, 1, 10, 7, fm);
     phase_diff(:) = phase_diff - fi(2*pi, 0, 10, 7, fm)*floor((phase_diff + fi(pi, 0, 10, 8, fm))*fi(1/(2*pi), 0, 10, 1000, fm));
 
     % Magnitude approximation and thresholding
-    mag_L = fi(abs(real(L)) + abs(imag(L)), 0, 10, 3, fm);
-    mag_R = fi(abs(real(R)) + abs(imag(R)), 0, 10, 3, fm);
+    mag_L = fi(abs(real(L)) + abs(imag(L)), 0, 10, 6, fm);
+    mag_R = fi(abs(real(R)) + abs(imag(R)), 0, 10, 6, fm);
 
     if (mag_L + mag_R) > fi(0.5, 0, 10, 10, fm)
         theta_track_tmp = fi(theta_track(n) + K_track * phase_diff, 1, 10, 2, fm);
@@ -329,10 +329,7 @@ function value = sind_lut_s2(theta)
     if ~isempty(index)
         value = fi(lut(index), 1, 10, 9, fm);
     else
-        %F2F: No information found for converting the following block of code
-        %F2F: Start block
         value = fi(0, 1, 10, 9, fm);
-        %F2F: End block
     end
 end
 
