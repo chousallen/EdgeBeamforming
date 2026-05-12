@@ -3,7 +3,7 @@
 
 clear; clc; close all;
 
-COUNT = 100; % Number of iterations for the test bench
+COUNT = 300; % Number of iterations for the test bench
 
 % Parameters
 N = 4;                  % Number of antennas
@@ -13,7 +13,7 @@ NUM_SCAN = (120/scan_step) + 1; % Number of samples for scanning from -60 to 60 
 K_track = 2^(-4) * (180/pi); % Tracking step size
 
 % Signal Settings
-theta_s = 20; % Desired signal angle
+theta_s = -40; % Desired signal angle
 SNR = 20; % Signal-to-Noise Ratio (dB)
 
 % Steering vector function
@@ -22,7 +22,7 @@ steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th));
 angle_history = zeros(1, COUNT);
 
 for count = 1:COUNT
-    fprintf('--- Test Iteration %d/%d ---\n', count, COUNT);
+    % fprintf('--- Test Iteration %d/%d ---\n', count, COUNT);
     
     %% 1. Signal Generation
 
@@ -62,7 +62,9 @@ for count = 1:COUNT
     x4_q = real(X_raw(4, :)); x4_i = imag(X_raw(4, :));
 
     % Call the search_lms function
-    [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+    % [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+    % [E, degrees] = search_with_mono_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+   [E, degrees] = search_with_mono_wrapper_fixpt_mex('search_with_mono_wrapper_fixpt', x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
 
     %% Search Results Visualization
     % Find the maximum energy and its corresponding angle
@@ -72,12 +74,16 @@ for count = 1:COUNT
     angle_history(count) = detected_angle;
 end
 
+average_error = mean(abs(angle_history - theta_s));
+fprintf('Average Error: %.2f degrees\n', average_error);
+
 %% Search Results Visualization
 % The search results are printed in the console and can be visualized in the search_with_mono function's call to monopulse_tracking.
 figure('Position', [100, 100, 700, 400]);
-plot(1:COUNT, angle_history, 'b-', 'LineWidth', 1.5, 'MarkerSize', 6);
+plot(1:COUNT, angle_history, 'b.-', 'MarkerSize', 12);
 xlabel('Test Iteration');
 ylabel('Detected Angle (degrees)');
+ylim([-48, -32]);
 grid on;
 title('Detected Angle Across Test Iterations');
 

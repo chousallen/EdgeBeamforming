@@ -27,7 +27,7 @@ function [E, degrees] = search_with_mono_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_
     cordic_iter = fi(10, 0, 4, 0, fm);    % Number of iterations for the cordic algorithm
 
     %% 2. Signal Setup
-    X = fi([fi(x1_q + fi(1j, 0, 1, 0, fm)*x1_i, 1, 10, 4, fm); x2_q + fi(1j, 0, 1, 0, fm)*x2_i; x3_q + fi(1j, 0, 1, 0, fm)*x3_i; x4_q + fi(1j, 0, 1, 0, fm)*x4_i], 1, 10, 4, fm);
+    X = fi([fi(x1_q + fi(1j, 0, 1, 0, fm)*x1_i, 1, 10, 6, fm); x2_q + fi(1j, 0, 1, 0, fm)*x2_i; x3_q + fi(1j, 0, 1, 0, fm)*x3_i; x4_q + fi(1j, 0, 1, 0, fm)*x4_i], 1, 10, 4, fm);
 
     %% 2. Hardware Algo: Sequential Scanning & Energy Estimation
     % Initialize array to store calculated energy for each scanned angle
@@ -75,8 +75,8 @@ function [E, degrees] = search_with_mono_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_
 
     %% 4. Tracking with Monopulse
     X_track = fi(X(:, num_scan_points+fi(1, 0, 1, 0, fm):fi(end, 0, 9, 0, fm)), 1, 10, 4, fm); % Use the remaining samples for tracking
-    theta_track = fi(monopulse_tracking(X_track, N, fi(0.5, 0, 10, 10, fm), cordic_iter, max_degree, fi(2^(-4) * (180/pi), 0, 10, 8, fm)), 1, 6, 0, fm);
-    degrees = fi(theta_track, 1, 6, 0, fm);
+    theta_track = fi(monopulse_tracking(X_track, N, fi(0.5, 0, 10, 10, fm), cordic_iter, max_degree, fi(2^(-4) * (180/pi), 0, 10, 8, fm)), 1, 8, 0, fm);
+    degrees = fi(theta_track, 1, 8, 0, fm);
 end
 
 function value = sind_lut_s1(theta)
@@ -185,8 +185,8 @@ function [out_x, out_y, out_z] = cordic_s1(x_in, y_in, z_in, num_iterations, mod
     % if you only care about the phase (z_reg) or relative magnitude.
     % gain = prod(sqrt(1 + 2.^-(2*(0:num_iterations-1))));
     gain = fi(1.6467, 0, 10, 9, fm); % Precomputed gain for 10 iterations
-    out_x = fi(fi_div(x_reg, gain), 1, 10, 4, fm);
-    out_y = fi(fi_div(y_reg, gain), 1, 10, 4, fm);
+    out_x = fi(fi_div(x_reg, gain), 1, 10, 2, fm);
+    out_y = fi(fi_div(y_reg, gain), 1, 10, 2, fm);
     out_z = fi(z_reg, 1, 10, 7, fm);
 end
 
@@ -204,7 +204,7 @@ K_track = fi(K_track_1, 0, 10, 8, fm);
 N = fi(N_1, 0, 3, 0, fm);
 cordic_iters = fi(cordic_iters_1, 0, 4, 0, fm);
 d_lambda = fi(d_lambda_1, 0, 10, 10, fm);
-theta_init = fi(theta_init_1, 1, 6, 0, fm);
+theta_init = fi(theta_init_1, 1, 7, 0, fm);
 
 if nargin < 1 || isempty(X)
     %F2F: No information found for converting the following block of code
@@ -246,7 +246,7 @@ cordic_iters = fi(10, 0, 4, 0, fm);
 if nargin < 5 || isempty(theta_init), 
 %F2F: No information found for converting the following block of code
 %F2F: Start block
-theta_init = fi(15, 1, 6, 0, fm);
+theta_init = fi(15, 1, 7, 0, fm);
 %F2F: End block
  end
 if nargin < 6 || isempty(K_track), 
@@ -256,8 +256,8 @@ K_track = fi(2^(-4) * (180/pi), 0, 10, 8, fm);
 %F2F: End block
  end
 
-theta_track = fi(zeros(1, fi_toint(num_samples)), 1, 6, 0, fm);
-theta_track(1) = fi(theta_init, 1, 6, 0, fm);
+theta_track = fi(zeros(1, fi_toint(num_samples)), 1, 8, 0, fm);
+theta_track(1) = fi(theta_init, 1, 8, 0, fm);
 
 for n = fi(1, 0, 1, 0, fm):num_samples-fi(1, 0, 1, 0, fm)
     % Use the pre-generated received sample for this time index
@@ -266,7 +266,7 @@ for n = fi(1, 0, 1, 0, fm):num_samples-fi(1, 0, 1, 0, fm)
     % Beam steering (CORDIC rotation mode)
     X_steered = fi(zeros(fi_toint(N), 1) + 1j*zeros(fi_toint(N), 1), 1, 10, 4, fm);
     for k = fi(1, 0, 1, 0, fm):N
-        phi_target = fi(fi(fi(2 * pi, 0, 10, 7, fm) * d_lambda * (k-fi(1, 0, 1, 0, fm)), 'SumMode', 'KeepLSB') * fi(sind_lut_s2(theta_track(n)), 'SumMode', 'KeepLSB'), 1, 10, 6, fm);
+        phi_target = fi(fi(fi(2 * pi, 0, 10, 7, fm) * d_lambda * (k-fi(1, 0, 1, 0, fm)), 'SumMode', 'KeepLSB') * fi(sind_lut_s2(theta_track(n)), 'SumMode', 'KeepLSB'), 1, 10, 5, fm);
         q_in = fi(real(X_sample(k)), 1, 10, 4, fm);
         i_in = fi(imag(X_sample(k)), 1, 10, 4, fm);
         [fmo_3, fmo_4, ~] = cordic_s1(fi(q_in, 1, 10, 3, fm), fi(i_in, 1, 10, 3, fm), phi_target, cordic_iters, fi(0, 0, 1, 0, fm));
@@ -300,12 +300,12 @@ for n = fi(1, 0, 1, 0, fm):num_samples-fi(1, 0, 1, 0, fm)
     mag_R = fi(abs(real(R)) + abs(imag(R)), 0, 10, 3, fm);
 
     if (mag_L + mag_R) > fi(0.5, 0, 10, 10, fm)
-        theta_track_tmp = fi(theta_track(n) + K_track * phase_diff, 1, 10, 4, fm);
-        theta_track(n+fi(1, 0, 1, 0, fm)) = fi(round(theta_track_tmp), 1, 6, 0, fm);
+        theta_track_tmp = fi(theta_track(n) + K_track * phase_diff, 1, 10, 2, fm);
+        theta_track(n+fi(1, 0, 1, 0, fm)) = fi(round(theta_track_tmp), 1, 8, 0, fm);
     else
         %F2F: No information found for converting the following block of code
         %F2F: Start block
-        theta_track(n+fi(1, 0, 1, 0, fm)) = fi(theta_track(n), 1, 6, 0, fm);
+        theta_track(n+fi(1, 0, 1, 0, fm)) = fi(theta_track(n), 1, 8, 0, fm);
         %F2F: End block
     end
 end
@@ -323,15 +323,15 @@ function value = sind_lut_s2(theta)
     angles = fi(-60:1:60, 1, 7, 0, fm);
 
     % Find the index of the input angle in the lookup table
-    index = fi(find(angles == theta, 1), 0, 6, 0, fm);
+    index = fi(find(angles == theta, 1), 0, 7, 0, fm);
 
     % Return the corresponding value or 0 if the angle is not in the table
     if ~isempty(index)
-        value = fi(lut(index), 1, 10, 10, fm);
+        value = fi(lut(index), 1, 10, 9, fm);
     else
         %F2F: No information found for converting the following block of code
         %F2F: Start block
-        value = fi(0, 1, 10, 10, fm);
+        value = fi(0, 1, 10, 9, fm);
         %F2F: End block
     end
 end
@@ -418,8 +418,8 @@ function [out_x, out_y, out_z] = cordic_s2(x_in, y_in, z_in, num_iterations, mod
     % if you only care about the phase (z_reg) or relative magnitude.
     % gain = prod(sqrt(1 + 2.^-(2*(0:num_iterations-1))));
     gain = fi(1.6467, 0, 10, 9, fm); % Precomputed gain for 10 iterations
-    out_x = fi(fi_div(x_reg, gain), 1, 10, 4, fm);
-    out_y = fi(fi_div(y_reg, gain), 1, 10, 4, fm);
+    out_x = fi(fi_div(x_reg, gain), 1, 10, 2, fm);
+    out_y = fi(fi_div(y_reg, gain), 1, 10, 2, fm);
     out_z = fi(z_reg, 1, 10, 7, fm);
 end
 

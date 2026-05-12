@@ -30,7 +30,7 @@
 </style>
 </head>
 <body>
-<h3>Generated on  2026-05-06 18:00:27</h3>
+<h3>Generated on  2026-05-12 17:48:11</h3>
 <p>The following table shows fixed point instrumentation results</p>
 <h2>Fixed-Point Report <span>cordic>1<span></h2>
 <TABLE class="code">
@@ -76,7 +76,7 @@
 </pre></TD>
 </TR>
 <TR>
-<TD class="cov black" style="background-color: rgb(187,215,183);">21%</TD>
+<TD class="cov black" style="background-color: rgb(196,220,192);">17%</TD>
 <TD class="padd"><pre>        elseif z_reg &lt; -pi/2
             x_reg = -x_in; y_reg = -y_in; z_reg = z_reg + pi;
         end</pre></TD>
@@ -153,9 +153,9 @@ end</pre></TD>
 <TR class="a">
 <TD class="left">num_iterations</TD><TD class="left">double</TD><TD class="right">10</TD><TD class="right">10</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 4, 0)</TD></TR>
 <TR class="b">
-<TD class="left">out_x</TD><TD class="left">double</TD><TD class="right">-21.790049980198024</TD><TD class="right">25.362262987735967</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
+<TD class="left">out_x</TD><TD class="left">double</TD><TD class="right">-21.790049980198024</TD><TD class="right">25.362262987735967</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 2)</TD></TR>
 <TR class="a">
-<TD class="left">out_y</TD><TD class="left">double</TD><TD class="right">-14.395926271115849</TD><TD class="right">24.069717661543486</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
+<TD class="left">out_y</TD><TD class="left">double</TD><TD class="right">-14.395926271115849</TD><TD class="right">24.069717661543486</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 2)</TD></TR>
 <TR class="b">
 <TD class="left">out_z</TD><TD class="left">double</TD><TD class="right">-0.0019892969004001665</TD><TD class="right">0.0019892969004001665</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 7)</TD></TR>
 <TR class="a">
@@ -198,12 +198,16 @@ end</pre></TD>
     index = find(angles == theta, 1);
 
     % Return the corresponding value or 0 if the angle is not in the table
-    if ~isempty(index)
+</pre></TD>
+</TR>
+<TR>
+<TD class="cov white" style="background-color: rgb(37,130,40);">86%</TD>
+<TD class="padd"><pre>    if ~isempty(index)
         value = lut(index);
 </pre></TD>
 </TR>
 <TR>
-<TD class="cov white" style="background-color: rgb(157,38,35);">0%</TD>
+<TD class="cov black" style="background-color: rgb(203,224,198);">14%</TD>
 <TD class="padd"><pre>    else
         value = 0;
     end</pre></TD>
@@ -217,13 +221,13 @@ end</pre></TD>
 <TABLE><TR class="h"><th>Variable Name</th><th>Type</th><th>Sim Min</th><th>Sim Max</th><th>Static Min</th><th>Static Max</th><th>Whole Number</th><th>ProposedType <BR /> (Best For WL = 10)</th></TR><TR class="a">
 <TD class="left">angles</TD><TD class="left">double 1 x 121 </TD><TD class="right">-60</TD><TD class="right">60</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 7, 0)</TD></TR>
 <TR class="b">
-<TD class="left">index</TD><TD class="left">double</TD><TD class="right">31</TD><TD class="right">46</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 6, 0)</TD></TR>
+<TD class="left">index</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">121</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 7, 0)</TD></TR>
 <TR class="a">
 <TD class="left">lut</TD><TD class="left">double 1 x 121 </TD><TD class="right">-0.866</TD><TD class="right">0.866</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 9)</TD></TR>
 <TR class="b">
-<TD class="left">theta</TD><TD class="left">double</TD><TD class="right">-30</TD><TD class="right">-15</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 6, 0)</TD></TR>
+<TD class="left">theta</TD><TD class="left">double</TD><TD class="right">-72</TD><TD class="right">98</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 8, 0)</TD></TR>
 <TR class="a">
-<TD class="left">value</TD><TD class="left">double</TD><TD class="right">-0.5</TD><TD class="right">-0.2588</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 10)</TD></TR>
+<TD class="left">value</TD><TD class="left">double</TD><TD class="right">-0.866</TD><TD class="right">0.866</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 9)</TD></TR>
 </TABLE>
 
 <h2>Fixed-Point Report <span>cordic>2<span></h2>
@@ -270,7 +274,7 @@ end</pre></TD>
 </pre></TD>
 </TR>
 <TR>
-<TD class="cov black" style="background-color: rgb(187,215,183);">21%</TD>
+<TD class="cov black" style="background-color: rgb(196,220,192);">17%</TD>
 <TD class="padd"><pre>        elseif z_reg &lt; -pi/2
             x_reg = -x_in; y_reg = -y_in; z_reg = z_reg + pi;
         end</pre></TD>
@@ -347,9 +351,9 @@ end</pre></TD>
 <TR class="a">
 <TD class="left">num_iterations</TD><TD class="left">double</TD><TD class="right">10</TD><TD class="right">10</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 4, 0)</TD></TR>
 <TR class="b">
-<TD class="left">out_x</TD><TD class="left">double</TD><TD class="right">4.997099229455822</TD><TD class="right">69.8153557864871</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
+<TD class="left">out_x</TD><TD class="left">double</TD><TD class="right">0.08288201269052503</TD><TD class="right">69.8153557864871</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 2)</TD></TR>
 <TR class="a">
-<TD class="left">out_y</TD><TD class="left">double</TD><TD class="right">-0.054158290106976516</TD><TD class="right">0.04928601462934328</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
+<TD class="left">out_y</TD><TD class="left">double</TD><TD class="right">-0.054158290106976516</TD><TD class="right">0.04928601462934328</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 2)</TD></TR>
 <TR class="b">
 <TD class="left">out_z</TD><TD class="left">double</TD><TD class="right">-3.1208926535897934</TD><TD class="right">3.128692653589794</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 7)</TD></TR>
 <TR class="a">
@@ -357,7 +361,7 @@ end</pre></TD>
 <TR class="b">
 <TD class="left">x_reg</TD><TD class="left">double</TD><TD class="right">-43.36203852521136</TD><TD class="right">114.96494637360831</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 12, 3)</TD></TR>
 <TR class="a">
-<TD class="left">x_temp</TD><TD class="left">double</TD><TD class="right">6.23294648444592</TD><TD class="right">114.96494637360831</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 12, 3)</TD></TR>
+<TD class="left">x_temp</TD><TD class="left">double</TD><TD class="right">0.11617639280150716</TD><TD class="right">114.96494637360831</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 12, 3)</TD></TR>
 <TR class="b">
 <TD class="left">y_in</TD><TD class="left">double</TD><TD class="right">-28.725303587777184</TD><TD class="right">48.09196418824076</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 3)</TD></TR>
 <TR class="a">
@@ -536,29 +540,29 @@ end</pre></TD>
 <TR class="b">
 <TD class="left">k</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">4</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 3, 0)</TD></TR>
 <TR class="a">
-<TD class="left">mag_L</TD><TD class="left">double</TD><TD class="right">6.23294648444592</TD><TD class="right">98.6982680231637</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 3)</TD></TR>
+<TD class="left">mag_L</TD><TD class="left">double</TD><TD class="right">0.11617639280150716</TD><TD class="right">98.6982680231637</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 3)</TD></TR>
 <TR class="b">
-<TD class="left">mag_R</TD><TD class="left">double</TD><TD class="right">6.355162733381914</TD><TD class="right">98.68316035223815</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 3)</TD></TR>
+<TD class="left">mag_R</TD><TD class="left">double</TD><TD class="right">0.49314392132217444</TD><TD class="right">98.68316035223815</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 3)</TD></TR>
 <TR class="a">
 <TD class="left">n</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">49</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 6, 0)</TD></TR>
 <TR class="b">
 <TD class="left">num_samples</TD><TD class="left">double</TD><TD class="right">50</TD><TD class="right">50</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 6, 0)</TD></TR>
 <TR class="a">
-<TD class="left">phase_diff</TD><TD class="left">double</TD><TD class="right">-6.1801853071795865</TD><TD class="right">0.5187926535897929</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 6)</TD></TR>
+<TD class="left">phase_diff</TD><TD class="left">double</TD><TD class="right">-6.1801853071795865</TD><TD class="right">3.9445926535897926</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 6)</TD></TR>
 <TR class="b">
 <TD class="left">phi_L</TD><TD class="left">double</TD><TD class="right">-3.1208926535897934</TD><TD class="right">3.128692653589794</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 7)</TD></TR>
 <TR class="a">
 <TD class="left">phi_R</TD><TD class="left">double</TD><TD class="right">-3.070292653589793</TD><TD class="right">3.059292653589793</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 7)</TD></TR>
 <TR class="b">
-<TD class="left">phi_target</TD><TD class="left">double</TD><TD class="right">-4.71238898038469</TD><TD class="right">0</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 6)</TD></TR>
+<TD class="left">phi_target</TD><TD class="left">double</TD><TD class="right">-8.161857714026283</TD><TD class="right">8.161857714026283</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 5)</TD></TR>
 <TR class="a">
 <TD class="left">q_in</TD><TD class="left">double</TD><TD class="right">-25.333155089776106</TD><TD class="right">25.323876469286454</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
 <TR class="b">
-<TD class="left">theta_init</TD><TD class="left">double</TD><TD class="right">-30</TD><TD class="right">-30</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 6, 0)</TD></TR>
+<TD class="left">theta_init</TD><TD class="left">double</TD><TD class="right">-60</TD><TD class="right">60</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 7, 0)</TD></TR>
 <TR class="a">
-<TD class="left">theta_track</TD><TD class="left">double 1 x 111 </TD><TD class="right">-30</TD><TD class="right">0</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 6, 0)</TD></TR>
+<TD class="left">theta_track</TD><TD class="left">double 1 x 111 </TD><TD class="right">-72</TD><TD class="right">98</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 8, 0)</TD></TR>
 <TR class="b">
-<TD class="left">theta_track_tmp</TD><TD class="left">double</TD><TD class="right">-30.01432394487827</TD><TD class="right">-14.54163376389534</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
+<TD class="left">theta_track_tmp</TD><TD class="left">double</TD><TD class="right">-72.37446806568718</TD><TD class="right">98.4564534537438</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 2)</TD></TR>
 </TABLE>
 
 <h2>Fixed-Point Report <span>sind_lut>1<span></h2>
@@ -722,7 +726,7 @@ end</pre></TD>
 <TR class="b">
 <TD class="left">current_angle</TD><TD class="left">double</TD><TD class="right">-60</TD><TD class="right">60</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 7, 0)</TD></TR>
 <TR class="a">
-<TD class="left">degrees</TD><TD class="left">double 1 x 111 </TD><TD class="right">-30</TD><TD class="right">-15</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 6, 0)</TD></TR>
+<TD class="left">degrees</TD><TD class="left">double 1 x 111 </TD><TD class="right">-72</TD><TD class="right">98</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 8, 0)</TD></TR>
 <TR class="b">
 <TD class="left">energy_approx</TD><TD class="left">double</TD><TD class="right">0.21731643290518932</TD><TD class="right">40.14637376511821</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 4)</TD></TR>
 <TR class="a">
@@ -730,7 +734,7 @@ end</pre></TD>
 <TR class="b">
 <TD class="left">k</TD><TD class="left">double</TD><TD class="right">1</TD><TD class="right">4</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 3, 0)</TD></TR>
 <TR class="a">
-<TD class="left">max_degree</TD><TD class="left">double</TD><TD class="right">-60</TD><TD class="right">0</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 7, 0)</TD></TR>
+<TD class="left">max_degree</TD><TD class="left">double</TD><TD class="right">-60</TD><TD class="right">60</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 7, 0)</TD></TR>
 <TR class="b">
 <TD class="left">max_energy</TD><TD class="left">double</TD><TD class="right">0</TD><TD class="right">40.14637376511821</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(0, 10, 4)</TD></TR>
 <TR class="a">
@@ -750,7 +754,7 @@ end</pre></TD>
 <TR class="b">
 <TD class="left">step</TD><TD class="left">double</TD><TD class="right">2</TD><TD class="right">2</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(0, 2, 0)</TD></TR>
 <TR class="a">
-<TD class="left">theta_track</TD><TD class="left">double 1 x 111 </TD><TD class="right">-30</TD><TD class="right">-15</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 6, 0)</TD></TR>
+<TD class="left">theta_track</TD><TD class="left">double 1 x 111 </TD><TD class="right">-72</TD><TD class="right">98</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">Yes</TD><TD class="left">numerictype(1, 8, 0)</TD></TR>
 <TR class="b">
 <TD class="left">x1_i</TD><TD class="left">double 1 x 111 </TD><TD class="right">-14.36420079031546</TD><TD class="right">24.051093839296477</TD><TD class="right"></TD><TD class="right"></TD><TD class="left">No</TD><TD class="left">numerictype(1, 10, 4)</TD></TR>
 <TR class="a">

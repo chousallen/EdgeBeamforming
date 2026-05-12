@@ -31,13 +31,13 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
         for i = 0:num_iterations-1
             if z_reg > 0
                 % Rotate counter-clockwise
-                x_temp = x_reg - (y_reg * 2^(-i));
-                y_temp = y_reg + (x_reg * 2^(-i));
+                x_temp = x_reg - bitsra(y_reg, i); % x_reg - (y_reg * 2^(-i))
+                y_temp = y_reg + bitsra(x_reg, i); % y_reg + (
                 z_temp = z_reg - atan_table(i+1);
             else
                 % Rotate clockwise
-                x_temp = x_reg + (y_reg * 2^(-i));
-                y_temp = y_reg - (x_reg * 2^(-i));
+                x_temp = x_reg + bitsra(y_reg, i); % x_reg + (y_reg * 2^(-i))
+                y_temp = y_reg - bitsra(x_reg, i); % y_reg - (x_reg * 2^(-i))
                 z_temp = z_reg + atan_table(i+1);
             end
             x_reg = x_temp; y_reg = y_temp; z_reg = z_temp;
@@ -60,13 +60,13 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
         for i = 0:num_iterations-1
             if y_reg > 0
                 % Rotate clockwise to reduce Y
-                x_temp = x_reg + (y_reg * 2^(-i));
-                y_temp = y_reg - (x_reg * 2^(-i));
+                x_temp = x_reg + bitsra(y_reg, i); % x_reg + (y_reg * 2^(-i))
+                y_temp = y_reg - bitsra(x_reg, i); % y_reg - (x_reg * 2^(-i))
                 z_temp = z_reg + atan_table(i+1);
             else
                 % Rotate counter-clockwise to increase Y
-                x_temp = x_reg - (y_reg * 2^(-i));
-                y_temp = y_reg + (x_reg * 2^(-i));
+                x_temp = x_reg - bitsra(y_reg, i); % x_reg - (y_reg * 2^(-i))
+                y_temp = y_reg + bitsra(x_reg, i); % y_reg + (x_reg * 2^(-i))
                 z_temp = z_reg - atan_table(i+1);
             end
             x_reg = x_temp; y_reg = y_temp; z_reg = z_temp;
