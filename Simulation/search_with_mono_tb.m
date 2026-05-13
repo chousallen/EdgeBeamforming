@@ -11,8 +11,8 @@ NUM_SCAN = (120/scan_step) + 1; % Number of samples for scanning from -60 to 60 
 K_track = 2^(-4) * (180/pi); % Tracking step size
 
 % Signal Settings
-theta_s = 10; % Desired signal angle
-theta_i = -20; % Interference signal angle
+theta_s = -60; % Desired signal angle
+theta_i = 40; % Interference signal angle
 SNR = 30; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)
 
@@ -40,7 +40,7 @@ for n = 1:NUM_SCAN
 end
 
 % Received signal for tracking phase (use the same signal for simplicity)
-angle_step = 4;
+angle_step = 20;
 angles = theta_s:angle_step:theta_s+angle_step*4;             % Change angle every 10 degrees for tracking phase
 % angles_1 = -60:2:0;			 % Change angle every 2 degrees for tracking phase
 % angles_2 = 0:-2:-20;			 % Change angle every 2 degrees for tracking phase
