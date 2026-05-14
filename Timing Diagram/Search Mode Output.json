@@ -1,0 +1,21 @@
+{signal: [
+  {name: 'clk', wave: 'P.......'},
+  ['Comp Module',
+     {name: 'Valid_out', wave: '010.....', data: ['x1_q', 'x1_i', 'x2_q', 'x2_i', 'x3_q', 'x3_i', 'x4_q', 'x4_i']},
+     {name: 'Detected_angle', wave: 'x=x.....', data: ['Angle']},
+     {name: 'x1_i', wave: 'x=x.....', data: ['y_q']},
+   ],
+  {},
+   
+ 
+  ['SYS OUTPUT',
+   {name: 'valid_out', wave: '0.10....'},
+   {name: 'data_out', wave: 'x.===x..', data: ['angle', 'y_q','y_i']},
+   ],
+   {},
+],
+   head:{
+   text:'Search Mode Data Output',
+   tick:0,
+   every:2
+ },}

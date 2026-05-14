@@ -1,0 +1,32 @@
+{signal: [
+  {name: 'clk', wave: 'P............'},
+  {name: 'start', wave: '010..........'},
+  ['Input Reg',
+     {name: 'x[n]', wave: 'x33445566x...', data: ['x1_q', 'x1_i', 'x2_q', 'x2_i', 'x3_q', 'x3_i', 'x4_q', 'x4_i']},
+     {name: 'x1_q', wave: 'x.3...........', data: ['x1_q'], phase: 0.5},
+     {name: 'x1_i', wave: 'x..3..........', data: ['x1_i'], phase: 0.5},
+   	 {name: 'x1_q', wave: 'x...4.........', data: ['x2_q'], phase: 0.5},
+     {name: 'x1_i', wave: 'x....4........', data: ['x2_i'], phase: 0.5},
+     {name: 'x1_q', wave: 'x.....5.......', data: ['x3_q'], phase: 0.5},
+     {name: 'x1_i', wave: 'x......5......', data: ['x3_i'], phase: 0.5},
+     {name: 'x1_q', wave: 'x.......6.....', data: ['x4_q'], phase: 0.5},
+     {name: 'x1_i', wave: 'x........6....', data: ['x4_i'], phase: 0.5},
+   ],
+  {},
+   {name: 'angle', wave: 'x=...........', data: ['current_angle']},
+   {},
+   
+ 
+  ['CORDIC IN',
+   {name: 'valid_in', wave: '0...10101010.'},
+   {name: 'x', wave: 'x...3x4x5x6x.', data: ['x1_q', 'x2_q','x3_q', 'x4_q']},
+   {name: 'y', wave: 'x...3x4x5x6x.', data: ['x1_i', 'x2_i', 'x3_i', 'x4_i']},
+   {name: 'z', wave: 'x...3x4x5x6x.', data: ['phi_1', 'phi_2', 'phi_3','phi_4']},
+   ],
+   {},
+],
+   head:{
+   text:'Steering Module Data Input',
+   tick:0,
+   every:2
+ },}

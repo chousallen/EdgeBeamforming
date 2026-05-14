@@ -1,0 +1,19 @@
+{signal: [
+  {name: 'clk', wave: 'P..........'},
+  
+ 
+  ['CORDIC OUT',
+   {name: 'valid_out', wave: '0.10101010.'},
+   {name: 'x', wave: 'x.3x4x5x6x.', data: ['x1_q', 'x2_q','x3_q', 'x4_q']},
+   {name: 'y', wave: 'x.3x4x5x6x.', data: ['x1_i', 'x2_i', 'x3_i', 'x4_i']},
+   {name: 'z', wave: 'x.3x4x5x6x.', data: ['phi_1', 'phi_2', 'phi_3','phi_4']},
+   ],
+   {},
+   {name: 'index', wave: '=..=.=.=.=.', data:['0', '1', '2', '3', '0']},
+   {},
+],
+   head:{
+   text:'Steering Module Data Output',
+   tick:0,
+   every:2
+ },}
