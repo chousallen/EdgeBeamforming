@@ -11,21 +11,21 @@ NUM_SCAN = (120/scan_step) + 1; % Number of samples for scanning from -60 to 60 
 K_track = 2^(-4) * (180/pi); % Tracking step size
 
 % Signal Settings
-theta_s = -60; % Desired signal angle
+theta_s = -50; % Desired signal angle
 theta_i = 40; % Interference signal angle
-SNR = 30; % Signal-to-Noise Ratio (dB)
+SNR = 20; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)
 
 % Steering vector function
 steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th));
 
 % Generate QPSK signal
-sig_val = 10^(SNR/20) * (1+1j)/2; % QPSK symbol with power based on SNR
+sig_val = 10^(SNR/20) * (1+1j)/sqrt(2); % QPSK symbol with power based on SNR
 
 % Generate interference signal
-interference_val = 10^((SNR-SIR)/20) * (randn+1j*randn)/2; % Interference symbol with power based on SIR
+interference_val = 10^((SNR-SIR)/20) * (randn+1j*randn)/sqrt(2); % Interference symbol with power based on SIR
 
-noise = (randn(N, NUM_SCAN) + 1j*randn(N, NUM_SCAN))/2; % AWGN noise
+noise = (randn(N, NUM_SCAN) + 1j*randn(N, NUM_SCAN))/sqrt(2); % AWGN noise
 % noise = zeros(N, NUM_SCAN) + 1j*zeros(N, NUM_SCAN); % No noise for initial testing
 
 % Array manifold vectors
@@ -35,8 +35,8 @@ a_i = steering(theta_i); % Steering vector for interference signal
 % Received signal at the antenna array for scanning phase (with the desired signal present)
 X_scan = zeros(N, NUM_SCAN);
 for n = 1:NUM_SCAN
-    X_scan(:, n) = a_s * sig_val + interference_val * a_i + noise(:, n);
-	X_scan(:, n) = X_scan(:, n) / 10; % Scale down the signal for better visualization of the energy landscape
+    % X_scan(:, n) = a_s * sig_val + interference_val * a_i + noise(:, n);
+	X_scan(:, n) = a_s * sig_val + noise(:, n);
 end
 
 % Received signal for tracking phase (use the same signal for simplicity)
@@ -56,13 +56,14 @@ for n = 1:num_track
 	a_int = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(theta_i));
 	sig_val = 10^(SNR/20) * (1 + 1j)/sqrt(2);
 	interference_val = 10^((SNR-SIR)/20) * (randn + 1j*randn)/sqrt(2);
-	% noise = (randn(N,1) + 1j*randn(N,1))/sqrt(2);
-	noise = zeros(N,1) + 1j*zeros(N,1); % No noise for initial testing
+	noise = (randn(N,1) + 1j*randn(N,1))/sqrt(2);
+	% noise = zeros(N,1) + 1j*zeros(N,1); % No noise for initial testing
 	X_track(:, n) = a_sig * sig_val + interference_val * a_i + noise;
-	X_track(:, n) = X_track(:, n) / 10; % Scale down the signal for better visualization of the tracking performance
+	% X_track(:, n) = X_track(:, n) / 10; % Scale down the signal for better visualization of the tracking performance
 end
 
 X_raw = [X_scan, X_track]; % Combine scanning and tracking signals
+X_raw = X_raw / 2;
 
 % Separate real and imaginary parts for search_lms input
 x1_q = real(X_raw(1, :)); x1_i = imag(X_raw(1, :));
