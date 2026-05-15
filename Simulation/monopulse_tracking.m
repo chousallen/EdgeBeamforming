@@ -5,7 +5,7 @@
 % Usage:
 %   theta_track = monopulse_tracking(X, N, d_lambda, cordic_iters, theta_init, K_track)
 
-function theta_track = monopulse_tracking(X, N, d_lambda, cordic_iters, theta_init, K_track)
+function [theta_track, steered_q, steered_i] = monopulse_tracking(X, N, d_lambda, cordic_iters, theta_init, K_track)
 
 % Validate input X
 if nargin < 1 || isempty(X)
@@ -28,6 +28,9 @@ if nargin < 6 || isempty(K_track), K_track = 2^(-4) * (180/pi); end
 theta_track = zeros(1, num_samples);
 theta_track(1) = theta_init;
 
+steered_q = zeros(N, num_samples);
+steered_i = zeros(N, num_samples);
+
 for n = 1:num_samples-1
     % Use the pre-generated received sample for this time index
     X_sample = X(:, n);
@@ -40,6 +43,8 @@ for n = 1:num_samples-1
         i_in = imag(X_sample(k));
         [Q_rot, I_rot, ~] = cordic(q_in, i_in, phi_target, cordic_iters, 0);
         X_steered(k) = Q_rot + 1j * I_rot;
+        steered_q(k, n) = Q_rot;
+        steered_i(k, n) = I_rot;
     end
 
     % Sub-array grouping (Left and Right halves)

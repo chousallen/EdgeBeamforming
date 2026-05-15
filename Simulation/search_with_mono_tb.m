@@ -84,10 +84,11 @@ for k = 1:numel(vec_names)
 	eval([n ' = v;']);
 end
 
+
 % Call the search function (use the generated fixed-point MEX)
-% [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
-[E, degrees] = search_with_mono_wrapper_fixpt_mex('search_with_mono_wrapper_fixpt', x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
-% [E, degrees] = search_with_mono_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+% [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+[E, degrees, steered_q, steered_i] = search_with_mono_wrapper_fixpt_mex('search_with_mono_wrapper_fixpt', x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+% [E, degrees, steered_q, steered_i] = search_with_mono_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
 
 %% Search Results Visualization
 % Find the maximum energy and its corresponding angle
@@ -130,5 +131,53 @@ stairs(1:num_track, ANGLES_REF, 'r--', 'LineWidth', 1.5, 'DisplayName', 'True An
 legend('Tracked Angle \theta_{track}', 'True Angle (Block Changes)', 'Location', 'best');
 
 grid on;
+
+%% Export data to golden.mem hex file
+fid = fopen('golden.mem', 'w');
+
+% Prepare input data
+x1_q_full = x1_q;
+x1_i_full = x1_i;
+x2_q_full = x2_q;
+x2_i_full = x2_i;
+x3_q_full = x3_q;
+x3_i_full = x3_i;
+x4_q_full = x4_q;
+x4_i_full = x4_i;
+
+num_samples = length(x1_q_full);
+
+% Convert steered_q and steered_i to row vectors if they are columns
+if size(steered_q, 1) == N && size(steered_q, 2) == num_samples
+    steered_q_data = steered_q;
+    steered_i_data = steered_i;
+else
+    steered_q_data = steered_q';
+    steered_i_data = steered_i';
+end
+
+% Write each row: x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, steered_q[1:4], steered_i[1:4]
+for n = 1:num_samples
+    % Input values
+    vals = [x1_q_full(n), x1_i_full(n), x2_q_full(n), x2_i_full(n), ...
+            x3_q_full(n), x3_i_full(n), x4_q_full(n), x4_i_full(n), ...
+            steered_q_data(1, n), steered_q_data(2, n), steered_q_data(3, n), steered_q_data(4, n), ...
+            steered_i_data(1, n), steered_i_data(2, n), steered_i_data(3, n), steered_i_data(4, n)];
+    
+    % Convert to hex (treating as fixed-point or scaled integers)
+    hex_vals = dec2hex(int32(vals * 2^15), 8);
+    
+    % Write row
+    for k = 1:size(hex_vals, 1)
+        fprintf(fid, '%s', hex_vals(k, :));
+        if k < size(hex_vals, 1)
+            fprintf(fid, ' ');
+        end
+    end
+    fprintf(fid, '\n');
+end
+
+fclose(fid);
+fprintf('Data exported to golden.mem\n');
 
 disp('Test bench executed successfully.');

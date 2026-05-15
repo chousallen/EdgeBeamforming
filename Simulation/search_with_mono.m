@@ -1,10 +1,12 @@
-function [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, step)
+function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, step)
     % Inputs:
     %   x1_q, x1_i, ..., x4_q, x4_i: Real and imaginary parts of the received signals for 4 channels (each should be a vector of length num_iterations + scan_points)
     %   step: Scan resolution in degrees for the initial search phase
     % Outputs:
     %   E: Energy values for each scanned angle during the initial search phase
     %   degrees: The degrees detected through the monopulse search phase
+    %   steered_q: Real parts of the steered signals
+    %   steered_i: Imaginary parts of the steered signals
 
     %% 1. System & Environment Parameters Setup
     % --- Search Parameters ---
@@ -28,6 +30,9 @@ function [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_
     max_degree = 0;
     max_energy = 0;
 
+    steered_q = zeros(N, num_scan_points);
+    steered_i = zeros(N, num_scan_points);
+
     % Sweep through all angles
     for i = 1:num_scan_points
         current_angle = scan_angles(i);
@@ -42,6 +47,9 @@ function [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_
 
             % CORDIC Rotation (Implemented as a function for clarity)
             [Q_rot, I_rot, ~] = cordic(real(X(k, i)), imag(X(k, i)), phi, 10, 0); % mode=0 for rotation
+
+            steered_q(k, i) = Q_rot;
+            steered_i(k, i) = I_rot;
 
             SUM_I = SUM_I + I_rot;
             SUM_Q = SUM_Q + Q_rot;
@@ -65,8 +73,11 @@ function [E, degrees] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_
 
     %% 4. Tracking with Monopulse
     X_track = X(:, num_scan_points+1:end); % Use the remaining samples for tracking
-    theta_track = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (180/pi));
+    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (180/pi));
     degrees = theta_track;
+
+    steered_q = [steered_q, steered_q_track];
+    steered_i = [steered_i, steered_i_track];
 end
 
 function value = sind_lut(theta)
