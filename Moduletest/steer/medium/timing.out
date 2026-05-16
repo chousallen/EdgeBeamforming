@@ -1,0 +1,90 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : steer
+Version: U-2022.12
+Date   : Sat May 16 22:11:28 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: valid_sr_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: u_c1s1/ya_out_reg[7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  steer              G200K                 fsa0m_a_generic_core_tt1p8v25c
+  cordic_stage_ITER_START0_OWN_ATAN1
+                     enG5K                 fsa0m_a_generic_core_tt1p8v25c
+  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10
+                     enG5K                 fsa0m_a_generic_core_tt1p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  valid_sr_reg[1]/CK (DFFRBP)                             0.00 #     0.50 r
+  valid_sr_reg[1]/Q (DFFRBP)                              0.33       0.83 f
+  u_c1s1/start (cordic_stage_ITER_START0_OWN_ATAN1)       0.00       0.83 f
+  u_c1s1/U144/O (INV2)                                    0.11       0.94 r
+  u_c1s1/U95/O (BUF6)                                     0.16       1.10 r
+  u_c1s1/U113/O (ND2P)                                    0.15       1.25 f
+  u_c1s1/U153/O (INV2)                                    0.20       1.45 r
+  u_c1s1/U201/O (ND2)                                     0.11       1.56 f
+  u_c1s1/U112/O (INV2)                                    0.18       1.73 r
+  u_c1s1/U109/O (INV1S)                                   0.13       1.86 f
+  u_c1s1/U14/O (INV1CK)                                   0.25       2.11 r
+  u_c1s1/U1075/O (AOI22S)                                 0.09       2.21 f
+  u_c1s1/U1076/O (ND2)                                    0.16       2.37 r
+  u_c1s1/U1086/O (AOI22S)                                 0.07       2.44 f
+  u_c1s1/U289/O (OA112)                                   0.26       2.70 f
+  u_c1s1/U325/O (ND2P)                                    0.14       2.84 r
+  u_c1s1/add_104/B[1] (cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10)
+                                                          0.00       2.84 r
+  u_c1s1/add_104/U35/O (OR2S)                             0.22       3.07 r
+  u_c1s1/add_104/U7/O (ND3)                               0.13       3.20 f
+  u_c1s1/add_104/U6/O (ND2P)                              0.18       3.38 r
+  u_c1s1/add_104/U10/O (ND3)                              0.13       3.50 f
+  u_c1s1/add_104/U9/O (ND3P)                              0.17       3.67 r
+  u_c1s1/add_104/U4/O (AO12P)                             0.20       3.87 r
+  u_c1s1/add_104/U12/O (INV2)                             0.04       3.90 f
+  u_c1s1/add_104/U8/O (OA12P)                             0.21       4.12 f
+  u_c1s1/add_104/U3/O (OAI12H)                            0.20       4.31 r
+  u_c1s1/add_104/U17/O (INV2)                             0.05       4.36 f
+  u_c1s1/add_104/U58/O (MOAI1H)                           0.15       4.51 r
+  u_c1s1/add_104/U15/O (INV2)                             0.05       4.56 f
+  u_c1s1/add_104/U2/O (MOAI1H)                            0.15       4.71 r
+  u_c1s1/add_104/U14/O (INV2)                             0.05       4.76 f
+  u_c1s1/add_104/U56/O (MOAI1H)                           0.11       4.87 r
+  u_c1s1/add_104/U16/O (XNR2HS)                           0.14       5.01 r
+  u_c1s1/add_104/SUM[11] (cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10)
+                                                          0.00       5.01 r
+  u_c1s1/U789/O (INV2)                                    0.08       5.09 f
+  u_c1s1/U105/O (OAI222H)                                 0.20       5.29 r
+  u_c1s1/ya_out_reg[7]/D (QDFFRBN)                        0.00       5.29 r
+  data arrival time                                                  5.29
+
+  clock clk (rise edge)                                   5.00       5.00
+  clock network delay (ideal)                             0.50       5.50
+  clock uncertainty                                      -0.10       5.40
+  u_c1s1/ya_out_reg[7]/CK (QDFFRBN)                       0.00       5.40 r
+  library setup time                                     -0.11       5.29
+  data required time                                                 5.29
+  --------------------------------------------------------------------------
+  data required time                                                 5.29
+  data arrival time                                                 -5.29
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

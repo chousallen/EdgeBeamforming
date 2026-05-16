@@ -32,6 +32,9 @@ wire signed [0:-7]  o_theta;
 wire [1:0]          channel;
 wire signed [5:-4]  o_x, o_y;
 
+// Optional SDF path from runtime plusarg: +SDF=<path/to/file.sdf>
+reg [1023:0] sdf_file;
+
 // ─── test memories ───────────────────────────────────────────────────────────
 reg [87:0] in_mem  [0:N_VEC-1];
 reg [79:0] exp_mem [0:N_VEC-1];
@@ -48,6 +51,21 @@ steer dut (
     .channel(channel),
     .o_x(o_x), .o_y(o_y)
 );
+
+// Optional back-annotation:
+// 1) Compile-time define: -DSDF_FILE=\"path/to/file.sdf\"
+// 2) Runtime plusarg:     +SDF=path/to/file.sdf
+initial begin
+`ifdef SDF_FILE
+    $display("[TB] Annotating SDF (define): %0s", `SDF_FILE);
+    $sdf_annotate(`SDF_FILE, dut);
+`else
+    if ($value$plusargs("SDF=%s", sdf_file)) begin
+        $display("[TB] Annotating SDF (plusarg): %0s", sdf_file);
+        $sdf_annotate(sdf_file, dut);
+    end
+`endif
+end
 
 // ─── clock (100 MHz) ─────────────────────────────────────────────────────────
 initial clk = 0;
