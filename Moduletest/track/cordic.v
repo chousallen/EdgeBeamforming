@@ -1,24 +1,26 @@
 module cordic #(
-    parameter  N_ITER = 10
+    parameter  N_ITER = 10,
+    parameter  IW = 10, // Input width (s5.4 format)
+    parameter  OW = 10  // Output width (s2.7 format)
 )(
     input wire clk,
     input wire rst,
     input wire valid_in,
-    input wire signed [9:0] x_in,       // s5.4 format
-    input wire signed [9:0] y_in,       // s5.4 format
+    input wire signed [IW-1:0] x_in,       // s5.4 format
+    input wire signed [IW-1:0] y_in,       // s5.4 format
     output reg valid_out,
-    output wire signed [9:0] phase_out    // S2.7 (range +-pi)
+    output wire signed [OW-1:0] phase_out    // S2.7 (range +-pi)
 );
 
 reg [3:0] iter_r, iter_next;
 reg finish_r, finish_next;
-reg signed [11:0]  x_r, y_r;   // x_r: s7.4, y_r: s7.4
-reg signed [11:0]  x_next, y_next;
-reg signed [12:0] z_r, z_next; // s2.10 format to hold angles up to +-pi
+reg signed [IW+1:0]  x_r, y_r;   // x_r: s7.4, y_r: s7.4
+reg signed [IW+1:0]  x_next, y_next;
+reg signed [OW+2:0] z_r, z_next; // s2.10 format to hold angles up to +-pi
 reg neg_x_r;        // 1 = original x_in was negative
 reg neg_y_orig_r;   // sign of original y_in when neg_x_r=1
 
-assign phase_out = z_r[12:3]; // Take the top 10 bits of z_r to get s2.7 format
+assign phase_out = z_r[OW+2:OW-7]; // Take the top 10 bits of z_r to get s2.7 format
 assign valid_out = finish_r;
 
 // atan_table: Q0.10, Multiply by 2^10 to maintain precision in s2.7 format
