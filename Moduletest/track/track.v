@@ -1,8 +1,8 @@
 module track #(
     parameter N_ITER = 10,
     parameter IW = 10, // Input width for CORDIC (s5.4 format)
-    parameter PW = 10, // Input width for phase  (s2.7 format)
-    parameter OW = 6  // Output width for CORDIC (s2.7 format)
+    parameter PW = 8, // Input width for phase  (s7.0 format)
+    parameter OW = 8  // Output width for CORDIC (s7.0 format)
 )(
     input wire clk,
     input wire rst_n,
@@ -10,6 +10,7 @@ module track #(
     input wire [1:0]    channel_in;
     input wire signed [IW-1:0] i_in, // s5.4 format
     input wire signed [IW-1:0] q_in, // s5.4 format
+    input wire signed [PW-1:0] phase_in, // s7.0 format
     output reg valid_out,
     output reg [OW-1:0] angle_out // output phase index (0 to 60 for -60 to 60 degrees)
 );
@@ -17,9 +18,9 @@ module track #(
 reg signed [IW:0] L_acc_q_r, L_acc_i_r, R_acc_q_r, R_acc_i_r; // s6.4 format for accumulation
 reg signed [IW:0] L_acc_q_next, L_acc_i_next, R_acc_q_next, R_acc_i_next;
 reg [1:0] channel_r, channel_next;
-reg signed [PW-1:0] L_phase_r, R_phase_r; // s2.7 format for phase
-reg signed [PW-1:0] L_phase_next, R_phase_next; // s2.7 format for phase
-reg signed [PW  :0] phase_diff_r, phase_diff_next; // s3.7 format for phase difference (to hold values up to +-180 degrees)
+reg signed [PW-1:0] L_phase_r, R_phase_r; // s7.0 format for phase
+reg signed [PW-1:0] L_phase_next, R_phase_next; // s7.0 format for phase
+reg signed [PW  :0] phase_diff_r, phase_diff_next; // s8.0 format for phase difference (to hold values up to +-180 degrees)
 reg valid_acc_r, valid_acc_next;
 reg valid_out_r, valid_out_next;
 reg phase_out_r, phase_out_next;
@@ -130,17 +131,27 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-localparam K_track = 10'sd458; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
-// Phase difference calculation (s3.7 format to hold values up to +-180 degrees)
+localparam K = 4; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
+// Phase difference calculation (s7.0 format to hold values up to +-180 degrees)
 always @(*) begin
     if (valid_out_r) begin
-        phase_diff_next = {{R_phase_r[PW-1]},R_phase_r} - {{L_phase_r[PW-1]},L_phase_r}; // s3.7 format
-        phase_diff_next = phase_diff_next + 10'sd256; // Wrap around
+        phase_diff_next = L_phase_r - R_phase_r; // s7.0 format
+        phase_out_next = phase_out_r + (phase_diff_next >>> K);  // Simple proportional control with gain of 1/16 (>>4) to convert phase difference to angle output
     end else begin
         phase_diff_next = phase_diff_r; // Hold previous value when not valid
+        phase_out_next = phase_out_r; // Hold previous value when not valid
     end
 end
 
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        phase_diff_r <= 0;
+        phase_out_r <= 0;
+    end else begin
+        phase_diff_r <= phase_diff_next;
+        phase_out_r <= phase_out_next;
+    end
+end
 
 
 endmodule
