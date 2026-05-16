@@ -10,8 +10,8 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 
     %% 1. System & Environment Parameters Setup
     % --- Search Parameters ---
-    scan_start = -60;       % Start angle of scan
-    scan_end = 60;          % End angle of scan
+    scan_start = -42;       % Start angle of scan
+    scan_end = 42;          % End angle of scan
     scan_step = step;          % Scan resolution (step size in degrees)
     scan_angles = scan_start:scan_step:scan_end;
     num_scan_points = length(scan_angles);
@@ -43,7 +43,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
         for k = 1:N
             % Calculate phase: phi = 2*pi * d/L * (k-1) * (theta)
             % phi = 2 * pi * 0.5 * (k-1) * sind(current_angle);
-            phi_temp = 2 * 256 * 0.5 * (k-1) * sind_lut(current_angle);
+            phi_temp = (k-1) * sind_lut(current_angle);
             phi_temp = round(phi_temp); % Round to nearest integer for fixed-point representation
             phi = mod(phi_temp+256, 512) - 256 ; % Round to nearest integer for fixed-point representation
             % Wrap phi into range [-256, 256]
@@ -77,7 +77,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 
     %% 4. Tracking with Monopulse
     X_track = X(:, num_scan_points+1:end); % Use the remaining samples for tracking
-    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (180/256));
+    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (360/256));
     degrees = theta_track;
 
     steered_q = [steered_q, steered_q_track];
@@ -86,11 +86,10 @@ end
 
 function value = sind_lut(theta)
     % Lookup table for sine values from -60 to 60 degrees with a step of 2 degrees
-    lut = [-0.8660, -0.8480, -0.8290, -0.8090, -0.7880, -0.7660, -0.7431, -0.7193, -0.6947, -0.6691, -0.6428, -0.6157, -0.5878, -0.5592, -0.5299, -0.5000, -0.4695, -0.4384, -0.4067, -0.3746, -0.3420, -0.3090, -0.2756, -0.2419, -0.2079, -0.1736, -0.1392, -0.1045, -0.0698, -0.0349, 0, 0.0349, 0.0698,0.1045, 0.1392, 0.1736, 0.2079, 0.2419, 0.2756, 0.3090, 0.3420, 0.3746, 0.4067, 0.4384,0.4695, 0.5000, 0.5299, 0.5592, 0.5878, 0.6157, 0.6428, 0.6691, 0.6947, 0.7193, 0.7431, 0.7660, 0.7880, 0.8090, 0.8290, 0.8480, 0.8660];
-    % lut = [-0.8660, -0.8572, -0.8480, -0.8387, -0.8290, -0.8192, -0.8090, -0.7986, -0.7880, -0.7771, -0.7660, -0.7547, -0.7431, -0.7314, -0.7193, -0.7071, -0.6947, -0.6820, -0.6691, -0.6561, -0.6428, -0.6293, -0.6157, -0.6018, -0.5878, -0.5736, -0.5592, -0.5446, -0.5299, -0.5150, -0.5000, -0.4848, -0.4695, -0.4540, -0.4384, -0.4226, -0.4067, -0.3907, -0.3746, -0.3584, -0.3420, -0.3256, -0.3090, -0.2924, -0.2756, -0.2588, -0.2419, -0.2250, -0.2079, -0.1908, -0.1736, -0.1564, -0.1392, -0.1219, -0.1045, -0.0872, -0.0698, -0.0523, -0.0349, -0.0175, 0.0000, 0.0175, 0.0349, 0.0523, 0.0698, 0.0872, 0.1045, 0.1219, 0.1392, 0.1564, 0.1736, 0.1908, 0.2079, 0.2250, 0.2419, 0.2588, 0.2756, 0.2924, 0.3090, 0.3256, 0.3420, 0.3584, 0.3746, 0.3907, 0.4067, 0.4226, 0.4384, 0.4540, 0.4695, 0.4848, 0.5000, 0.5150, 0.5299, 0.5446, 0.5592, 0.5736, 0.5878, 0.6018, 0.6157, 0.6293, 0.6428, 0.6561, 0.6691, 0.6820, 0.6947, 0.7071, 0.7193, 0.7314, 0.7431, 0.7547, 0.7660, 0.7771, 0.7880, 0.7986, 0.8090, 0.8192, 0.8290, 0.8387, 0.8480, 0.8572, 0.8660];
+    lut = [-226,-231,-237,-241,-245,-248,-251,-253,-255,-256,-256,-256,-255,-253,-251,-248,-245,-241,-237,-231,-226,-220,-213,-206,-198,-190,-181,-172,-162,-152,-142,-132,-121,-109,-98,-86,-74,-62,-50,-38,-25,-13,0,13,25,38,50,62,74,86,98,109,121,132,142,152,162,172,181,190,198,206,213,220,226,231,237,241,245,248,251,253,255,256,256,256,255,253,251,248,245,241,237,231,226];
     
     % Define the range of angles in the lookup table
-    angles = -60:2:60;
+    angles = -84:2:84;
 
     % Find the index of the input angle in the lookup table
     index = find(angles == theta, 1);

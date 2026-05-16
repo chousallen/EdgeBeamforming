@@ -7,17 +7,16 @@ clear; clc; close all;
 N = 4;                  % Number of antennas
 d_lambda = 0.5;         % Antenna spacing (d/lambda)
 scan_step = 2;          % Scan resolution (degrees)
-NUM_SCAN = (120/scan_step) + 1; % Number of samples for scanning from -60 to 60 degrees
-K_track = 2^(-4) * (180/pi); % Tracking step size
+NUM_SCAN = (84/scan_step) + 1; % Number of samples for scanning from -60 to 60 degrees
 
 % Signal Settings
-theta_s = -20; % Desired signal angle
-theta_i = 40; % Interference signal angle
+theta_s = -30; % Desired signal angle
+theta_i = 30; % Interference signal angle
 SNR = 20; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)
 
 % Steering vector function
-steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th));
+steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th / 256 * 360)); % Steering vector for angle th
 
 % Generate QPSK signal
 sig_val = 10^(SNR/20) * (1+1j)/sqrt(2); % QPSK symbol with power based on SNR
@@ -40,7 +39,7 @@ for n = 1:NUM_SCAN
 end
 
 % Received signal for tracking phase (use the same signal for simplicity)
-angle_step = 20;
+angle_step = 13;
 angles = theta_s:angle_step:theta_s+angle_step*4;             % Change angle every 10 degrees for tracking phase
 % angles_1 = -60:2:0;			 % Change angle every 2 degrees for tracking phase
 % angles_2 = 0:-2:-20;			 % Change angle every 2 degrees for tracking phase
@@ -71,7 +70,7 @@ x2_q = real(X_raw(2, :)); x2_i = imag(X_raw(2, :));
 x3_q = real(X_raw(3, :)); x3_i = imag(X_raw(3, :));
 x4_q = real(X_raw(4, :)); x4_i = imag(X_raw(4, :));
 % Ensure vectors match the fixed-point MEX expected length (generated code expects 1x111)
-expected_len = 111;
+expected_len = NUM_SCAN + num_track; % Total length of the combined signal
 vec_names = {'x1_q','x1_i','x2_q','x2_i','x3_q','x3_i','x4_q','x4_i'};
 for k = 1:numel(vec_names)
 	n = vec_names{k};
@@ -93,23 +92,23 @@ end
 %% Search Results Visualization
 % Find the maximum energy and its corresponding angle
 [max_energy, max_idx] = max(E);
-scan_angles = -60:scan_step:60;
+scan_angles = -42:scan_step:42; % Reconstruct scan angles based on step size
 detected_angle = scan_angles(max_idx);
 
-fprintf('True Target Angle: %d degrees\n', theta_s);
-fprintf('Detected Peak Angle: %d degrees\n', detected_angle);
+fprintf('True Target Angle: %.2f degrees\n', theta_s/256*360);
+fprintf('Detected Peak Angle: %.2f degrees\n', detected_angle/256*360);
 figure('Position', [100, 100, 700, 400]);
 
 % Plot the scanning energy landscape
-plot(scan_angles, E, 'b-', 'LineWidth', 2);
+plot(((-42:2:42)/256*360), E, 'b-', 'LineWidth', 2);
 hold on;
 
 % Mark the true target location
-xline(theta_s, 'r--', 'True Target Direction', 'LineWidth', 1.5, 'LabelVerticalAlignment', 'bottom');
+xline(theta_s/256*360, 'r--', 'True Target Direction', 'LineWidth', 1.5, 'LabelVerticalAlignment', 'bottom');
 
 % Mark the detected peak location
-plot(detected_angle, max_energy, 'g^', 'MarkerFaceColor', 'g', 'MarkerSize', 10);
-text(detected_angle, max_energy * 1.05, sprintf('Detected: %d\\circ', detected_angle), 'Color', 'g', 'FontWeight', 'bold');
+plot((detected_angle/256*360), max_energy, 'g^', 'MarkerFaceColor', 'g', 'MarkerSize', 10);
+text(detected_angle/256*360, max_energy * 0.95, sprintf('Detected: %.2f\\circ', detected_angle/256*360), 'Color', 'g', 'FontWeight', 'bold');
 
 title('Beam Steering: Sequential Scanning & Peak Detection');
 xlabel('Scan Angle (Degrees)');
@@ -120,20 +119,20 @@ grid on;
 %% Tracking Results Visualization
 % The tracking results are printed in the console and can be visualized in the search_with_mono function's call to monopulse_tracking.
 figure('Position', [850, 100, 700, 400]);
-plot(1:length(degrees), degrees, 'b-', 'LineWidth', 2);
+plot(1:length(degrees), (degrees/256*360), 'b-', 'LineWidth', 2);
 title('Monopulse Tracking of Detected Target');
 xlabel('Iterations (Samples)');
 ylabel('Tracking Angle (Degrees)');
 % Ideal degrees for reference (every block_len samples, the angle changes)
 hold on;
-ANGLES_REF = repelem(angles, block_len);
+ANGLES_REF = repelem(angles, block_len) / 256 * 360; % Convert to degrees for plotting
 stairs(1:num_track, ANGLES_REF, 'r--', 'LineWidth', 1.5, 'DisplayName', 'True Angle');
 legend('Tracked Angle \theta_{track}', 'True Angle (Block Changes)', 'Location', 'best');
 
 grid on;
 
 %% Export data to golden.mem hex file
-fid = fopen('golden.mem', 'w');
+fid = fopen('.\Simulation\track_golden.mem', 'w');
 
 % Prepare input data
 x1_q_full = x1_q;
@@ -157,23 +156,21 @@ else
 end
 
 % Write each row: x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, steered_q[1:4], steered_i[1:4]
-for n = 1:num_samples
+for n = 1:num_samples-NUM_SCAN
     % Input values
-    vals = [x1_q_full(n), x1_i_full(n), x2_q_full(n), x2_i_full(n), ...
-            x3_q_full(n), x3_i_full(n), x4_q_full(n), x4_i_full(n), ...
-            steered_q_data(1, n), steered_q_data(2, n), steered_q_data(3, n), steered_q_data(4, n), ...
-            steered_i_data(1, n), steered_i_data(2, n), steered_i_data(3, n), steered_i_data(4, n)];
+    vals = [steered_q_data(1, n+NUM_SCAN), steered_i_data(1, n+NUM_SCAN), ...
+            steered_q_data(2, n+NUM_SCAN), steered_i_data(2, n+NUM_SCAN), ...
+            steered_q_data(3, n+NUM_SCAN), steered_i_data(3, n+NUM_SCAN), ...
+            steered_q_data(4, n+NUM_SCAN), steered_i_data(4, n+NUM_SCAN)];
     
     % Convert to hex (treating as fixed-point or scaled integers)
-    hex_vals = dec2hex(int32(vals * 2^15), 8);
+    hex_vals = dec2hex(int16(vals * 2^4));
     
     % Write row
     for k = 1:size(hex_vals, 1)
-        fprintf(fid, '%s', hex_vals(k, :));
-        if k < size(hex_vals, 1)
-            fprintf(fid, ' ');
-        end
+        fprintf(fid, '%s\n', hex_vals(k, :));
     end
+    fprintf(fid, '%s\n', dec2hex(int8(degrees(n))));
     fprintf(fid, '\n');
 end
 
