@@ -23,7 +23,7 @@ end
 if nargin < 3 || isempty(d_lambda), d_lambda = 0.5; end
 if nargin < 4 || isempty(cordic_iters), cordic_iters = 10; end
 if nargin < 5 || isempty(theta_init), theta_init = 15; end
-if nargin < 6 || isempty(K_track), K_track = 2^(-4) * (180/pi); end
+if nargin < 6 || isempty(K_track), K_track = 2^(-4) * (180/256); end
 
 theta_track = zeros(1, num_samples);
 theta_track(1) = theta_init;
@@ -38,7 +38,7 @@ for n = 1:num_samples-1
     % Beam steering (CORDIC rotation mode)
     X_steered = zeros(N, 1) + 1j*zeros(N, 1);
     for k = 1:N
-        phi_target = 2 * pi * d_lambda * (k-1) * sind_lut(theta_track(n));
+        phi_target = 2 * 256 * d_lambda * (k-1) * sind_lut(theta_track(n));
         q_in = real(X_sample(k));
         i_in = imag(X_sample(k));
         [Q_rot, I_rot, ~] = cordic(q_in, i_in, phi_target, cordic_iters, 0);
@@ -60,7 +60,7 @@ for n = 1:num_samples-1
     % phase_diff = wrapToPi(phi_L - phi_R);
     % Fixed-point friendly phase wrapping to [-pi, pi]
     phase_diff = phi_L - phi_R;
-    phase_diff = phase_diff - 2*pi*floor((phase_diff + pi)/(2*pi));
+    phase_diff = phase_diff - 2*256*floor((phase_diff + 256)/(2*256));
 
     % Magnitude approximation and thresholding
     mag_L = abs(real(L)) + abs(imag(L));

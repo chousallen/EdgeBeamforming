@@ -11,7 +11,7 @@ NUM_SCAN = (120/scan_step) + 1; % Number of samples for scanning from -60 to 60 
 K_track = 2^(-4) * (180/pi); % Tracking step size
 
 % Signal Settings
-theta_s = -50; % Desired signal angle
+theta_s = -20; % Desired signal angle
 theta_i = 40; % Interference signal angle
 SNR = 20; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)

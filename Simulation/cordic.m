@@ -11,7 +11,8 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
 
     % Precompute arctan values for the iterations
     % atan_table = atan(2.^-(0:num_iterations-1));
-    atan_table = [0.7854  0.4636  0.2450  0.1244  0.0624  0.0312  0.0156  0.0078  0.0039  0.0020  0.0018  0.0005 ];
+    % atan_table = [0.7854  0.4636  0.2450  0.1244  0.0624  0.0312  0.0156  0.0078  0.0039  0.0020  0.0018  0.0005 ];
+    atan_table = [64, 38, 20, 10, 5, 3, 1, 1, ]; % Scaled by 256/pi for fixed-point representation (8-bit fractional)
 
     x_reg = x_in;
     y_reg = y_in;
@@ -20,11 +21,11 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
     %% --- ROTATION MODE (Steering the Antenna Phase) ---
     if mode == 0
         % 1. Quadrant Mapping: Fold the angle into [-pi/2, pi/2]
-        z_reg = mod(z_reg + pi, 2*pi) - pi; % Wrap to [-pi, pi]
-        if z_reg > pi/2
-            x_reg = -x_in; y_reg = -y_in; z_reg = z_reg - pi;
-        elseif z_reg < -pi/2
-            x_reg = -x_in; y_reg = -y_in; z_reg = z_reg + pi;
+        z_reg = mod(z_reg + 256, 2*256) - 256; % Wrap to [-256, 256]
+        if z_reg > 256/2
+            x_reg = -x_in; y_reg = -y_in; z_reg = z_reg - 256;
+        elseif z_reg < -256/2
+            x_reg = -x_in; y_reg = -y_in; z_reg = z_reg + 256;
         end
         
         % 2. Iterative Rotation
@@ -48,9 +49,9 @@ function [out_x, out_y, out_z] = cordic(x_in, y_in, z_in, num_iterations, mode)
         % 1. Quadrant Mapping: Force the vector into the right half-plane (X > 0)
         if x_reg < 0
             if y_reg >= 0
-                z_reg = z_reg + pi; % Vector was in Q2
+                z_reg = z_reg + 256; % Vector was in Q2
             else
-                z_reg = z_reg - pi; % Vector was in Q3
+                z_reg = z_reg - 256; % Vector was in Q3
             end
             x_reg = -x_reg; 
             y_reg = -y_reg;

@@ -18,7 +18,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
     N = 4;                  % Number of antenna elements
 
     % --- Tracking Parameters ---
-    cordic_iter = 10;    % Number of iterations for the cordic algorithm
+    cordic_iter = 8;    % Number of iterations for the cordic algorithm
 
     %% 2. Signal Setup
     X = [x1_q + 1j*x1_i; x2_q + 1j*x2_i; x3_q + 1j*x3_i; x4_q + 1j*x4_i];
@@ -43,10 +43,14 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
         for k = 1:N
             % Calculate phase: phi = 2*pi * d/L * (k-1) * (theta)
             % phi = 2 * pi * 0.5 * (k-1) * sind(current_angle);
-            phi = 2 * pi * 0.5 * (k-1) * sind_lut(current_angle);
+            phi_temp = 2 * 256 * 0.5 * (k-1) * sind_lut(current_angle);
+            phi_temp = round(phi_temp); % Round to nearest integer for fixed-point representation
+            phi = mod(phi_temp+256, 512) - 256 ; % Round to nearest integer for fixed-point representation
+            % Wrap phi into range [-256, 256]
+            % phi = mod(phi + 256, 512) - 256;
 
             % CORDIC Rotation (Implemented as a function for clarity)
-            [Q_rot, I_rot, ~] = cordic(real(X(k, i)), imag(X(k, i)), phi, 10, 0); % mode=0 for rotation
+            [Q_rot, I_rot, ~] = cordic(real(X(k, i)), imag(X(k, i)), phi, 8, 0); % mode=0 for rotation
 
             steered_q(k, i) = Q_rot;
             steered_i(k, i) = I_rot;
@@ -73,7 +77,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 
     %% 4. Tracking with Monopulse
     X_track = X(:, num_scan_points+1:end); % Use the remaining samples for tracking
-    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (180/pi));
+    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (180/256));
     degrees = theta_track;
 
     steered_q = [steered_q, steered_q_track];
