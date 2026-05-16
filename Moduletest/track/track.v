@@ -28,6 +28,8 @@ wire signed [IW-1:0] cordic_x1_in, cordic_y1_in, cordic_x2_in, cordic_y2_in;
 wire signed [PW-1:0] cordic_phase_out1, cordic_phase_out2;
 wire cordic_valid_out;
 
+assign valid_out = valid_out_r;
+assign angle_out = phase_out_r[OW-1:0]; // Take the lower OW bits for output angle index
 
 // Control Signal Logic
 always @(*) begin
