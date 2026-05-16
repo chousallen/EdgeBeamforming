@@ -12,8 +12,8 @@ module cordic #(
 
 reg [3:0] iter_r, iter_next;
 reg finish_r, finish_next;
-reg signed [9:0]  x_r, y_r;   // x_r: s5.4, y_r: s5.4
-reg signed [9:0]  x_next, y_next;
+reg signed [11:0]  x_r, y_r;   // x_r: s7.4, y_r: s7.4
+reg signed [11:0]  x_next, y_next;
 reg signed [12:0] z_r, z_next; // s2.10 format to hold angles up to +-pi
 reg neg_x_r;        // 1 = original x_in was negative
 reg neg_y_orig_r;   // sign of original y_in when neg_x_r=1
@@ -75,14 +75,14 @@ always @(posedge clk or posedge rst) begin
         iter_r <= 0;
         // Pre-rotate by pi if x_in < 0 so CORDIC sees positive x
         if (x_in[9]) begin
-            x_r          <= -{x_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
-            y_r          <= -{y_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
+            x_r          <= -{{2{x_in[9]}}, x_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
+            y_r          <= -{{2{y_in[9]}}, y_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
             z_r          <= (y_in[9]) ? -{PI_SCALE} : {PI_SCALE};
             neg_x_r      <= 1'b1;
             neg_y_orig_r <= y_in[9]; // save sign of original y_in
         end else begin
-            x_r          <= x_in;
-            y_r          <= y_in;
+            x_r          <= {{2{x_in[9]}}, x_in};
+            y_r          <= {{2{y_in[9]}}, y_in};
             z_r          <= 13'sd0;
             neg_x_r      <= 1'b0;
             neg_y_orig_r <= 1'b0;
