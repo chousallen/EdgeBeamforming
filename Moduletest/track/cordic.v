@@ -1,5 +1,5 @@
 module cordic #(
-    parameter  N_ITER = 10,
+    parameter  N_ITER = 8,
     parameter  IW = 10, // Input width (s6.3 format)
     parameter  OW = 8  // Output width (s7.0 format)
 )(
@@ -16,16 +16,16 @@ module cordic #(
 );
 
 reg [2:0] iter_r, iter_next;
-reg finish_r, finish_next;
+reg valid_out_next;
 reg signed [IW+1:0]  x1_r, y1_r, x2_r, y2_r;   // x_r: s7.4, y_r: s7.4
 reg signed [IW+1:0]  x1_next, y1_next, x2_next, y2_next;
 reg signed [OW-1:0] z1_r, z2_r; // s7.0 format to hold angles up to +-pi
+reg signed [OW-1:0] z1_next, z2_next; // s7.0 format to hold angles up to +-pi
 reg neg_x1_r, neg_x2_r;        // 1 = original x_in was negative
 reg neg_y1_orig_r, neg_y2_orig_r;   // sign of original y_in when neg_x_r=1
 
 assign phase_out1 = z1_r[OW-1:0]; // Take the top 8 bits of z_r to get s7.0 format
 assign phase_out2 = z2_r[OW-1:0]; // Take the top 8 bits of z2_r to get s7.0 format
-assign valid_out = finish_r;
 
 // atan_table: S7.0 to maintain precision in s2.7 format
 function [7:0] atan_table;
@@ -47,7 +47,7 @@ endfunction
 
 always @(*) begin
     iter_next = iter_r + 1;
-    finish_next = (iter_r == (N_ITER - 1));
+    valid_out_next = (iter_r == (N_ITER - 1));
 end
 
 always @(*) begin
@@ -72,8 +72,8 @@ always @(*) begin
     end
 end
 
-always @(posedge clk or posedge rst) begin
-    if(rst) begin
+always @(posedge clk or posedge rst_n) begin
+    if(!rst_n) begin
         iter_r     <= 0;
         x1_r        <= 0;
         y1_r        <= 0;
@@ -81,7 +81,7 @@ always @(posedge clk or posedge rst) begin
         x2_r        <= 0;
         y2_r        <= 0;
         z2_r        <= 0;
-        finish_r   <= 0;
+        valid_out   <= 0;
         neg_x1_r    <= 0;
         neg_x2_r    <= 0;
         neg_y1_orig_r <= 0;
@@ -92,7 +92,7 @@ always @(posedge clk or posedge rst) begin
         if (x1_in[9]) begin
             x1_r          <= -{{2{x1_in[9]}}, x1_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
             y1_r          <= -{{2{y1_in[9]}}, y1_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
-            z1_r          <= (y1_in[9]) ? 8'sd-128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
+            z1_r          <= (y1_in[9]) ? -8'sd128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
             neg_x1_r      <= 1'b1;
             neg_y1_orig_r <= y1_in[9]; // save sign of original y_in
         end else begin
@@ -105,7 +105,7 @@ always @(posedge clk or posedge rst) begin
         if (x2_in[9]) begin
             x2_r          <= -{{2{x2_in[9]}}, x2_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
             y2_r          <= -{{2{y2_in[9]}}, y2_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
-            z2_r          <= (y2_in[9]) ? 8'sd-128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
+            z2_r          <= (y2_in[9]) ? -8'sd128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
             neg_x2_r      <= 1'b1;
             neg_y2_orig_r <= y2_in[9]; // save sign of original y_in
         end else begin
@@ -115,8 +115,8 @@ always @(posedge clk or posedge rst) begin
             neg_x2_r      <= 1'b0;
             neg_y2_orig_r <= 1'b0;
         end
-        finish_r <= 0;
-    end else if(!finish_r) begin
+        valid_out <= 0;
+    end else if(!valid_out) begin
         iter_r <= iter_next;
         x1_r    <= x1_next;
         y1_r    <= y1_next;
@@ -124,7 +124,7 @@ always @(posedge clk or posedge rst) begin
         x2_r    <= x2_next;
         y2_r    <= y2_next;
         z2_r    <= z2_next;
-        finish_r <= finish_next;
+        valid_out <= valid_out_next;
     end
 end
 

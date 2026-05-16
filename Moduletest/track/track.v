@@ -1,5 +1,5 @@
 module track #(
-    parameter N_ITER = 10,
+    parameter N_ITER = 8,
     parameter IW = 10, // Input width for CORDIC (s5.4 format)
     parameter PW = 8, // Input width for phase  (s7.0 format)
     parameter OW = 8  // Output width for CORDIC (s7.0 format)
@@ -23,15 +23,12 @@ reg signed [PW-1:0] L_phase_r, R_phase_r; // s7.0 format for phase
 reg signed [PW-1:0] L_phase_next, R_phase_next; // s7.0 format for phase
 reg signed [PW-1:0] phase_diff_r, phase_diff_next; // s8.0 format for phase difference (to hold values up to +-180 degrees)
 reg valid_acc_r, valid_acc_next;
-reg valid_out_r, valid_out_next;
+reg valid_out_next;
 reg valid_phase_r, valid_phase_next;
 reg signed  [OW-1:0] phase_out_r, phase_out_next;
 wire signed [IW-1:0] cordic_x1_in, cordic_y1_in, cordic_x2_in, cordic_y2_in;
 wire signed [PW-1:0] cordic_phase_out1, cordic_phase_out2;
 wire cordic_valid_out;
-
-assign valid_out = valid_out_r;
-assign angle_out = phase_out_r[OW-1:0]; // Take the lower OW bits for output angle index
 
 // Control Signal Logic
 always @(*) begin
@@ -142,7 +139,7 @@ always @(*) begin
         // If we have a new angle input, we can use it directly as the output (after scaling)
         phase_diff_next = phase_diff_r; // Hold previous phase difference when we have a new angle input
         phase_out_next = angle_in; // Scale down the input angle by the CORDIC gain
-        valid_out_next = valid_out_r; // Keep the output valid state unchanged when we have a new angle input
+        valid_out_next = valid_out; // Keep the output valid state unchanged when we have a new angle input
     end else if (valid_phase_r) begin
         phase_diff_next = L_phase_r - R_phase_r; // s7.0 format
         phase_out_next = phase_out_r + (phase_diff_next >>> K);  // Simple proportional control with gain of 1/16 (>>4) to convert phase difference to angle output
@@ -158,11 +155,13 @@ always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         phase_diff_r <= 0;
         phase_out_r <= 0;
-        valid_out_r <= 0;
+        valid_out <= 0;
+        angle_out <= 0;
     end else begin
         phase_diff_r <= phase_diff_next;
         phase_out_r <= phase_out_next;
-        valid_out_r <= valid_out_next;
+        valid_out <= valid_out_next;
+        angle_out <= phase_out_next[OW-1:0]; // Update angle_out to reflect the current phase_out_r
     end
 end
 
