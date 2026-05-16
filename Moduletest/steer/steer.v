@@ -21,7 +21,7 @@ cordic2_s2  *       *       *       *       *       *       *       *       iter
 
 module steer(
     input clk,
-    input rst,
+    input rst_n,
     input i_valid,
     input  signed [0:-7]  i_theta, // target angle, unit: pi/128, range: [-pi/3, pi/3] -> [-43, 43]
     input  signed [5:-4]  i_x1, i_y1,
@@ -56,8 +56,8 @@ module steer(
                                                         phi2[13:0];
     wire signed [0:-13] dphi_w    = dphi_nat;   // reindex [13:0]->[0:-13]
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             phi_r  <= 0;
             dphi_r <= 0;
         end else begin
@@ -82,8 +82,8 @@ module steer(
     //   Assumes i_valid is a single-cycle pulse (not held).
     // =========================================================================
     reg [14:0] valid_sr;
-    always @(posedge clk or posedge rst) begin
-        if (rst) valid_sr <= 15'd0;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) valid_sr <= 15'd0;
         else     valid_sr <= {valid_sr[13:0], i_valid};
     end
 
@@ -103,8 +103,8 @@ module steer(
     reg signed [5:-4] x3_d [0:1], y3_d [0:1]; // ch3: 2-stage
     reg signed [5:-4] x4_d [0:2], y4_d [0:2]; // ch4: 3-stage
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             for (k = 0; k < 2; k = k+1) begin x1_d[k]<=0; y1_d[k]<=0; x3_d[k]<=0; y3_d[k]<=0; end
             for (k = 0; k < 3; k = k+1) begin x4_d[k]<=0; y4_d[k]<=0; end
         end else begin
@@ -134,8 +134,8 @@ module steer(
     // =========================================================================
     wire  signed [0:-13] atan_s1_w, atan_s2_w;
     reg   signed [0:-13] atan_s1_r, atan_s2_r;
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin atan_s1_r <= 0; atan_s2_r <= 0; end
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin atan_s1_r <= 0; atan_s2_r <= 0; end
         else     begin atan_s1_r <= atan_s1_w; atan_s2_r <= atan_s2_w; end
     end
 
@@ -164,7 +164,7 @@ module steer(
 
     // --- cordic1_s1: ch1 (angle = -phi_r), ch3 (angle = +phi_r), iter 0-4 ---
     cordic_stage #(.ITER_START(0), .OWN_ATAN(1)) u_c1s1 (
-        .clk(clk), .rst(rst), .start(cordic1_s1_start),
+        .clk(clk), .rst_n(rst_n), .start(cordic1_s1_start),
         .xa_in(x1_ext),  .ya_in(y1_ext),  .anga_in(-phi_r),  // ch1 rotates by -phi
         .xb_in(x3_ext),  .yb_in(y3_ext),  .angb_in( phi_r),  // ch3 rotates by +phi
         .atan_in(14'sd0),           .atan_out(atan_s1_w),
@@ -175,7 +175,7 @@ module steer(
 
     // --- cordic2_s1: ch4 (angle = 2*phi = dphi_r), iter 0-4, atan from cordic1_s1 ---
     cordic_stage #(.ITER_START(0), .OWN_ATAN(0)) u_c2s1 (
-        .clk(clk), .rst(rst), .start(cordic2_s1_start),
+        .clk(clk), .rst_n(rst_n), .start(cordic2_s1_start),
         .xa_in(x4_ext),  .ya_in(y4_ext),  .anga_in(dphi_r),
         .xb_in(12'sd0),  .yb_in(12'sd0),  .angb_in(14'sd0),
         .atan_in(atan_s1_r),        .atan_out(),
@@ -188,7 +188,7 @@ module steer(
     wire signed [7:-4]  c1_xa_out, c1_ya_out;   // S7.4
     wire signed [7:-4]  c1_xb_out, c1_yb_out;   // S7.4
     cordic_stage #(.ITER_START(5), .OWN_ATAN(1)) u_c1s2 (
-        .clk(clk), .rst(rst), .start(cordic1_s2_start),
+        .clk(clk), .rst_n(rst_n), .start(cordic1_s2_start),
         .xa_in(c1_xa_mid), .ya_in(c1_ya_mid), .anga_in(c1_anga_mid),
         .xb_in(c1_xb_mid), .yb_in(c1_yb_mid), .angb_in(c1_angb_mid),
         .atan_in(14'sd0),           .atan_out(atan_s2_w),
@@ -200,7 +200,7 @@ module steer(
     // --- cordic2_s2: ch4, iter 5-9, atan from cordic1_s2 ---
     wire signed [7:-4]  c2_xa_out, c2_ya_out;   // S7.4
     cordic_stage #(.ITER_START(5), .OWN_ATAN(0)) u_c2s2 (
-        .clk(clk), .rst(rst), .start(cordic2_s2_start),
+        .clk(clk), .rst_n(rst_n), .start(cordic2_s2_start),
         .xa_in(c2_xa_mid), .ya_in(c2_ya_mid), .anga_in(c2_anga_mid),
         .xb_in(12'sd0),    .yb_in(12'sd0),    .angb_in(14'sd0),
         .atan_in(atan_s2_r),        .atan_out(),
@@ -213,8 +213,8 @@ module steer(
     // ch2 passthrough delay (zero rotation; output at slot cycle 13 = 13 regs)
     // =========================================================================
     reg signed [5:-4] x2_sr [0:12], y2_sr [0:12];
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             for (k = 0; k < 13; k = k+1) begin x2_sr[k]<=0; y2_sr[k]<=0; end
         end else begin
             x2_sr[0] <= i_x2; y2_sr[0] <= i_y2;
@@ -226,8 +226,8 @@ module steer(
     // Theta output pipeline (12-cycle delay aligns with ch1 output at cycle 12)
     // =========================================================================
     reg signed [0:-7] theta_sr [0:11];
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             for (k = 0; k < 12; k = k+1) theta_sr[k] <= 0;
         end else begin
             theta_sr[0] <= i_theta;
@@ -246,8 +246,8 @@ module steer(
     reg signed [5:-4] x3_hold, y3_hold;
     reg signed [5:-4] x4_hold, y4_hold;
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             x1_hold<=0; y1_hold<=0;
             x3_hold<=0; y3_hold<=0;
             x4_hold<=0; y4_hold<=0;

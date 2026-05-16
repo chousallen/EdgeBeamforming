@@ -19,7 +19,7 @@ module cordic_stage #(
     parameter OWN_ATAN   = 1    // 1: read atan ROM internally; 0: use atan_in
 )(
     input  wire clk,
-    input  wire rst,
+    input  wire rst_n,
     input  wire start,                      // pulse: load inputs, begin sequence
 
     input  wire signed [7:-4]  xa_in,  ya_in,   // channel a data  S7.4
@@ -112,8 +112,8 @@ module cordic_stage #(
     // -------------------------------------------------------------------------
     // Sequential: register results; latch outputs on final iteration
     // -------------------------------------------------------------------------
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             xa_r    <= 0; ya_r    <= 0;
             xb_r    <= 0; yb_r    <= 0;
             anga_r  <= 0; angb_r  <= 0;

@@ -23,7 +23,7 @@ localparam N_VEC = 8;   // number of test vectors
 localparam GAP   = 6;   // clock cycles between consecutive i_valid pulses
 
 // ─── DUT ports ───────────────────────────────────────────────────────────────
-reg         clk, rst, i_valid;
+reg         clk, rst_n, i_valid;
 reg  signed [0:-7]  i_theta;
 reg  signed [5:-4]  i_x1, i_y1, i_x2, i_y2, i_x3, i_y3, i_x4, i_y4;
 
@@ -38,7 +38,7 @@ reg [79:0] exp_mem [0:N_VEC-1];
 
 // ─── DUT instantiation ───────────────────────────────────────────────────────
 steer dut (
-    .clk(clk), .rst(rst), .i_valid(i_valid),
+    .clk(clk), .rst_n(rst_n), .i_valid(i_valid),
     .i_theta(i_theta),
     .i_x1(i_x1), .i_y1(i_y1),
     .i_x2(i_x2), .i_y2(i_y2),
@@ -68,24 +68,28 @@ initial begin
     fail_cnt = 0;
     out_vec  = 0;
 
-    rst = 1; i_valid = 0;
+    rst_n = 0; i_valid = 0;
     i_theta = 0;
     i_x1 = 0; i_y1 = 0; i_x2 = 0; i_y2 = 0;
     i_x3 = 0; i_y3 = 0; i_x4 = 0; i_y4 = 0;
 
     repeat(3) @(posedge clk);
-    @(posedge clk); #1; rst = 0;
+    @(posedge clk);
+    rst_n = 1;
 
     // Send N_VEC input vectors, one i_valid pulse every GAP cycles
     for (n = 0; n < N_VEC; n = n + 1) begin
-        @(posedge clk); #1;
+        // Posedge-only sequencing: drive now, sampled on next posedge
+        @(posedge clk);
         i_valid = 1;
         i_theta = in_mem[n][87:80];
         i_x1    = in_mem[n][79:70];  i_y1 = in_mem[n][69:60];
         i_x2    = in_mem[n][59:50];  i_y2 = in_mem[n][49:40];
         i_x3    = in_mem[n][39:30];  i_y3 = in_mem[n][29:20];
         i_x4    = in_mem[n][19:10];  i_y4 = in_mem[n][9:0];
-        @(posedge clk); #1;
+
+        // Keep valid through one full cycle
+        @(posedge clk);
         i_valid = 0;
         repeat(GAP - 2) @(posedge clk);
     end
