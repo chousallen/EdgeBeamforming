@@ -21,9 +21,9 @@ end
 
 % Defaults
 if nargin < 3 || isempty(d_lambda), d_lambda = 0.5; end
-if nargin < 4 || isempty(cordic_iters), cordic_iters = 10; end
+if nargin < 4 || isempty(cordic_iters), cordic_iters = 8; end
 if nargin < 5 || isempty(theta_init), theta_init = 15; end
-if nargin < 6 || isempty(K_track), K_track = 2^(-4) * (180/256); end
+if nargin < 6 || isempty(K_track), K_track = 2^(-5); end
 
 theta_track = zeros(1, num_samples);
 theta_track(1) = theta_init;
@@ -38,7 +38,7 @@ for n = 1:num_samples-1
     % Beam steering (CORDIC rotation mode)
     X_steered = zeros(N, 1) + 1j*zeros(N, 1);
     for k = 1:N
-        phi_target = 2 * 256 * d_lambda * (k-1) * sind_lut(theta_track(n));
+        phi_target =(k-1) * sind_lut(theta_track(n));
         q_in = real(X_sample(k));
         i_in = imag(X_sample(k));
         [Q_rot, I_rot, ~] = cordic(q_in, i_in, phi_target, cordic_iters, 0);
@@ -60,15 +60,16 @@ for n = 1:num_samples-1
     % phase_diff = wrapToPi(phi_L - phi_R);
     % Fixed-point friendly phase wrapping to [-pi, pi]
     phase_diff = phi_L - phi_R;
-    phase_diff = phase_diff - 2*256*floor((phase_diff + 256)/(2*256));
+    phase_diff = phase_diff - 2*128*floor((phase_diff + 128)/(2*128));
+    % fprintf('Iteration %d: phi_L = %d, phi_R = %d, phase_diff = %d\n', n, phi_L, phi_R, phase_diff);
 
     % Magnitude approximation and thresholding
     mag_L = abs(real(L)) + abs(imag(L));
     mag_R = abs(real(R)) + abs(imag(R));
 
     if (mag_L + mag_R) > 0.5
-        theta_track_tmp = theta_track(n) + K_track * phase_diff;
-        theta_track(n+1) = round(theta_track_tmp/2) * 2;
+        theta_track_tmp = theta_track(n) + floor(K_track * phase_diff);
+        theta_track(n+1) = theta_track_tmp;
     else
         theta_track(n+1) = theta_track(n);
     end
@@ -77,12 +78,11 @@ end
 end
 
 function value = sind_lut(theta)
-    % Lookup table for sine values from -60 to 60 degrees with a step of 2 degrees
-    lut = [-0.8660, -0.8480, -0.8290, -0.8090, -0.7880, -0.7660, -0.7431, -0.7193, -0.6947, -0.6691, -0.6428, -0.6157, -0.5878, -0.5592, -0.5299, -0.5000, -0.4695, -0.4384, -0.4067, -0.3746, -0.3420, -0.3090, -0.2756, -0.2419, -0.2079, -0.1736, -0.1392, -0.1045, -0.0698, -0.0349, 0, 0.0349, 0.0698,0.1045, 0.1392, 0.1736, 0.2079, 0.2419, 0.2756, 0.3090, 0.3420, 0.3746, 0.4067, 0.4384,0.4695, 0.5000, 0.5299, 0.5592, 0.5878, 0.6157, 0.6428, 0.6691, 0.6947, 0.7193, 0.7431, 0.7660, 0.7880, 0.8090, 0.8290, 0.8480, 0.8660];
-    % lut = [-0.8660, -0.8572, -0.8480, -0.8387, -0.8290, -0.8192, -0.8090, -0.7986, -0.7880, -0.7771, -0.7660, -0.7547, -0.7431, -0.7314, -0.7193, -0.7071, -0.6947, -0.6820, -0.6691, -0.6561, -0.6428, -0.6293, -0.6157, -0.6018, -0.5878, -0.5736, -0.5592, -0.5446, -0.5299, -0.5150, -0.5000, -0.4848, -0.4695, -0.4540, -0.4384, -0.4226, -0.4067, -0.3907, -0.3746, -0.3584, -0.3420, -0.3256, -0.3090, -0.2924, -0.2756, -0.2588, -0.2419, -0.2250, -0.2079, -0.1908, -0.1736, -0.1564, -0.1392, -0.1219, -0.1045, -0.0872, -0.0698, -0.0523, -0.0349, -0.0175, 0.0000, 0.0175, 0.0349, 0.0523, 0.0698, 0.0872, 0.1045, 0.1219, 0.1392, 0.1564, 0.1736, 0.1908, 0.2079, 0.2250, 0.2419, 0.2588, 0.2756, 0.2924, 0.3090, 0.3256, 0.3420, 0.3584, 0.3746, 0.3907, 0.4067, 0.4226, 0.4384, 0.4540, 0.4695, 0.4848, 0.5000, 0.5150, 0.5299, 0.5446, 0.5592, 0.5736, 0.5878, 0.6018, 0.6157, 0.6293, 0.6428, 0.6561, 0.6691, 0.6820, 0.6947, 0.7071, 0.7193, 0.7314, 0.7431, 0.7547, 0.7660, 0.7771, 0.7880, 0.7986, 0.8090, 0.8192, 0.8290, 0.8387, 0.8480, 0.8572, 0.8660];
-
+    % Lookup table for sine values from -42 to 42 degrees with a step of 1 degree
+    lut = [-110 -108 -106 -105 -103 -101 -99 -97 -95 -93 -91 -88 -86 -84 -81 -79 -76 -74 -71 -68 -66 -63 -60 -58 -55 -52 -49 -46 -43 -40 -37 -34 -31 -28 -25 -22 -19 -16 -13 -9 -6 -3 0 3 6 9 13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 60 63 66 68 71 74 76 79 81 84 86 88 91 93 95 97 99 101 103 105 106 108 110 ];
+    
     % Define the range of angles in the lookup table
-    angles = -60:2:60;
+    angles = -42:1:42;
 
     % Find the index of the input angle in the lookup table
     index = find(angles == theta, 1);

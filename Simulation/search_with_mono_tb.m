@@ -6,7 +6,7 @@ clear; clc; close all;
 % Parameters
 N = 4;                  % Number of antennas
 d_lambda = 0.5;         % Antenna spacing (d/lambda)
-scan_step = 2;          % Scan resolution (degrees)
+scan_step = 1;          % Scan resolution (degrees)
 NUM_SCAN = (84/scan_step) + 1; % Number of samples for scanning from -60 to 60 degrees
 
 % Signal Settings
@@ -39,20 +39,20 @@ for n = 1:NUM_SCAN
 end
 
 % Received signal for tracking phase (use the same signal for simplicity)
-angle_step = 13;
-angles = theta_s:angle_step:theta_s+angle_step*4;             % Change angle every 10 degrees for tracking phase
+angle_step = 4;
+angles = theta_s:angle_step:theta_s+angle_step*10;             % Change angle every 10 degrees for tracking phase
 % angles_1 = -60:2:0;			 % Change angle every 2 degrees for tracking phase
 % angles_2 = 0:-2:-20;			 % Change angle every 2 degrees for tracking phase
 % angles_3 = -20:2:60;			 % Change angle every 2 degrees for tracking phase
 % angles = [angles_1, angles_2, angles_3];
-block_len = 10;               % change angle every 5 iterations
+block_len = 4;               % change angle every 5 iterations
 num_track = length(angles) * block_len; % Total samples for tracking phase
 X_track = zeros(N, num_track);
 for n = 1:num_track
 	idx = mod(floor((n-1)/block_len), length(angles)) + 1;
 	current_theta = angles(idx);
-	a_sig = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(current_theta));
-	a_int = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(theta_i));
+	a_sig = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(current_theta / 256 * 360));
+	a_int = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(theta_i / 256 * 360));
 	sig_val = 10^(SNR/20) * (1 + 1j)/sqrt(2);
 	interference_val = 10^((SNR-SIR)/20) * (randn + 1j*randn)/sqrt(2);
 	noise = (randn(N,1) + 1j*randn(N,1))/sqrt(2);
@@ -100,7 +100,7 @@ fprintf('Detected Peak Angle: %.2f degrees\n', detected_angle/256*360);
 figure('Position', [100, 100, 700, 400]);
 
 % Plot the scanning energy landscape
-plot(((-42:2:42)/256*360), E, 'b-', 'LineWidth', 2);
+plot(((-42:1:42)/256*360), E, 'b-', 'LineWidth', 2);
 hold on;
 
 % Mark the true target location
@@ -164,7 +164,9 @@ for n = 1:num_samples-NUM_SCAN
             steered_q_data(4, n+NUM_SCAN), steered_i_data(4, n+NUM_SCAN)];
     
     % Convert to hex (treating as fixed-point or scaled integers)
-    hex_vals = dec2hex(int16(vals * 2^4));
+	vals = vals * 2^4; % Scale to preserve precision (assuming 4 fractional bits)
+	vals = floor(vals); % Round to nearest integer for fixed-point representation
+    hex_vals = dec2hex(vals, 3);
     
     % Write row
     for k = 1:size(hex_vals, 1)
@@ -174,7 +176,9 @@ for n = 1:num_samples-NUM_SCAN
     fprintf(fid, '\n');
 end
 
-fclose(fid);
+fprintf('Data export completed for %d samples.\n', num_samples-NUM_SCAN);
+
+% fclose(fid);
 fprintf('Data exported to golden.mem\n');
 
 disp('Test bench executed successfully.');

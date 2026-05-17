@@ -45,7 +45,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
             % phi = 2 * pi * 0.5 * (k-1) * sind(current_angle);
             phi_temp = (k-1) * sind_lut(current_angle);
             phi_temp = round(phi_temp); % Round to nearest integer for fixed-point representation
-            phi = mod(phi_temp+256, 512) - 256 ; % Round to nearest integer for fixed-point representation
+            phi = mod(phi_temp+128, 256) - 128 ; % Round to nearest integer for fixed-point representation
             % Wrap phi into range [-256, 256]
             % phi = mod(phi + 256, 512) - 256;
 
@@ -77,7 +77,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 
     %% 4. Tracking with Monopulse
     X_track = X(:, num_scan_points+1:end); % Use the remaining samples for tracking
-    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-4) * (360/256));
+    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-3));
     degrees = theta_track;
 
     steered_q = [steered_q, steered_q_track];
@@ -85,11 +85,11 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 end
 
 function value = sind_lut(theta)
-    % Lookup table for sine values from -60 to 60 degrees with a step of 2 degrees
-    lut = [-226,-231,-237,-241,-245,-248,-251,-253,-255,-256,-256,-256,-255,-253,-251,-248,-245,-241,-237,-231,-226,-220,-213,-206,-198,-190,-181,-172,-162,-152,-142,-132,-121,-109,-98,-86,-74,-62,-50,-38,-25,-13,0,13,25,38,50,62,74,86,98,109,121,132,142,152,162,172,181,190,198,206,213,220,226,231,237,241,245,248,251,253,255,256,256,256,255,253,251,248,245,241,237,231,226];
+    % Lookup table for sine values from -42 to 42 degrees with a step of 1 degree
+    lut = [-110 -108 -106 -105 -103 -101 -99 -97 -95 -93 -91 -88 -86 -84 -81 -79 -76 -74 -71 -68 -66 -63 -60 -58 -55 -52 -49 -46 -43 -40 -37 -34 -31 -28 -25 -22 -19 -16 -13 -9 -6 -3 0 3 6 9 13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 60 63 66 68 71 74 76 79 81 84 86 88 91 93 95 97 99 101 103 105 106 108 110 ];
     
     % Define the range of angles in the lookup table
-    angles = -84:2:84;
+    angles = -42:1:42;
 
     % Find the index of the input angle in the lookup table
     index = find(angles == theta, 1);
