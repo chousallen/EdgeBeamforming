@@ -1,0 +1,86 @@
+ 
+****************************************
+Report : area
+Design : steer
+Version: U-2022.12
+Date   : Sat May 16 22:11:25 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'steer' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    fsa0m_a_generic_core_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Moduletest/db/fsa0m_a_generic_core_tt1p8v25c.db)
+
+Number of ports:                         2320
+Number of nets:                          9215
+Number of cells:                         7327
+Number of combinational cells:           6264
+Number of sequential cells:              1022
+Number of macros/black boxes:               0
+Number of buf/inv:                       2344
+Number of references:                      38
+
+Combinational area:              99196.775316
+Buf/Inv area:                    20239.329402
+Noncombinational area:           60724.238956
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                159921.014273
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area             Local cell area
+                                  --------------------  ------------------------------ 
+Hierarchical cell                 Absolute     Percent  Combi-      Noncombi-   Black-
+                                  Total        Total    national    national    boxes   Design
+--------------------------------  -----------  -------  ----------  ----------  ------  ---------------------------------------------------------
+steer                             159921.0143    100.0   7780.7519  35653.9683  0.0000  steer
+phi_gen                             3302.9136      2.1   3302.9136      0.0000  0.0000  phi_table
+u_c1s1                             40503.6574     25.3  16067.7215   9336.9025  0.0000  cordic_stage_ITER_START0_OWN_ATAN1
+u_c1s1/add_103                      1146.8016      0.7   1146.8016      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_11
+u_c1s1/add_104                      1099.9296      0.7   1099.9296      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10
+u_c1s1/add_105                      1171.8000      0.7   1171.8000      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_7
+u_c1s1/add_108                      1168.6752      0.7   1168.6752      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_9
+u_c1s1/add_109                      1096.8048      0.7   1096.8048      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_8
+u_c1s1/add_110                      1165.5504      0.7   1165.5504      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_6
+u_c1s1/sub_103                      1315.5408      0.8   1315.5408      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_11
+u_c1s1/sub_104                      1309.2912      0.8   1309.2912      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_10
+u_c1s1/sub_105                      1512.4032      0.9   1512.4032      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_7
+u_c1s1/sub_108                      1309.2912      0.8   1309.2912      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_9
+u_c1s1/sub_109                      1334.2896      0.8   1334.2896      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_8
+u_c1s1/sub_110                      1468.6560      0.9   1468.6560      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_6
+u_c1s2                             35403.9839     22.1  13377.2687   7183.9153  0.0000  cordic_stage_ITER_START5_OWN_ATAN1
+u_c1s2/add_103                      1118.6784      0.7   1118.6784      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_11
+u_c1s2/add_104                      1090.5552      0.7   1090.5552      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_10
+u_c1s2/add_105                      1218.6720      0.8   1218.6720      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_7
+u_c1s2/add_108                      1046.8080      0.7   1046.8080      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_9
+u_c1s2/add_109                      1121.8032      0.7   1121.8032      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_8
+u_c1s2/add_110                      1224.9216      0.8   1224.9216      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_6
+u_c1s2/sub_103                      1299.9168      0.8   1299.9168      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_11
+u_c1s2/sub_104                      1268.6688      0.8   1268.6688      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_10
+u_c1s2/sub_105                      1490.5296      0.9   1490.5296      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_13
+u_c1s2/sub_108                      1243.6704      0.8   1243.6704      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_9
+u_c1s2/sub_109                      1265.5440      0.8   1265.5440      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_8
+u_c1s2/sub_110                      1453.0320      0.9   1453.0320      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_12
+u_c2s1                             19701.8640     12.3   7861.9967   4809.0672  0.0000  cordic_stage_ITER_START0_OWN_ATAN0
+u_c2s1/add_103                      1087.4304      0.7   1087.4304      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_4
+u_c2s1/add_104                      1165.5504      0.7   1165.5504      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_3
+u_c2s1/add_105                      1065.5568      0.7   1065.5568      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_0_DW01_add_10
+u_c2s1/sub_103                      1268.6688      0.8   1268.6688      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_4
+u_c2s1/sub_104                      1231.1712      0.8   1231.1712      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_3
+u_c2s1/sub_105                      1212.4224      0.8   1212.4224      0.0000  0.0000  cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_0_DW01_sub_11
+u_c2s2                             17573.8752     11.0   6727.6944   3740.3856  0.0000  cordic_stage_ITER_START5_OWN_ATAN0
+u_c2s2/add_103                      1118.6784      0.7   1118.6784      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_4
+u_c2s2/add_104                      1090.5552      0.7   1090.5552      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_3
+u_c2s2/add_105                      1181.1744      0.7   1181.1744      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_0_DW01_add_1
+u_c2s2/sub_103                      1237.4208      0.8   1237.4208      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_4
+u_c2s2/sub_104                      1249.9200      0.8   1249.9200      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_3
+u_c2s2/sub_105                      1228.0464      0.8   1228.0464      0.0000  0.0000  cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_0_DW01_sub_2
+--------------------------------  -----------  -------  ----------  ----------  ------  ---------------------------------------------------------
+Total                                                   99196.7753  60724.2390  0.0000
+
+1

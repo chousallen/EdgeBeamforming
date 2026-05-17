@@ -1,0 +1,143 @@
+Loading db file '/home/raid7_2/userb12/b12148/ICDLab/Final/Moduletest/db/fsa0m_a_generic_core_tt1p8v25c.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : steer
+Version: U-2022.12
+Date   : Sat May 16 22:11:28 2026
+****************************************
+
+
+Library(s) Used:
+
+    fsa0m_a_generic_core_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Moduletest/db/fsa0m_a_generic_core_tt1p8v25c.db)
+
+
+Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+steer                  G200K             fsa0m_a_generic_core_tt1p8v25c
+phi_table              enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_0_DW01_sub_2
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_0_DW01_add_1
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_0_DW01_sub_11
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_0_DW01_add_10
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_6
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_7
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_6
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_7
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_6
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_7
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_8
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_9
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_10
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_11
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_8
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_9
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_11
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_8
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_9
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_10
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_11
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_8
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_9
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_10
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_11
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_12
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_13
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+
+
+Global Operating Voltage = 1.62 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =  13.3766 mW   (72%)
+  Net Switching Power  =   5.1085 mW   (28%)
+                         ---------
+Total Dynamic Power    =  18.4851 mW  (100%)
+
+Cell Leakage Power     = 608.9660 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      9.6572            0.0000            0.0000            9.6572  (  52.24%)  i
+register           1.5725            0.2749        2.2610e+05            1.8477  (  10.00%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      2.1469            4.8335        3.8286e+05            6.9808  (  37.76%)
+--------------------------------------------------------------------------------------------------
+Total             13.3766 mW         5.1085 mW     6.0897e+05 pW        18.4857 mW
+1
