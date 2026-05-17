@@ -3,7 +3,7 @@
 module track_tb;
 
     // Parameter definitions (matching track.v)
-    parameter N_ITER = 8;
+    parameter N_ITER = 7;
     parameter IW = 10;
     parameter PW = 8;
     parameter OW = 8;
@@ -76,7 +76,7 @@ module track_tb;
         @(posedge clk);
         #1; // Offset from clock edge to prevent hold time issues
         angle_valid_in = 1; // Assuming angle input is valid for all patterns
-        phase_in = 8'd228; // Assuming angle input is not used in current test patterns
+        phase_in = 8'd225; // Assuming angle input is not used in current test patterns
         @(posedge clk);
         #1;
         angle_valid_in = 0;
@@ -135,7 +135,7 @@ module track_tb;
                     @(posedge clk);
                     #1;
                     if (angle_out === golden_mem[p*9 + 8]) begin
-                        $display("[Pattern %0d] SUCCESS! Expected: %h, Got: %h", p + 1, golden_mem[p*9 + 8], angle_out);
+                        // $display("[Pattern %0d] SUCCESS! Expected: %h, Got: %h", p + 1, golden_mem[p*9 + 8], angle_out);
                     end else begin
                         $display("[Pattern %0d] ERROR! Expected: %h, Got: %h", p + 1, golden_mem[p*9 + 8], angle_out);
                         error_count = error_count + 1;

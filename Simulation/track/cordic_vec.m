@@ -11,7 +11,7 @@ function out_z = cordic_vec(x_in, y_in, num_iterations)
 
     % Precompute arctan values for the iterations
     % atan_table = atan(2.^-(0:num_iterations-1));
-    atan_table = [0.7854  0.4636  0.2450  0.1244  0.0624  0.0312  0.0156  0.0078  0.0039  0.0020  0.0018  0.0005 ];
+    atan_table = [32 19 10 5 3 1 1 0 ];
 
     x_reg = x_in;
     y_reg = y_in;

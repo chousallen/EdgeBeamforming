@@ -1,5 +1,5 @@
 module track #(
-    parameter N_ITER = 8,
+    parameter N_ITER = 7,
     parameter IW = 10, // Input width for CORDIC (s5.4 format)
     parameter PW = 8, // Input width for phase  (s7.0 format)
     parameter OW = 8  // Output width for CORDIC (s7.0 format)
@@ -21,7 +21,7 @@ reg signed [IW:0] L_acc_q_next, L_acc_i_next, R_acc_q_next, R_acc_i_next;
 reg [1:0] channel_r, channel_next;
 reg signed [PW-1:0] L_phase_r, R_phase_r; // s7.0 format for phase
 reg signed [PW-1:0] L_phase_next, R_phase_next; // s7.0 format for phase
-reg signed [PW-1:0] phase_diff_r, phase_diff_next; // s8.0 format for phase difference (to hold values up to +-180 degrees)
+reg signed [PW:0] phase_diff_r, phase_diff_next; // s8.0 format for phase difference (to hold values up to +-180 degrees)
 reg valid_acc_r, valid_acc_next;
 reg valid_out_next;
 reg valid_phase_r, valid_phase_next;
@@ -132,7 +132,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-localparam K = 4; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
+localparam K = 3; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
 // Phase difference calculation (s7.0 format to hold values up to +-180 degrees)
 always @(*) begin
     if (angle_valid_in) begin
@@ -141,7 +141,7 @@ always @(*) begin
         phase_out_next = angle_in; // Scale down the input angle by the CORDIC gain
         valid_out_next = valid_out; // Keep the output valid state unchanged when we have a new angle input
     end else if (valid_phase_r) begin
-        phase_diff_next = L_phase_r - R_phase_r; // s7.0 format
+        phase_diff_next = {L_phase_r[PW-1], L_phase_r} - {R_phase_r[PW-1], R_phase_r}; // s8.0 format
         phase_out_next = phase_out_r + (phase_diff_next >>> K);  // Simple proportional control with gain of 1/16 (>>4) to convert phase difference to angle output
         valid_out_next = 1'b1; // Output is valid when we have a new phase difference
     end else begin
