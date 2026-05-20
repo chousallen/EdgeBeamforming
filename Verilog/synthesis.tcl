@@ -1,4 +1,5 @@
 # Read Design
+read_file -format verilog phi_table.v
 read_file -format verilog cordic_stage.v
 read_file -format verilog cordic_vector.v
 read_file -format verilog comparison.v
