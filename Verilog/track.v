@@ -11,6 +11,7 @@ module track #(
     input wire signed [IW-1:0] i_in, // s5.4 format
     input wire signed [IW-1:0] q_in, // s5.4 format
     input wire signed [PW-1:0] angle_in, // s7.0 format
+    input wire angle_valid_in,
     output reg valid_out,
     output reg [OW-1:0] angle_out // output phase index (0 to 60 for -60 to 60 degrees)
 );

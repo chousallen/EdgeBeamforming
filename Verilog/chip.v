@@ -167,7 +167,7 @@ reg angle_valid_in_r, angle_valid_in_next;
 reg signed [TW-1:0] cur_angle_r, cur_angle_next;
 
 always @(*) begin
-    if (valid_steer_out && mode_r == 1'b1 && channel == 2'b0) begin
+    if (valid_steer_out && mode_r == 1'b1 && steer_channel_out == 2'b0) begin
         angle_valid_in_next = 1'b1;
         cur_angle_next = steer_phase_out; // Use steer phase output as current angle input to track module in track mode
     end else begin
