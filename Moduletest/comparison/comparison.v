@@ -31,14 +31,14 @@ module comparison(
 
     // interconnection
 
-    reg [11:0] max_power;
+    reg [12:0] max_power;
     reg [7:0] current_theta;
     reg [7:0] theta_latched;
-    wire [11:0] new_power;
+    wire [12:0] new_power;
     reg signed [11:0] Q_acc;
     reg signed [11:0] I_acc;
-    wire [10:0] absolute_Q_acc;
-    wire [10:0] absolute_I_acc;
+    wire signed [11:0] absolute_Q_acc;
+    wire signed [11:0] absolute_I_acc;
     reg comparator_valid;
     
 
