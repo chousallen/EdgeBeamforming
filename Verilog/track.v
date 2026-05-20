@@ -96,7 +96,7 @@ assign cordic_x2_in = R_acc_q_r[IW:1];
 assign cordic_y2_in = R_acc_i_r[IW:1];
 
 // Vectroring CORDIC for Phase Calculation
-cordic #(
+cordic_vector #(
     .IW(IW), // s6.3 format
     .OW(OW), // s2.7 format
     .N_ITER(N_ITER)
