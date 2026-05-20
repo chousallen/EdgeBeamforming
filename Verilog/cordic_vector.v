@@ -85,7 +85,7 @@ always @(*) begin
     end
 end
 
-always @(posedge clk or posedge rst_n) begin
+always @(posedge clk or negedge rst_n) begin
     idel_r <= idel_next;
     valid_out <= valid_out_next;
     if(!rst_n) begin
