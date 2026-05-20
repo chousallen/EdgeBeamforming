@@ -190,7 +190,6 @@ track track_inst (
     .clk(clk),
     .rst_n(rst_n),
     .valid_in(valid_steer_out),
-    .phase_in(steer_phase_out),
     .channel_in(steer_channel_out),
     .q_in(steer_x_out),
     .i_in(steer_y_out),
