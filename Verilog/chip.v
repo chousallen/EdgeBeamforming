@@ -87,7 +87,7 @@ wire signed [OW-1:0] Comparison_Q_out;
 wire signed [OW-1:0] Comparison_I_out;
 wire [TW-1:0] comparison_theta_out;
 wire valid_track_out;
-wire signed [OW-1:0] track_phase_out;
+wire signed [TW-1:0] track_phase_out;
 
 always @(*) begin
     // Default to hold current values
