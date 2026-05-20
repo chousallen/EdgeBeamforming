@@ -1,4 +1,4 @@
-module cordic #(
+module cordic_vector #(
     parameter  N_ITER = 7,
     parameter  IW = 10, // Input width (s6.3 format)
     parameter  OW = 8  // Output width (s7.0 format)
