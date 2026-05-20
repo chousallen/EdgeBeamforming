@@ -86,60 +86,64 @@ always @(*) begin
 end
 
 always @(posedge clk or negedge rst_n) begin
-    idel_r <= idel_next;
-    valid_out <= valid_out_next;
-    if(!rst_n) begin
+    if (!rst_n) begin
+        // Reset logic
         iter_r     <= 0;
-        x1_r        <= 0;
-        y1_r        <= 0;
-        z1_r        <= 0;
-        x2_r        <= 0;
-        y2_r        <= 0;
-        z2_r        <= 0;
-        valid_out   <= 0;
-        neg_x1_r    <= 0;
-        neg_x2_r    <= 0;
+        x1_r       <= 0;
+        y1_r       <= 0;
+        z1_r       <= 0;
+        x2_r       <= 0;
+        y2_r       <= 0;
+        z2_r       <= 0;
+        valid_out  <= 0;
+        neg_x1_r   <= 0;
+        neg_x2_r   <= 0;
         neg_y1_orig_r <= 0;
         neg_y2_orig_r <= 0;
         idel_r     <= 1; // Start in idle state
-    end else if(valid_in) begin
-        iter_r <= 0;
-        // Pre-rotate by pi if x_in < 0 so CORDIC sees positive x
-        if (x1_in[9]) begin
-            x1_r          <= -{{2{x1_in[9]}}, x1_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
-            y1_r          <= -{{2{y1_in[9]}}, y1_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
-            z1_r          <= (y1_in[9]) ? -8'sd128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
-            neg_x1_r      <= 1'b1;
-            neg_y1_orig_r <= y1_in[9]; // save sign of original y_in
-        end else begin
-            x1_r          <= {{2{x1_in[9]}}, x1_in};
-            y1_r          <= {{2{y1_in[9]}}, y1_in};
-            z1_r          <= 8'sd0;
-            neg_x1_r      <= 1'b0;
-            neg_y1_orig_r <= 1'b0;
+    end else begin
+        if (valid_in) begin
+            // Initialization logic when valid_in is high
+            iter_r <= 0;
+            if (x1_in[9]) begin
+                x1_r          <= -{{2{x1_in[9]}}, x1_in};
+                y1_r          <= -{{2{y1_in[9]}}, y1_in};
+                z1_r          <= (y1_in[9]) ? -8'sd128 : 8'sd127;
+                neg_x1_r      <= 1'b1;
+                neg_y1_orig_r <= y1_in[9];
+            end else begin
+                x1_r          <= {{2{x1_in[9]}}, x1_in};
+                y1_r          <= {{2{y1_in[9]}}, y1_in};
+                z1_r          <= 8'sd0;
+                neg_x1_r      <= 1'b0;
+                neg_y1_orig_r <= 1'b0;
+            end
+            if (x2_in[9]) begin
+                x2_r          <= -{{2{x2_in[9]}}, x2_in};
+                y2_r          <= -{{2{y2_in[9]}}, y2_in};
+                z2_r          <= (y2_in[9]) ? -8'sd128 : 8'sd127;
+                neg_x2_r      <= 1'b1;
+                neg_y2_orig_r <= y2_in[9];
+            end else begin
+                x2_r          <= {{2{x2_in[9]}}, x2_in};
+                y2_r          <= {{2{y2_in[9]}}, y2_in};
+                z2_r          <= 8'sd0;
+                neg_x2_r      <= 1'b0;
+                neg_y2_orig_r <= 1'b0;
+            end
+            valid_out <= 0;
+        end else if (!idel_r) begin
+            // Iteration logic when not in idle state
+            iter_r <= iter_next;
+            x1_r   <= x1_next;
+            y1_r   <= y1_next;
+            z1_r   <= z1_next;
+            x2_r   <= x2_next;
+            y2_r   <= y2_next;
+            z2_r   <= z2_next;
         end
-        if (x2_in[9]) begin
-            x2_r          <= -{{2{x2_in[9]}}, x2_in};    // negate x_in to maintain angle (instead of adding pi, we can just flip the vector)
-            y2_r          <= -{{2{y2_in[9]}}, y2_in};    // negate y_in to maintain angle (instead of adding pi, we can just flip the vector)
-            z2_r          <= (y2_in[9]) ? -8'sd128 : 8'sd127; // pre-rotate by pi (in s7.0 format) with correct sign based on original y_in
-            neg_x2_r      <= 1'b1;
-            neg_y2_orig_r <= y2_in[9]; // save sign of original y_in
-        end else begin
-            x2_r          <= {{2{x2_in[9]}}, x2_in};
-            y2_r          <= {{2{y2_in[9]}}, y2_in};
-            z2_r          <= 8'sd0;
-            neg_x2_r      <= 1'b0;
-            neg_y2_orig_r <= 1'b0;
-        end
-        valid_out <= 0;
-    end else if(!idel_r) begin
-        iter_r <= iter_next;
-        x1_r    <= x1_next;
-        y1_r    <= y1_next;
-        z1_r    <= z1_next;
-        x2_r    <= x2_next;
-        y2_r    <= y2_next;
-        z2_r    <= z2_next;
+        idel_r <= idel_next;
+        valid_out <= valid_out_next;
     end
 end
 
