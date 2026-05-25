@@ -17,7 +17,7 @@ module cordic_vector #(
 
 reg [2:0] iter_r, iter_next;
 reg valid_out_next;
-reg signed [IW+1:0]  x1_r, y1_r, x2_r, y2_r;   // x_r: s7.4, y_r: s7.4
+reg signed [IW+1:0]  x1_r, y1_r, x2_r, y2_r;   // x_r: s8.3, y_r: s8.3
 reg signed [IW+1:0]  x1_next, y1_next, x2_next, y2_next;
 reg signed [OW-1:0] z1_r, z2_r; // s7.0 format to hold angles up to +-pi
 reg signed [OW-1:0] z1_next, z2_next; // s7.0 format to hold angles up to +-pi

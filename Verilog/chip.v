@@ -9,16 +9,20 @@ module chip #(
     input wire valid_in,
     input wire signed [IW-1:0] data_in,
     input wire signed [IW-1:0] q_in,
+    output wire in_en,
     output wire valid_out,
     output wire [OW-1:0] data_out
 );
 
 // Data input wrapper for steering module
-reg [2:0] data_count;
+reg [2:0] data_count_r, data_count_next; // Counter to track which data input is being loaded
 reg [IW-1:0] x1_q_r, x1_i_r, x2_q_r, x2_i_r, x3_q_r, x3_i_r, x4_q_r, x4_i_r;
 reg [IW-1:0] x1_q_next, x1_i_next, x2_q_next, x2_i_next, x3_q_next, x3_i_next, x4_q_next, x4_i_next;
 reg valid_data_r, valid_data_next;
 reg valid_steer_in_r, valid_steer_in_next;
+reg in_en_r, in_en_next;
+
+assign in_en = in_en_r;
 
 always @(*) begin
     // Default to hold current values
@@ -32,15 +36,20 @@ always @(*) begin
     x4_i_next = x4_i_r;
     valid_data_next = valid_data_r;
     valid_steer_in_next = valid_steer_in_r;
+    in_en_next = in_en_r;
+    data_count_next = data_count_r;
+
     // Data valid control logic and data counter
     if (valid_in) begin
-        data_count = 0;
+        data_count_next = 3'd1;
         valid_data_next = 1'b1;
+        in_en_next = 1'b0; // Unable in_en during data loading
     end else if (valid_data_r) begin
-        data_count = data_count + 1;
-        if (data_count == 7) begin
-            valid_data_next = 1'b0; // Clear valid after 4 cycles of data
+        data_count_next = data_count_r + 1;
+        if (data_count_r == 3'd7) begin
+            valid_data_next = 1'b0; // Clear valid after 8 cycles of data
             valid_steer_in_next = 1'b1; // Set valid for cordic input after all data is loaded
+            in_en_next = 1'b1; // Enable in_en after data is loaded and cordic input is valid
         end
     end else if (valid_steer_in_r) begin
         valid_steer_in_next = 1'b0; // Clear cordic valid after one cycle
@@ -48,7 +57,7 @@ always @(*) begin
 
     // Data assignment based on count
     if (valid_data_r || valid_in) begin
-        case (data_count)
+        case (data_count_r)
             3'd0: x1_q_next = data_in; // First cycle: x1_q
             3'd1: x1_i_next = data_in; // Second cycle: x1_i
             3'd2: x2_q_next = data_in; // Third cycle: x2_q
@@ -67,27 +76,31 @@ always @(posedge clk or negedge rst_n) begin
         x3_q_r <= 0; x3_i_r <= 0; x4_q_r <= 0; x4_i_r <= 0;
         valid_data_r <= 1'b0;
         valid_steer_in_r <= 1'b0;
+        data_count_r <= 3'd0;
+        in_en_r <= 1'b1;
     end else begin
-        x1_q_r <= x1_q_next; x1_i_r <= x1_i_next; 
+        x1_q_r <= x1_q_next; x1_i_r <= x1_i_next;
         x2_q_r <= x2_q_next; x2_i_r <= x2_i_next;
-        x3_q_r <= x3_q_next; x3_i_r <= x3_i_next; 
+        x3_q_r <= x3_q_next; x3_i_r <= x3_i_next;
         x4_q_r <= x4_q_next; x4_i_r <= x4_i_next;
         valid_data_r <= valid_data_next;
         valid_steer_in_r <= valid_steer_in_next;
+        data_count_r <= data_count_next;
+        in_en_r <= in_en_next;
     end
 end
 
 // GLobal control module
 reg mode_r, mode_next;  // 0 for search, 1 for track
-reg signed [TW-1:0] target_degree_r, target_degree_next;     // Target current degree register
-reg signed [TW-1:0] search_degree_r, search_degree_next;    // Search degree counter
-reg signed [TW-1:0] steer_theta_r, steer_theta_next;        // Steering theta for steering module
+reg signed [TW -1:0] target_degree_r, target_degree_next;     // Target current degree register
+reg signed [TW -1:0] search_degree_r, search_degree_next;    // Search degree counter
+reg signed [TW -1:0] steer_theta_r, steer_theta_next;        // Steering theta for steering module
 wire valid_comparison_out;
-wire signed [OW-1:0] Comparison_Q_out;
-wire signed [OW-1:0] Comparison_I_out;
-wire [TW-1:0] comparison_theta_out;
+wire signed [OW -1:0] Comparison_Q_out;
+wire signed [OW -1:0] Comparison_I_out;
+wire [TW -1:0] comparison_theta_out;
 wire valid_track_out;
-wire signed [TW-1:0] track_phase_out;
+wire signed [TW -1:0] track_phase_out;
 
 always @(*) begin
     // Default to hold current values
@@ -104,8 +117,8 @@ always @(*) begin
         end
         if (valid_in) begin
             search_degree_next = search_degree_r + 8'sd1;   // Increment search degree in search mode on valid input
-            if (search_degree_next > 8'sd43) begin
-                search_degree_next = -8'sd44; // Wrap around search degree after one full sweep
+            if (search_degree_next > 8'sd42) begin
+                search_degree_next = -8'sd43; // Wrap around search degree after one full sweep
                 mode_next = 1'b1; // Switch to track mode after one full sweep
             end
         end
@@ -118,8 +131,8 @@ always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         mode_r <= 1'b0; // Start in search mode
         target_degree_r <= 0;
-        search_degree_r <= -8'sd44; // Start search degree at -44 to begin sweep from -44 to +43
-        steer_theta_r <= -8'sd44; // Initialize steering theta to match initial search degree
+        search_degree_r <= -8'sd43; // Start search degree at -43 to begin sweep from -43 to +42
+        steer_theta_r <= -8'sd43; // Initialize steering theta to match initial search degree
     end else begin
         mode_r <= mode_next;
         target_degree_r <= target_degree_next;
@@ -213,6 +226,10 @@ always @(*) begin
     theta_out_next = theta_out_r;
     output_count_next = output_count_r;
 
+    if (mode_r == 1'b1 && valid_track_out) begin
+        out_valid_next = 1'b1; // Set output valid when track output is valid in track mode
+    end
+
     // Collect Q/I from comparison output in track mode
     if (mode_r == 1'b1 && valid_comparison_out) begin
         q_out_next = Comparison_Q_out;
@@ -220,9 +237,8 @@ always @(*) begin
     end
 
     // Collect latest tracked phase and start 3-cycle output sequence
-    if (valid_track_out) begin
+    if (valid_track_out && mode_r == 1'b1) begin
         theta_out_next = track_phase_out;
-        out_valid_next = 1'b1; // one-cycle pulse when phase is collected
         output_count_next = 2'd1;
         out_data_next = {{(OW-TW){track_phase_out[TW-1]}}, track_phase_out};
     end else begin
@@ -233,9 +249,6 @@ always @(*) begin
             end
             2'd2: begin
                 out_data_next = i_out_r;
-                output_count_next = 2'd3;
-            end
-            2'd3: begin
                 output_count_next = 2'd0;
             end
             default: begin
