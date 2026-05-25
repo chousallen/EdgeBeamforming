@@ -38,6 +38,8 @@ always @(*) begin
     valid_steer_in_next = valid_steer_in_r;
     in_en_next = in_en_r;
     data_count_next = data_count_r;
+    mode_next = mode_r;
+    search_steer_end_next = search_steer_end_r;
 
     // Data valid control logic and data counter
     if (valid_in) begin
@@ -49,10 +51,28 @@ always @(*) begin
         if (data_count_r == 3'd7) begin
             valid_data_next = 1'b0; // Clear valid after 8 cycles of data
             valid_steer_in_next = 1'b1; // Set valid for cordic input after all data is loaded
-            in_en_next = 1'b1; // Enable in_en after data is loaded and cordic input is valid
+            if (mode_r == 1'b0) begin
+                in_en_next = (steer_theta_r == 8'sd42) ? 1'b0 : 1'b1;
+            end else begin
+                in_en_next = 1'b0;
+            end
         end
     end else if (valid_steer_in_r) begin
         valid_steer_in_next = 1'b0; // Clear cordic valid after one cycle
+        in_en_next = in_en_r;
+    end else if (mode_r == 1'b1 && valid_track_out) begin
+        in_en_next = 1'b1; // Re-enable in_en for track mode after track output is valid
+    end
+
+    if (valid_steer_out && mode_r == 1'b0 && steer_phase_out == 8'sd42 && steer_channel_out == 2'd0) begin
+        search_steer_end_next = 1'b1;
+    end else if (search_steer_end_r && valid_comparison_out) begin
+        mode_next = 1'b1; // Switch to track mode after search steer is ended
+        in_en_next = 1'b1; // Re-enable in_en for track mode after search is ended
+        search_steer_end_next = 1'b0; // Clear search steer end status after switching to track mode
+    end else begin
+        mode_next = mode_r; // Hold current mode
+        search_steer_end_next = search_steer_end_r; // Hold current search steer end status
     end
 
     // Data assignment based on count
@@ -78,6 +98,8 @@ always @(posedge clk or negedge rst_n) begin
         valid_steer_in_r <= 1'b0;
         data_count_r <= 3'd0;
         in_en_r <= 1'b1;
+        mode_r <= 1'b0; // Start in search mode
+        search_steer_end_r <= 1'b0;
     end else begin
         x1_q_r <= x1_q_next; x1_i_r <= x1_i_next;
         x2_q_r <= x2_q_next; x2_i_r <= x2_i_next;
@@ -87,6 +109,8 @@ always @(posedge clk or negedge rst_n) begin
         valid_steer_in_r <= valid_steer_in_next;
         data_count_r <= data_count_next;
         in_en_r <= in_en_next;
+        mode_r <= mode_next;
+        search_steer_end_r <= search_steer_end_next;
     end
 end
 
@@ -95,6 +119,7 @@ reg mode_r, mode_next;  // 0 for search, 1 for track
 reg signed [TW -1:0] target_degree_r, target_degree_next;     // Target current degree register
 reg signed [TW -1:0] search_degree_r, search_degree_next;    // Search degree counter
 reg signed [TW -1:0] steer_theta_r, steer_theta_next;        // Steering theta for steering module
+reg search_steer_end_r, search_steer_end_next; // Status to indicate if steering for search mode is ended
 wire valid_comparison_out;
 wire signed [OW -1:0] Comparison_Q_out;
 wire signed [OW -1:0] Comparison_I_out;
@@ -104,7 +129,6 @@ wire signed [TW -1:0] track_phase_out;
 
 always @(*) begin
     // Default to hold current values
-    mode_next = mode_r;
     target_degree_next = target_degree_r;
     search_degree_next = search_degree_r;
     steer_theta_next = steer_theta_r;
@@ -116,11 +140,7 @@ always @(*) begin
             target_degree_next = comparison_theta_out; // Update target degree from comparison output in search mode
         end
         if (valid_in) begin
-            search_degree_next = search_degree_r + 8'sd1;   // Increment search degree in search mode on valid input
-            if (search_degree_next > 8'sd42) begin
-                search_degree_next = -8'sd43; // Wrap around search degree after one full sweep
-                mode_next = 1'b1; // Switch to track mode after one full sweep
-            end
+            search_degree_next = (search_degree_r > (8'sd42 - 8'sd1)) ? -8'sd43 : search_degree_r + 8'sd1;   // Increment search degree in search mode on valid input
         end
     end else if (mode_r == 1'b1 && valid_track_out) begin
         target_degree_next = track_phase_out; // Update target degree from track output in track mode
@@ -129,12 +149,10 @@ end
 
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        mode_r <= 1'b0; // Start in search mode
         target_degree_r <= 0;
         search_degree_r <= -8'sd43; // Start search degree at -43 to begin sweep from -43 to +42
         steer_theta_r <= -8'sd43; // Initialize steering theta to match initial search degree
     end else begin
-        mode_r <= mode_next;
         target_degree_r <= target_degree_next;
         search_degree_r <= search_degree_next;
         steer_theta_r <= steer_theta_next;
@@ -199,10 +217,13 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+wire valid_track_in;
+assign valid_track_in = (mode_r == 1'b1) ? valid_steer_out : 1'b0; // Valid input to track module is valid_steer_out only
+
 track track_inst (
     .clk(clk),
     .rst_n(rst_n),
-    .valid_in(valid_steer_out),
+    .valid_in(valid_track_in),
     .channel_in(steer_channel_out),
     .q_in(steer_x_out),
     .i_in(steer_y_out),

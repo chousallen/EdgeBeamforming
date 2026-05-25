@@ -174,6 +174,7 @@ module chip_tb;
 			while (timeout_count < 300 && !valid_out) begin
 				@(posedge clk);
 				timeout_count = timeout_count + 1;
+				#1;
 			end
 
 			if (!valid_out) begin

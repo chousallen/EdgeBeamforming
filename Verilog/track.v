@@ -133,18 +133,17 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 localparam K = 3; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
-reg signed [OW-1:0] phase_diff_temp;
+wire signed [OW-1:0] phase_diff_temp;
+assign phase_diff_temp = phase_diff_next[OW-1:0]; // Take the lower OW bits for output calculation
 // Phase difference calculation (s7.0 format to hold values up to +-180 degrees)
 always @(*) begin
     if (angle_valid_in) begin
         // If we have a new angle input, we can use it directly as the output (after scaling)
         phase_diff_next = phase_diff_r; // Hold previous phase difference when we have a new angle input
-        phase_diff_temp = phase_diff_next[OW-1:0]; // Take the lower OW bits for output calculation
         phase_out_next = angle_in; // Scale down the input angle by the CORDIC gain
         valid_out_next = valid_out; // Keep the output valid state unchanged when we have a new angle input
     end else if (valid_phase_r) begin
         phase_diff_next = {L_phase_r[PW-1], L_phase_r} - {R_phase_r[PW-1], R_phase_r}; // s8.0 format
-        phase_diff_temp = phase_diff_next[OW-1:0]; // Take the lower OW bits for output calculation
         phase_out_next = phase_out_r + (phase_diff_temp >>> (K));
         valid_out_next = 1'b1; // Output is valid when we have a new phase difference
     end else begin
