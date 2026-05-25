@@ -62,7 +62,7 @@ module comparison(
             I_out <= 10'sd0;
         end else begin
 
-            if (valid_in && theta_in == 8'd0 && channel_count == 2'd0) begin
+            if (valid_in && theta_in == -8'sd42 && channel_count == 2'd0) begin
                 max_power <= 13'd0;
             end
 
