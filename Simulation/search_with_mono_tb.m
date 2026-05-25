@@ -16,7 +16,7 @@ SNR = 20; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)
 
 % Steering vector function
-steering = @(th) exp(-1j * pi * (0:N-1)' * sind(th / 256 * 360)); % Steering vector for angle th
+steering = @(th) exp(-1j * pi * (-1:N-2)' * sind(th / 256 * 360)); % Steering vector for angle th
 
 % Generate QPSK signal
 sig_val = 10^(SNR/20) * (1+1j)/sqrt(2); % QPSK symbol with power based on SNR
@@ -51,8 +51,8 @@ X_track = zeros(N, num_track);
 for n = 1:num_track
 	idx = mod(floor((n-1)/block_len), length(angles)) + 1;
 	current_theta = angles(idx);
-	a_sig = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(current_theta / 256 * 360));
-	a_int = exp(-1j * 2 * pi * d_lambda * (0:N-1)' * sind(theta_i / 256 * 360));
+	a_sig = exp(-1j * 2 * pi * d_lambda * (-1:N-2)' * sind(current_theta / 256 * 360));
+	a_int = exp(-1j * 2 * pi * d_lambda * (-1:N-2)' * sind(theta_i / 256 * 360));
 	sig_val = 10^(SNR/20) * (1 + 1j)/sqrt(2);
 	interference_val = 10^((SNR-SIR)/20) * (randn + 1j*randn)/sqrt(2);
 	noise = (randn(N,1) + 1j*randn(N,1))/sqrt(2);
@@ -85,8 +85,8 @@ end
 
 
 % Call the search function (use the generated fixed-point MEX)
-% [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
-[E, degrees, steered_q, steered_i] = search_with_mono_wrapper_fixpt_mex('search_with_mono_wrapper_fixpt', x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+[E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
+% [E, degrees, steered_q, steered_i] = search_with_mono_wrapper_fixpt_mex('search_with_mono_wrapper_fixpt', x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
 % [E, degrees, steered_q, steered_i] = search_with_mono_wrapper_fixpt(x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, scan_step);
 
 %% Search Results Visualization
@@ -131,9 +131,8 @@ legend('Tracked Angle \theta_{track}', 'True Angle (Block Changes)', 'Location',
 
 grid on;
 
-%% Export data to golden.mem hex file
-fid = fopen('.\Simulation\track_golden.mem', 'w');
-
+%% Export data to search_stage_golden.mem hex file
+fid = fopen('.\Simulation\search_stage_golden.mem', 'w');
 % Prepare input data
 x1_q_full = x1_q;
 x1_i_full = x1_i;
@@ -143,31 +142,49 @@ x3_q_full = x3_q;
 x3_i_full = x3_i;
 x4_q_full = x4_q;
 x4_i_full = x4_i;
-
 num_samples = length(x1_q_full);
 
-% Convert steered_q and steered_i to row vectors if they are columns
-if size(steered_q, 1) == N && size(steered_q, 2) == num_samples
-    steered_q_data = steered_q;
-    steered_i_data = steered_i;
-else
-    steered_q_data = steered_q';
-    steered_i_data = steered_i';
-end
-
 % Write each row: x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, steered_q[1:4], steered_i[1:4]
-for n = 1:num_samples-NUM_SCAN
+for n = 1:NUM_SCAN
     % Input values
-    vals = [steered_q_data(1, n+NUM_SCAN), steered_i_data(1, n+NUM_SCAN), ...
-            steered_q_data(2, n+NUM_SCAN), steered_i_data(2, n+NUM_SCAN), ...
-            steered_q_data(3, n+NUM_SCAN), steered_i_data(3, n+NUM_SCAN), ...
-            steered_q_data(4, n+NUM_SCAN), steered_i_data(4, n+NUM_SCAN)];
-    
+    vals = [x1_q_full(n), x1_i_full(n), ...
+            x2_q_full(n), x2_i_full(n), ...
+            x3_q_full(n), x3_i_full(n), ...
+            x4_q_full(n), x4_i_full(n)];
+
     % Convert to hex (treating as fixed-point or scaled integers)
 	vals = vals * 2^4; % Scale to preserve precision (assuming 4 fractional bits)
 	vals = floor(vals); % Round to nearest integer for fixed-point representation
     hex_vals = dec2hex(vals, 3);
-    
+
+    % Write row
+    for k = 1:size(hex_vals, 1)
+        fprintf(fid, '%s\n', hex_vals(k, :));
+    end
+    fprintf(fid, '\n');
+end
+
+fprintf(fid, '%s\n', dec2hex(int8(detected_angle)));
+
+fclose(fid);
+fprintf('Data export completed for search_stage_golden.mem (currently empty, add relevant data as needed).\n');
+
+%% Export data to golden.mem hex file
+fid = fopen('.\Simulation\track_stage_golden.mem', 'w');
+
+% Write each row: x1_q, x1_i, x2_q, x2_i, x3_q, x3_i, x4_q, x4_i, steered_q[1:4], steered_i[1:4]
+for n = 1:num_samples-NUM_SCAN
+    % Input values
+    vals = [x1_q_full(n+NUM_SCAN), x1_i_full(n+NUM_SCAN), ...
+            x2_q_full(n+NUM_SCAN), x2_i_full(n+NUM_SCAN), ...
+            x3_q_full(n+NUM_SCAN), x3_i_full(n+NUM_SCAN), ...
+            x4_q_full(n+NUM_SCAN), x4_i_full(n+NUM_SCAN)];
+
+    % Convert to hex (treating as fixed-point or scaled integers)
+	vals = vals * 2^4; % Scale to preserve precision (assuming 4 fractional bits)
+	vals = floor(vals); % Round to nearest integer for fixed-point representation
+    hex_vals = dec2hex(vals, 3);
+
     % Write row
     for k = 1:size(hex_vals, 1)
         fprintf(fid, '%s\n', hex_vals(k, :));
@@ -178,7 +195,7 @@ end
 
 fprintf('Data export completed for %d samples.\n', num_samples-NUM_SCAN);
 
-% fclose(fid);
-fprintf('Data exported to golden.mem\n');
+fclose(fid);
+fprintf('Data exported to track_stage_golden.mem\n');
 
 disp('Test bench executed successfully.');

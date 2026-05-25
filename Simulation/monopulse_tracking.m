@@ -38,7 +38,7 @@ for n = 1:num_samples-1
     % Beam steering (CORDIC rotation mode)
     X_steered = zeros(N, 1) + 1j*zeros(N, 1);
     for k = 1:N
-        phi_target =(k-1) * sind_lut(theta_track(n));
+        phi_target =(k-2) * sind_lut(theta_track(n));
         q_in = real(X_sample(k));
         i_in = imag(X_sample(k));
         [Q_rot, I_rot, ~] = cordic(q_in, i_in, phi_target, cordic_iters, 0);
@@ -55,24 +55,16 @@ for n = 1:num_samples-1
     R = X_steered(3) + X_steered(4);
 
     % Phase extraction (CORDIC vectoring mode)
-    [~, ~, phi_L] = cordic(real(L), imag(L), 0, cordic_iters, 1);
-    [~, ~, phi_R] = cordic(real(R), imag(R), 0, cordic_iters, 1);
+    phi_L = cordic_vec(real(L), imag(L), cordic_iters);
+    phi_R = cordic_vec(real(R), imag(R), cordic_iters);
+    % fprintf('Iteration %d: phi_L = 0x%s, phi_R = 0x%s\n', n, dec2hex(phi_L), dec2hex(phi_R));
     % phase_diff = wrapToPi(phi_L - phi_R);
     % Fixed-point friendly phase wrapping to [-pi, pi]
     phase_diff = phi_L - phi_R;
     phase_diff = phase_diff - 2*128*floor((phase_diff + 128)/(2*128));
     % fprintf('Iteration %d: phi_L = %d, phi_R = %d, phase_diff = %d\n', n, phi_L, phi_R, phase_diff);
 
-    % Magnitude approximation and thresholding
-    mag_L = abs(real(L)) + abs(imag(L));
-    mag_R = abs(real(R)) + abs(imag(R));
-
-    if (mag_L + mag_R) > 0.5
-        theta_track_tmp = theta_track(n) + floor(K_track * phase_diff);
-        theta_track(n+1) = theta_track_tmp;
-    else
-        theta_track(n+1) = theta_track(n);
-    end
+    theta_track(n+1) = theta_track(n) + floor(K_track * phase_diff);
 end
 
 end

@@ -43,7 +43,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
         for k = 1:N
             % Calculate phase: phi = 2*pi * d/L * (k-1) * (theta)
             % phi = 2 * pi * 0.5 * (k-1) * sind(current_angle);
-            phi_temp = (k-1) * sind_lut(current_angle);
+            phi_temp = (k-2) * sind_lut(current_angle);
             phi_temp = round(phi_temp); % Round to nearest integer for fixed-point representation
             phi = mod(phi_temp+128, 256) - 128 ; % Round to nearest integer for fixed-point representation
             % Wrap phi into range [-256, 256]
@@ -77,7 +77,7 @@ function [E, degrees, steered_q, steered_i] = search_with_mono(x1_q, x1_i, x2_q,
 
     %% 4. Tracking with Monopulse
     X_track = X(:, num_scan_points+1:end); % Use the remaining samples for tracking
-    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, cordic_iter, max_degree, 2^(-3));
+    [theta_track, steered_q_track, steered_i_track] = monopulse_tracking(X_track, N, 0.5, 7, max_degree, 2^(-3));
     degrees = theta_track;
 
     steered_q = [steered_q, steered_q_track];

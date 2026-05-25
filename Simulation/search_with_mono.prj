@@ -389,7 +389,7 @@
       <param.JustifyMISRAViolations />
       <param.EnableTraceability />
       <param.SILPILVerbosity />
-      <param.UseECoderFeatures />
+      <param.UseECoderFeatures>false</param.UseECoderFeatures>
       <param.EnableGitSupport />
       <param.EnableAutoCommit />
       <param.RepositoryStyle />
@@ -608,7 +608,7 @@
       </unset>
     </profile>
     <param.objective>option.objective.fixedpoint</param.objective>
-    <param.WorkflowStep>fixedPoint</param.WorkflowStep>
+    <param.WorkflowStep>workflowSummary</param.WorkflowStep>
     <param.TestSnippets>
       <item>search_with_mono_tb</item>
     </param.TestSnippets>
@@ -649,15 +649,15 @@
     <var.cfi.preBuildChecksum />
     <var.outdatedOnRestore />
     <var.lastUserSourceChecksum />
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\monopulse_tracking.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\codegen\search_with_mono\fixpt\search_with_mono_fixpt.m&lt;/file&gt;&lt;/fixedPointSourceFiles&gt;&lt;fixedPointSourceRegistered&gt;true&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;true&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
-    <param.forceMexBuild>true</param.forceMexBuild>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic_vec.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\monopulse_tracking.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\codegen\search_with_mono\fixpt\search_with_mono_fixpt.m&lt;/file&gt;&lt;/fixedPointSourceFiles&gt;&lt;fixedPointSourceRegistered&gt;true&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;true&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT />
     <param.configImportActive>false</param.configImportActive>
     <var.isGpuCoder>false</var.isGpuCoder>
     <var.notGpuCoder />
     <var.boundToGui>true</var.boundToGui>
     <var.isConfigDialog />
-    <var.ecoderEnabled />
+    <var.ecoderEnabled>false</var.ecoderEnabled>
     <param.AlwaysGenerateTypedefGuards />
     <param.RemoveDuplicateFunctionsAndTypes />
     <param.EnableStructExplosion />
@@ -723,8 +723,8 @@
         <Function file="$(PROJECTDIR)\search_with_mono.m" name="search_with_mono" specialization="search_with_mono" specializationId="-1" uniqueId="search_with_mono">
           <Variable name="E" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="0.7757797084079181" />
-            <Column property="SimMax" type="Double" value="28.65381121826986" />
+            <Column property="SimMin" type="Double" value="0.36217417931274287" />
+            <Column property="SimMax" type="Double" value="28.28104252506751" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>-1</size>
@@ -767,8 +767,8 @@
           </Variable>
           <Variable name="steered_q" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-5.742463225348558" />
-            <Column property="SimMax" type="Double" value="7.637113408533965" />
+            <Column property="SimMin" type="Double" value="-5.6213636569034495" />
+            <Column property="SimMax" type="Double" value="6.855780224433073" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>-1</size>
@@ -789,8 +789,8 @@
           </Variable>
           <Variable name="steered_i" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-5.572859905746837" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-5.596605069854447" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>-1</size>
@@ -811,8 +811,8 @@
           </Variable>
           <Variable name="x1_q" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="0.6094753719526405" />
-            <Column property="SimMax" type="Double" value="5.871822503060041" />
+            <Column property="SimMin" type="Double" value="0.5630691086908042" />
+            <Column property="SimMax" type="Double" value="5.914667653577737" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
@@ -831,14 +831,14 @@
           </Variable>
           <Variable name="x1_i" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-0.1410884591773756" />
-            <Column property="SimMax" type="Double" value="6.125517756929787" />
+            <Column property="SimMin" type="Double" value="0.9843180495705217" />
+            <Column property="SimMax" type="Double" value="6.033628515639081" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 7)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -851,8 +851,8 @@
           </Variable>
           <Variable name="x2_q" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-6.510537156648774" />
-            <Column property="SimMax" type="Double" value="5.677615634459798" />
+            <Column property="SimMin" type="Double" value="-7.236912466492041" />
+            <Column property="SimMax" type="Double" value="6.834132123828327" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
@@ -871,14 +871,14 @@
           </Variable>
           <Variable name="x2_i" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-2.2479337278721694" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-1.1416117595550972" />
+            <Column property="SimMax" type="Double" value="6.875184279340587" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -891,14 +891,14 @@
           </Variable>
           <Variable name="x3_q" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-6.393195195058676" />
-            <Column property="SimMax" type="Double" value="8.032396099732601" />
+            <Column property="SimMin" type="Double" value="-6.4841149013128865" />
+            <Column property="SimMax" type="Double" value="6.68589431750504" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -911,8 +911,8 @@
           </Variable>
           <Variable name="x3_i" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-5.764869522332648" />
-            <Column property="SimMax" type="Double" value="6.740516939690811" />
+            <Column property="SimMin" type="Double" value="-6.419143810760723" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
@@ -931,14 +931,14 @@
           </Variable>
           <Variable name="x4_q" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-8.280830721148847" />
-            <Column property="SimMax" type="Double" value="6.727772348600729" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.636521766316584" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -951,14 +951,14 @@
           </Variable>
           <Variable name="x4_i" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="5.78911927225597" />
+            <Column property="SimMin" type="Double" value="-6.982075319372098" />
+            <Column property="SimMax" type="Double" value="5.95792898018078" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1133,14 +1133,14 @@
           </Variable>
           <Variable name="X" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
             <MATLABType class="double" complex="true">
               <size>4</size>
               <size>129</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1154,7 +1154,7 @@
           <Variable name="scan_energy" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="28.65381121826986" />
+            <Column property="SimMax" type="Double" value="28.28104252506751" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>-1</size>
@@ -1196,7 +1196,7 @@
           <Variable name="max_energy" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="28.65381121826986" />
+            <Column property="SimMax" type="Double" value="28.28104252506751" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1255,8 +1255,8 @@
           </Variable>
           <Variable name="SUM_Q" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-6.615513668922597" />
-            <Column property="SimMax" type="Double" value="18.280861273778427" />
+            <Column property="SimMin" type="Double" value="-6.964651822059807" />
+            <Column property="SimMax" type="Double" value="19.26073559133983" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1275,8 +1275,8 @@
           </Variable>
           <Variable name="SUM_I" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-4.551631286476552" />
-            <Column property="SimMax" type="Double" value="17.93356091525319" />
+            <Column property="SimMin" type="Double" value="-4.086153889777643" />
+            <Column property="SimMax" type="Double" value="18.991650183604463" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1359,8 +1359,8 @@
           </Variable>
           <Variable name="Q_rot" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-5.742463225348558" />
-            <Column property="SimMax" type="Double" value="5.620515517788842" />
+            <Column property="SimMin" type="Double" value="-5.6213636569034495" />
+            <Column property="SimMax" type="Double" value="5.6029943487998475" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1379,8 +1379,8 @@
           </Variable>
           <Variable name="I_rot" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-5.572859905746837" />
-            <Column property="SimMax" type="Double" value="5.444155402500798" />
+            <Column property="SimMin" type="Double" value="-5.596605069854447" />
+            <Column property="SimMax" type="Double" value="5.542987639196967" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1399,8 +1399,8 @@
           </Variable>
           <Variable name="energy_approx" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="0.7757797084079181" />
-            <Column property="SimMax" type="Double" value="28.65381121826986" />
+            <Column property="SimMin" type="Double" value="0.36217417931274287" />
+            <Column property="SimMax" type="Double" value="28.28104252506751" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1419,8 +1419,8 @@
           </Variable>
           <Variable name="X_track" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
             <MATLABType class="double" complex="true">
               <size>4</size>
               <size>129</size>
@@ -1428,7 +1428,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1463,8 +1463,8 @@
           </Variable>
           <Variable name="steered_q_track" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-0.09553585415437305" />
-            <Column property="SimMax" type="Double" value="7.637113408533965" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="6.855780224433073" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>129</size>
@@ -1472,7 +1472,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 7)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1485,8 +1485,8 @@
           </Variable>
           <Variable name="steered_i_track" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-4.542600874975566" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-4.765254633708881" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>129</size>
@@ -1615,8 +1615,8 @@
         <Function file="$(PROJECTDIR)\cordic.m" name="cordic" specialization="cordic,0,1" specializationId="1" uniqueId="f161_cordic">
           <Variable name="out_x" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-5.742463225348558" />
-            <Column property="SimMax" type="Double" value="7.637113408533965" />
+            <Column property="SimMin" type="Double" value="-5.6213636569034495" />
+            <Column property="SimMax" type="Double" value="5.6029943487998475" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1635,8 +1635,8 @@
           </Variable>
           <Variable name="out_y" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-5.572859905746837" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-5.596605069854447" />
+            <Column property="SimMax" type="Double" value="5.542987639196967" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1677,14 +1677,14 @@
           </Variable>
           <Variable name="x_in" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-8.280830721148847" />
-            <Column property="SimMax" type="Double" value="8.032396099732601" />
+            <Column property="SimMin" type="Double" value="-5.7147541716842145" />
+            <Column property="SimMax" type="Double" value="4.711288372632746" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1697,14 +1697,14 @@
           </Variable>
           <Variable name="y_in" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-5.606193704529852" />
+            <Column property="SimMax" type="Double" value="4.628124729837" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1717,7 +1717,7 @@
           </Variable>
           <Variable name="z_in" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-279.0" />
+            <Column property="SimMin" type="Double" value="-127.0" />
             <Column property="SimMax" type="Double" value="127.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
@@ -1726,7 +1726,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 0)" />
+            <Column property="ProposedType" type="String" value="int8" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1799,8 +1799,8 @@
           </Variable>
           <Variable name="x_reg" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-9.46465746329663" />
-            <Column property="SimMax" type="Double" value="13.890927226246149" />
+            <Column property="SimMin" type="Double" value="-9.271969349662623" />
+            <Column property="SimMax" type="Double" value="9.27738294414319" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1819,8 +1819,8 @@
           </Variable>
           <Variable name="y_reg" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-9.191960573974647" />
-            <Column property="SimMax" type="Double" value="13.421992584972884" />
+            <Column property="SimMin" type="Double" value="-9.218553336346755" />
+            <Column property="SimMax" type="Double" value="9.179632258830148" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1839,7 +1839,7 @@
           </Variable>
           <Variable name="z_reg" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-279.0" />
+            <Column property="SimMin" type="Double" value="-127.0" />
             <Column property="SimMax" type="Double" value="127.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
@@ -1848,7 +1848,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 0)" />
+            <Column property="ProposedType" type="String" value="int8" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -1881,8 +1881,8 @@
           </Variable>
           <Variable name="x_temp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-9.46465746329663" />
-            <Column property="SimMax" type="Double" value="13.890927226246149" />
+            <Column property="SimMin" type="Double" value="-9.271969349662623" />
+            <Column property="SimMax" type="Double" value="9.27738294414319" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -1901,8 +1901,8 @@
           </Variable>
           <Variable name="y_temp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-9.191960573974647" />
-            <Column property="SimMax" type="Double" value="13.421992584972884" />
+            <Column property="SimMin" type="Double" value="-9.218553336346755" />
+            <Column property="SimMax" type="Double" value="9.179632258830148" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2068,17 +2068,17 @@
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
         </Function>
-        <Function file="$(PROJECTDIR)\cordic.m" name="cordic" specialization="cordic,0,2" specializationId="2" uniqueId="f231_cordic">
+        <Function file="$(PROJECTDIR)\cordic.m" name="cordic" specialization="cordic,0,2" specializationId="2" uniqueId="f209_cordic">
           <Variable name="out_x" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="4.743086047435224" />
-            <Column property="SimMax" type="Double" value="16.722344608426205" />
+            <Column property="SimMin" type="Double" value="0.16925147858795034" />
+            <Column property="SimMax" type="Double" value="6.855780224433073" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 7)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2091,14 +2091,14 @@
           </Variable>
           <Variable name="out_y" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-0.08650368490789827" />
-            <Column property="SimMax" type="Double" value="0.07792018373340272" />
+            <Column property="SimMin" type="Double" value="-4.765254633708881" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 12)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2111,71 +2111,13 @@
           </Variable>
           <Variable name="out_z" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-21.0" />
-            <Column property="SimMax" type="Double" value="49.0" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 7, 0)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="x_in" specid="-1">
-            <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="1.867968480384382" />
-            <Column property="SimMax" type="Double" value="11.186495316854755" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 10, 6)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="y_in" specid="-1">
-            <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-5.3566478154964585" />
-            <Column property="SimMax" type="Double" value="12.42925851535368" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="z_in" specid="-1">
-            <Column property="Kind" type="String" value="input" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="1.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
+              <dynamic>false</dynamic>
+              <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
             <Column property="ProposedType" type="String" value="numerictype(0, 1, 0)" />
@@ -2189,16 +2131,78 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
+          <Variable name="x_in" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.68589431750504" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="y_in" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-6.982075319372098" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="z_in" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-279.0" />
+            <Column property="SimMax" type="Double" value="111.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+              <dynamic>false</dynamic>
+              <dynamic>true</dynamic>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
           <Variable name="num_iterations" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="8.0" />
-            <Column property="SimMax" type="Double" value="8.0" />
+            <Column property="SimMin" type="Double" value="7.0" />
+            <Column property="SimMax" type="Double" value="7.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 4, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 3, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2211,8 +2215,8 @@
           </Variable>
           <Variable name="mode" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="1.0" />
-            <Column property="SimMax" type="Double" value="1.0" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="0.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2251,8 +2255,274 @@
           </Variable>
           <Variable name="x_reg" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="1.867968480384382" />
-            <Column property="SimMax" type="Double" value="27.536684866695435" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="11.849261170663627" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="y_reg" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-8.548901337102498" />
+            <Column property="SimMax" type="Double" value="12.168820722760637" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="z_reg" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-279.0" />
+            <Column property="SimMax" type="Double" value="127.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+              <dynamic>false</dynamic>
+              <dynamic>true</dynamic>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="i" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="6.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="x_temp" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-3.08014861015608" />
+            <Column property="SimMax" type="Double" value="11.849261170663627" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="y_temp" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-8.548901337102498" />
+            <Column property="SimMax" type="Double" value="12.168820722760637" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="z_temp" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-30.0" />
+            <Column property="SimMax" type="Double" value="32.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+              <dynamic>false</dynamic>
+              <dynamic>true</dynamic>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 7, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="gain" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="1.6467" />
+            <Column property="SimMax" type="Double" value="1.6467" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 9)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+        </Function>
+        <Function file="$(PROJECTDIR)\cordic_vec.m" name="cordic_vec" specialization="cordic_vec" specializationId="-1" uniqueId="f212_cordic_vec">
+          <Variable name="out_z" specid="-1">
+            <Column property="Kind" type="String" value="output" />
+            <Column property="SimMin" type="Double" value="-27.0" />
+            <Column property="SimMax" type="Double" value="49.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 7, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="x_in" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="2.450014292176823" />
+            <Column property="SimMax" type="Double" value="12.100689254876656" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 6)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="y_in" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="-5.2084909496225595" />
+            <Column property="SimMax" type="Double" value="13.344748771359225" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="num_iterations" specid="-1">
+            <Column property="Kind" type="String" value="input" />
+            <Column property="SimMin" type="Double" value="7.0" />
+            <Column property="SimMax" type="Double" value="7.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 3, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="atan_table" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="32.0" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>8</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="true" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 6, 0)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="x_reg" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="2.450014292176823" />
+            <Column property="SimMax" type="Double" value="23.874566126622035" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2271,8 +2541,8 @@
           </Variable>
           <Variable name="y_reg" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-10.565113717605291" />
-            <Column property="SimMax" type="Double" value="12.42925851535368" />
+            <Column property="SimMin" type="Double" value="-12.056103930154947" />
+            <Column property="SimMax" type="Double" value="13.344748771359225" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2312,7 +2582,7 @@
           <Variable name="i" specid="-1">
             <Column property="Kind" type="String" value="local" />
             <Column property="SimMin" type="Double" value="0.0" />
-            <Column property="SimMax" type="Double" value="7.0" />
+            <Column property="SimMax" type="Double" value="6.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2331,8 +2601,8 @@
           </Variable>
           <Variable name="x_temp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="6.227603298984668" />
-            <Column property="SimMax" type="Double" value="27.536684866695435" />
+            <Column property="SimMin" type="Double" value="7.732366609024561" />
+            <Column property="SimMax" type="Double" value="23.874566126622035" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2351,8 +2621,8 @@
           </Variable>
           <Variable name="y_temp" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-10.565113717605291" />
-            <Column property="SimMax" type="Double" value="10.11190178532641" />
+            <Column property="SimMin" type="Double" value="-12.056103930154947" />
+            <Column property="SimMax" type="Double" value="8.460302082883794" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2409,8 +2679,48 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
+          <Variable name="out_x" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="5.822684171587871" />
+            <Column property="SimMax" type="Double" value="14.498430877890348" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 6)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="out_y" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-0.17347973050957144" />
+            <Column property="SimMax" type="Double" value="0.18328807556496685" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 11)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
         </Function>
-        <Function file="$(PROJECTDIR)\monopulse_tracking.m" name="monopulse_tracking" specialization="monopulse_tracking" specializationId="-1" uniqueId="f232_monopulse_tracking">
+        <Function file="$(PROJECTDIR)\monopulse_tracking.m" name="monopulse_tracking" specialization="monopulse_tracking" specializationId="-1" uniqueId="f213_monopulse_tracking">
           <Variable name="theta_track" specid="-1">
             <Column property="Kind" type="String" value="output" />
             <Column property="SimMin" type="Double" value="-33.0" />
@@ -2435,8 +2745,8 @@
           </Variable>
           <Variable name="steered_q" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-0.09553585415437305" />
-            <Column property="SimMax" type="Double" value="7.637113408533965" />
+            <Column property="SimMin" type="Double" value="0.0" />
+            <Column property="SimMax" type="Double" value="6.855780224433073" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>129</size>
@@ -2444,7 +2754,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 7)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2457,8 +2767,8 @@
           </Variable>
           <Variable name="steered_i" specid="-1">
             <Column property="Kind" type="String" value="output" />
-            <Column property="SimMin" type="Double" value="-4.542600874975566" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-4.765254633708881" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="false">
               <size>4</size>
               <size>129</size>
@@ -2479,8 +2789,8 @@
           </Variable>
           <Variable name="X" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
             <MATLABType class="double" complex="true">
               <size>4</size>
               <size>129</size>
@@ -2488,7 +2798,7 @@
               <dynamic>true</dynamic>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2539,14 +2849,14 @@
           </Variable>
           <Variable name="cordic_iters" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="8.0" />
-            <Column property="SimMax" type="Double" value="8.0" />
+            <Column property="SimMin" type="Double" value="7.0" />
+            <Column property="SimMax" type="Double" value="7.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 4, 0)" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 3, 0)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2559,8 +2869,8 @@
           </Variable>
           <Variable name="theta_init" specid="-1">
             <Column property="Kind" type="String" value="input" />
-            <Column property="SimMin" type="Double" value="-30.0" />
-            <Column property="SimMax" type="Double" value="-30.0" />
+            <Column property="SimMin" type="Double" value="-31.0" />
+            <Column property="SimMax" type="Double" value="-29.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2659,14 +2969,14 @@
           </Variable>
           <Variable name="X_sample" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
             <MATLABType class="double" complex="true">
               <size>4</size>
               <size>1</size>
             </MATLABType>
             <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
             <Column property="RoundMode" type="String" value="Floor" />
             <Column property="OverflowMode" type="String" value="Saturate" />
             <Column property="ProductMode" type="String" value="FullPrecision" />
@@ -2679,8 +2989,8 @@
           </Variable>
           <Variable name="X_steered" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-4.542600874975566" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-4.765254633708881" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="true">
               <size>4</size>
               <size>1</size>
@@ -2741,48 +3051,8 @@
           </Variable>
           <Variable name="q_in" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-8.280830721148847" />
-            <Column property="SimMax" type="Double" value="8.032396099732601" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="i_in" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-8.79082676879805" />
-            <Column property="SimMax" type="Double" value="8.033432266547928" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 10, 5)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="Q_rot" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-0.09553585415437305" />
-            <Column property="SimMax" type="Double" value="7.637113408533965" />
+            <Column property="SimMin" type="Double" value="-7.494403849393903" />
+            <Column property="SimMax" type="Double" value="6.68589431750504" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2799,10 +3069,50 @@
             <Column property="SumFractionLength" type="Double" value="30" />
             <Column property="CastBeforeSum" type="Boolean" value="true" />
           </Variable>
+          <Variable name="i_in" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="-6.982075319372098" />
+            <Column property="SimMax" type="Double" value="6.965008326106651" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 6)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
+          <Variable name="Q_rot" specid="-1">
+            <Column property="Kind" type="String" value="local" />
+            <Column property="SimMin" type="Double" value="0.16925147858795034" />
+            <Column property="SimMax" type="Double" value="6.855780224433073" />
+            <MATLABType class="double" complex="false">
+              <size>1</size>
+              <size>1</size>
+            </MATLABType>
+            <Column property="IsInteger" type="Boolean" value="false" />
+            <Column property="ProposedType" type="String" value="numerictype(0, 10, 7)" />
+            <Column property="RoundMode" type="String" value="Floor" />
+            <Column property="OverflowMode" type="String" value="Saturate" />
+            <Column property="ProductMode" type="String" value="FullPrecision" />
+            <Column property="ProductWordLength" type="Double" value="32" />
+            <Column property="ProductFractionLength" type="Double" value="30" />
+            <Column property="SumMode" type="String" value="FullPrecision" />
+            <Column property="SumWordLength" type="Double" value="32" />
+            <Column property="SumFractionLength" type="Double" value="30" />
+            <Column property="CastBeforeSum" type="Boolean" value="true" />
+          </Variable>
           <Variable name="I_rot" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-4.542600874975566" />
-            <Column property="SimMax" type="Double" value="7.852834361098177" />
+            <Column property="SimMin" type="Double" value="-4.765254633708881" />
+            <Column property="SimMax" type="Double" value="7.304723514729439" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2821,8 +3131,8 @@
           </Variable>
           <Variable name="L" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="1.867968480384382" />
-            <Column property="SimMax" type="Double" value="9.337645237655309" />
+            <Column property="SimMin" type="Double" value="2.3759249982995283" />
+            <Column property="SimMax" type="Double" value="10.237731040092882" />
             <MATLABType class="double" complex="true">
               <size>1</size>
               <size>1</size>
@@ -2841,8 +3151,8 @@
           </Variable>
           <Variable name="R" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-5.3566478154964585" />
-            <Column property="SimMax" type="Double" value="12.42925851535368" />
+            <Column property="SimMin" type="Double" value="-5.2084909496225595" />
+            <Column property="SimMax" type="Double" value="13.344748771359225" />
             <MATLABType class="double" complex="true">
               <size>1</size>
               <size>1</size>
@@ -2861,8 +3171,8 @@
           </Variable>
           <Variable name="phi_L" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="19.0" />
-            <Column property="SimMax" type="Double" value="49.0" />
+            <Column property="SimMin" type="Double" value="11.0" />
+            <Column property="SimMax" type="Double" value="47.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2881,8 +3191,8 @@
           </Variable>
           <Variable name="phi_R" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-21.0" />
-            <Column property="SimMax" type="Double" value="45.0" />
+            <Column property="SimMin" type="Double" value="-27.0" />
+            <Column property="SimMax" type="Double" value="49.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -2901,68 +3211,8 @@
           </Variable>
           <Variable name="phase_diff" specid="-1">
             <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-18.0" />
+            <Column property="SimMin" type="Double" value="-14.0" />
             <Column property="SimMax" type="Double" value="50.0" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="true" />
-            <Column property="ProposedType" type="String" value="numerictype(1, 7, 0)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="mag_L" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="6.227603298984668" />
-            <Column property="SimMax" type="Double" value="16.785292157500603" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 10, 5)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="mag_R" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="8.964281711735463" />
-            <Column property="SimMax" type="Double" value="23.615753832208433" />
-            <MATLABType class="double" complex="false">
-              <size>1</size>
-              <size>1</size>
-            </MATLABType>
-            <Column property="IsInteger" type="Boolean" value="false" />
-            <Column property="ProposedType" type="String" value="numerictype(0, 10, 5)" />
-            <Column property="RoundMode" type="String" value="Floor" />
-            <Column property="OverflowMode" type="String" value="Saturate" />
-            <Column property="ProductMode" type="String" value="FullPrecision" />
-            <Column property="ProductWordLength" type="Double" value="32" />
-            <Column property="ProductFractionLength" type="Double" value="30" />
-            <Column property="SumMode" type="String" value="FullPrecision" />
-            <Column property="SumWordLength" type="Double" value="32" />
-            <Column property="SumFractionLength" type="Double" value="30" />
-            <Column property="CastBeforeSum" type="Boolean" value="true" />
-          </Variable>
-          <Variable name="theta_track_tmp" specid="-1">
-            <Column property="Kind" type="String" value="local" />
-            <Column property="SimMin" type="Double" value="-33.0" />
-            <Column property="SimMax" type="Double" value="12.0" />
             <MATLABType class="double" complex="false">
               <size>1</size>
               <size>1</size>
@@ -3105,7 +3355,7 @@
           <Variable name="angles" specid="-1" />
           <Variable name="index" specid="-1" />
         </Function>
-        <Function file="$(PROJECTDIR)\cordic.m" name="cordic" specialization="cordic,0,2" specializationId="2" uniqueId="f231_cordic">
+        <Function file="$(PROJECTDIR)\cordic.m" name="cordic" specialization="cordic,0,2" specializationId="2" uniqueId="f209_cordic">
           <Variable name="out_x" specid="-1">
             <Column property="ProposedType" type="String" value="numerictype(1, 10, 3)" />
           </Variable>
@@ -3132,7 +3382,44 @@
           <Variable name="z_temp" specid="-1" />
           <Variable name="gain" specid="-1" />
         </Function>
-        <Function file="$(PROJECTDIR)\monopulse_tracking.m" name="monopulse_tracking" specialization="monopulse_tracking" specializationId="-1" uniqueId="f232_monopulse_tracking">
+        <Function file="$(PROJECTDIR)\cordic_vec.m" name="cordic_vec" specialization="cordic_vec" specializationId="-1" uniqueId="f212_cordic_vec">
+          <Variable name="out_z" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="x_in" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 3)" />
+          </Variable>
+          <Variable name="y_in" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 3)" />
+          </Variable>
+          <Variable name="num_iterations" specid="-1" />
+          <Variable name="atan_table" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="x_reg" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(0, 12, 3)" />
+          </Variable>
+          <Variable name="y_reg" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 12, 3)" />
+          </Variable>
+          <Variable name="z_reg" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="i" specid="-1" />
+          <Variable name="x_temp" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 12, 3)" />
+          </Variable>
+          <Variable name="y_temp" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 12, 3)" />
+          </Variable>
+          <Variable name="z_temp" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="gain" specid="-1" />
+          <Variable name="out_x" specid="-1" />
+          <Variable name="out_y" specid="-1" />
+        </Function>
+        <Function file="$(PROJECTDIR)\monopulse_tracking.m" name="monopulse_tracking" specialization="monopulse_tracking" specializationId="-1" uniqueId="f213_monopulse_tracking">
           <Variable name="theta_track" specid="-1">
             <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
           </Variable>
@@ -3148,29 +3435,48 @@
           <Variable name="N" specid="-1" />
           <Variable name="d_lambda" specid="-1" />
           <Variable name="cordic_iters" specid="-1" />
-          <Variable name="theta_init" specid="-1" />
+          <Variable name="theta_init" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
           <Variable name="K_track" specid="-1" />
           <Variable name="N_fromX" specid="-1" />
           <Variable name="num_samples" specid="-1" />
           <Variable name="n" specid="-1" />
-          <Variable name="X_sample" specid="-1" />
-          <Variable name="X_steered" specid="-1" />
+          <Variable name="X_sample" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
+          </Variable>
+          <Variable name="X_steered" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
+          </Variable>
           <Variable name="k" specid="-1" />
           <Variable name="phi_target" specid="-1" />
-          <Variable name="q_in" specid="-1" />
-          <Variable name="i_in" specid="-1" />
+          <Variable name="q_in" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
+          </Variable>
+          <Variable name="i_in" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
+          </Variable>
           <Variable name="Q_rot" specid="-1">
             <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
           </Variable>
-          <Variable name="I_rot" specid="-1" />
-          <Variable name="L" specid="-1" />
-          <Variable name="R" specid="-1" />
-          <Variable name="phi_L" specid="-1" />
-          <Variable name="phi_R" specid="-1" />
-          <Variable name="phase_diff" specid="-1" />
-          <Variable name="mag_L" specid="-1" />
-          <Variable name="mag_R" specid="-1" />
-          <Variable name="theta_track_tmp" specid="-1" />
+          <Variable name="I_rot" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 10, 4)" />
+          </Variable>
+          <Variable name="L" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 11, 4)" />
+          </Variable>
+          <Variable name="R" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 11, 4)" />
+          </Variable>
+          <Variable name="phi_L" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="phi_R" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 8, 0)" />
+          </Variable>
+          <Variable name="phase_diff" specid="-1">
+            <Column property="ProposedType" type="String" value="numerictype(1, 9, 0)" />
+          </Variable>
         </Function>
       </UserEntities>
     </param.UserFixedPointData>
@@ -3187,11 +3493,11 @@
     <param.ShowCoverage>true</param.ShowCoverage>
     <param.ExcludedFixedPointVerificationFiles />
     <param.ExcludedFixedPointSimulationFiles />
-    <param.InstrumentedBuildChecksum>2336444949</param.InstrumentedBuildChecksum>
+    <param.InstrumentedBuildChecksum>1295036655</param.InstrumentedBuildChecksum>
     <param.FixedPointStaticAnalysisChecksum />
     <param.InstrumentedMexFile>${PROJECT_ROOT}\codegen\search_with_mono\fixpt\search_with_mono_float_mex.mexw64</param.InstrumentedMexFile>
-    <param.FixedPointValidationChecksum>2209909728</param.FixedPointValidationChecksum>
-    <param.FixedPointSourceCodeChecksum>658803815</param.FixedPointSourceCodeChecksum>
+    <param.FixedPointValidationChecksum>441247483</param.FixedPointValidationChecksum>
+    <param.FixedPointSourceCodeChecksum>2245736582</param.FixedPointSourceCodeChecksum>
     <param.FixedPointFunctionReplacements>
       <FunctionReplacements />
     </param.FixedPointFunctionReplacements>
@@ -3208,9 +3514,9 @@
     <var.lastSimContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono_tb.m&lt;/file&gt;&lt;/testFiles&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastSimContext>
     <var.lastVerifyContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono_tb.m&lt;/file&gt;&lt;/testFiles&gt;&lt;syntheticCode&gt;&lt;/syntheticCode&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastVerifyContext>
     <param.fpDataRoot>D:\Coding_Projects\EdgeBeamforming\Simulation\codegen\search_with_mono\fixpt/guiFpReport.mat</param.fpDataRoot>
-    <param.fpUserFileChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\monopulse_tracking.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;2193323115&lt;/value&gt;&lt;/checksum&gt;</param.fpUserFileChecksum>
-    <var.snapshotChecksum>3154745478</var.snapshotChecksum>
-    <param.fpLastConvertChecksum>2336444949</param.fpLastConvertChecksum>
+    <param.fpUserFileChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\cordic_vec.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\monopulse_tracking.m&lt;/file&gt;&lt;file&gt;D:\Coding_Projects\EdgeBeamforming\Simulation\search_with_mono.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;4191538196&lt;/value&gt;&lt;/checksum&gt;</param.fpUserFileChecksum>
+    <var.snapshotChecksum>1308364591</var.snapshotChecksum>
+    <param.fpLastConvertChecksum>1295036655</param.fpLastConvertChecksum>
     <var.functionBlockSid />
     <param.fptSignedness />
     <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
@@ -3247,6 +3553,7 @@
       <var.cfi.preBuildChecksum />
       <var.outdatedOnRestore />
       <var.lastUserSourceChecksum />
+      <param.forceMexBuild />
       <param.NoDefaultJIT />
       <param.configImportActive />
       <var.isGpuCoder />
@@ -3338,7 +3645,7 @@
     </unset>
     <fileset.entrypoints>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}\search_with_mono.m">
-        <Marker>1779029573319</Marker>
+        <Marker>1779523198253</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
