@@ -1,6 +1,6 @@
 ###################################################################
 
-# Created by write_sdc on Tue May 26 15:50:40 2026
+# Created by write_sdc on Wed May 27 00:26:19 2026
 
 ###################################################################
 set sdc_version 2.1
@@ -10,7 +10,7 @@ set_operating_conditions -max WCCOM -max_library                               \
 fsa0m_a_generic_core_ss1p62v125c\
                          -min BCCOM -min_library                               \
 fsa0m_a_generic_core_ff1p98vm40c
-set_wire_load_model -name G200K -library fsa0m_a_generic_core_tt1p8v25c
+# set_wire_load_model -name G200K -library fsa0m_a_generic_core_tt1p8v25c
 set_max_fanout 6 [current_design]
 set_max_area 0
 set_load -pin_load 10 [get_ports in_en]
@@ -41,16 +41,6 @@ set_input_delay -clock clk  -max 1  [get_ports {data_in[3]}]
 set_input_delay -clock clk  -max 1  [get_ports {data_in[2]}]
 set_input_delay -clock clk  -max 1  [get_ports {data_in[1]}]
 set_input_delay -clock clk  -max 1  [get_ports {data_in[0]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[9]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[8]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[7]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[6]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[5]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[4]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[3]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[2]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[1]}]
-set_input_delay -clock clk  -max 1  [get_ports {q_in[0]}]
 set_output_delay -clock clk  -min 0.5  [get_ports in_en]
 set_output_delay -clock clk  -min 0.5  [get_ports valid_out]
 set_output_delay -clock clk  -min 0.5  [get_ports {data_out[9]}]
@@ -76,13 +66,3 @@ set_drive 1  [get_ports {data_in[3]}]
 set_drive 1  [get_ports {data_in[2]}]
 set_drive 1  [get_ports {data_in[1]}]
 set_drive 1  [get_ports {data_in[0]}]
-set_drive 1  [get_ports {q_in[9]}]
-set_drive 1  [get_ports {q_in[8]}]
-set_drive 1  [get_ports {q_in[7]}]
-set_drive 1  [get_ports {q_in[6]}]
-set_drive 1  [get_ports {q_in[5]}]
-set_drive 1  [get_ports {q_in[4]}]
-set_drive 1  [get_ports {q_in[3]}]
-set_drive 1  [get_ports {q_in[2]}]
-set_drive 1  [get_ports {q_in[1]}]
-set_drive 1  [get_ports {q_in[0]}]
