@@ -14,6 +14,7 @@ module chip #(
     output wire [OW-1:0] data_out
 );
 
+// ========== All Variable Declarations ==========
 // Data input wrapper for steering module
 reg [2:0] data_count_r, data_count_next; // Counter to track which data input is being loaded
 reg [IW-1:0] x1_q_r, x1_i_r, x2_q_r, x2_i_r, x3_q_r, x3_i_r, x4_q_r, x4_i_r;
@@ -22,7 +23,43 @@ reg valid_data_r, valid_data_next;
 reg valid_steer_in_r, valid_steer_in_next;
 reg in_en_r, in_en_next;
 
+// Global control module
+reg mode_r, mode_next;  // 0 for search, 1 for track
+reg signed [TW -1:0] target_degree_r, target_degree_next;     // Target current degree register
+reg signed [TW -1:0] search_degree_r, search_degree_next;    // Search degree counter
+reg signed [TW -1:0] steer_theta_r, steer_theta_next;        // Steering theta for steering module
+reg search_steer_end_r, search_steer_end_next; // Status to indicate if steering for search mode is ended
+
+// Steering module wires
+wire valid_steer_out;
+wire signed [TW-1:0] steer_phase_out;
+wire [1:0] steer_channel_out;
+wire signed [OW-1:0] steer_x_out, steer_y_out;
+
+// Comparison module wires
+wire valid_comparison_out;
+wire signed [OW -1:0] Comparison_Q_out;
+wire signed [OW -1:0] Comparison_I_out;
+wire [TW -1:0] comparison_theta_out;
+
+// Track module wires
+wire valid_track_out;
+wire signed [TW -1:0] track_phase_out;
+wire valid_track_in;
+
+// Angle input tracking
+reg angle_valid_in_r, angle_valid_in_next;
+reg signed [TW-1:0] cur_angle_r, cur_angle_next;
+
+// Output collection and sequencing
+reg out_valid_r, out_valid_next;
+reg [OW-1:0] out_data_r, out_data_next;
+reg [OW-1:0] q_out_r, q_out_next, i_out_r, i_out_next;
+reg [TW-1:0] theta_out_r, theta_out_next;
+reg [1:0] output_count_r, output_count_next;
+
 assign in_en = in_en_r;
+assign valid_track_in = (mode_r == 1'b1) ? valid_steer_out : 1'b0; // Valid input to track module is valid_steer_out only
 
 always @(*) begin
     // Default to hold current values
@@ -114,19 +151,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-// GLobal control module
-reg mode_r, mode_next;  // 0 for search, 1 for track
-reg signed [TW -1:0] target_degree_r, target_degree_next;     // Target current degree register
-reg signed [TW -1:0] search_degree_r, search_degree_next;    // Search degree counter
-reg signed [TW -1:0] steer_theta_r, steer_theta_next;        // Steering theta for steering module
-reg search_steer_end_r, search_steer_end_next; // Status to indicate if steering for search mode is ended
-wire valid_comparison_out;
-wire signed [OW -1:0] Comparison_Q_out;
-wire signed [OW -1:0] Comparison_I_out;
-wire [TW -1:0] comparison_theta_out;
-wire valid_track_out;
-wire signed [TW -1:0] track_phase_out;
-
+// Second always block: global control logic
 always @(*) begin
     // Default to hold current values
     target_degree_next = target_degree_r;
@@ -159,11 +184,6 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire valid_steer_out;
-wire signed [TW-1:0] steer_phase_out;
-wire [1:0] steer_channel_out;
-wire signed [OW-1:0] steer_x_out, steer_y_out;
-
 steer steer_inst (
     .clk(clk),
     .rst_n(rst_n),
@@ -194,9 +214,7 @@ comparison comparison_inst (
     .valid_out(valid_comparison_out)
 );
 
-reg angle_valid_in_r, angle_valid_in_next;
-reg signed [TW-1:0] cur_angle_r, cur_angle_next;
-
+// Angle tracking logic
 always @(*) begin
     if (valid_steer_out && mode_r == 1'b1 && steer_channel_out == 2'b0) begin
         angle_valid_in_next = 1'b1;
@@ -217,9 +235,6 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire valid_track_in;
-assign valid_track_in = (mode_r == 1'b1) ? valid_steer_out : 1'b0; // Valid input to track module is valid_steer_out only
-
 track track_inst (
     .clk(clk),
     .rst_n(rst_n),
@@ -233,12 +248,7 @@ track track_inst (
     .angle_out(track_phase_out)
 );
 
-reg out_valid_r, out_valid_next;
-reg [OW-1:0] out_data_r, out_data_next;
-reg [OW-1:0] q_out_r, q_out_next, i_out_r, i_out_next;
-reg [TW-1:0] theta_out_r, theta_out_next;
-reg [1:0] output_count_r, output_count_next;
-
+// Output sequencing logic
 always @(*) begin
     out_valid_next = 1'b0;
     out_data_next = out_data_r;

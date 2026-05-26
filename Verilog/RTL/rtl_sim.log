@@ -1,0 +1,1505 @@
+Starting RTL simulation with VCS...
+vcs -full64 -timescale=1ns/1ps -o sim_results/chip_sim RTL/chip.v RTL/phi_table.v RTL/track.v RTL/steer.v RTL/cordic_stage.v RTL/cordic_vector.v RTL/comparison.v Testbed/chip_tb.v
+*** Using c compiler gcc instead of cc ...
+                         Chronologic VCS (TM)
+         Version T-2022.06_Full64 -- Tue May 26 14:42:02 2026
+
+                    Copyright (c) 1991 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file 'RTL/chip.v'
+Parsing design file 'RTL/phi_table.v'
+Parsing design file 'RTL/track.v'
+Parsing design file 'RTL/steer.v'
+Parsing design file 'RTL/cordic_stage.v'
+Parsing design file 'RTL/cordic_vector.v'
+Parsing design file 'RTL/comparison.v'
+Parsing design file 'Testbed/chip_tb.v'
+Top Level Modules:
+       chip_tb
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+
+2 modules and 0 UDP read.
+	However, due to incremental compilation, no re-compilation is necessary.
+make[1]: Entering directory `/home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/csrc'
+make[1]: Leaving directory `/home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/csrc'
+make[1]: Entering directory `/home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/csrc'
+make[1]: Warning: File `filelist.cu' has modification time 532 s in the future
+make[2]: Warning: File `filelist.cu' has modification time 532 s in the future
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[2]: Warning: File `filelist.cu' has modification time 532 s in the future
+ld -shared  -Bsymbolic   -o .//../sim_results/chip_sim.daidir//_cuarc0.so objs/amcQw_d.o 
+rm -f _cuarc0.so
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+if [ -x ../sim_results/chip_sim ]; then chmod a-x ../sim_results/chip_sim; fi
+g++  -o ../sim_results/chip_sim      -rdynamic  -Wl,-rpath='$ORIGIN'/chip_sim.daidir -Wl,-rpath=./chip_sim.daidir -Wl,-rpath=/usr/cad/synopsys/vcs/2022.06/linux64/lib -L/usr/cad/synopsys/vcs/2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1     _21542_archive_1.so _prev_archive_1.so _cuarc0.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o           -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/cad/synopsys/vcs/2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive          /usr/cad/synopsys/vcs/2022.06/linux64/lib/vcs_save_restore_new.o -ldl  -lc -lm -lpthread -ldl 
+../sim_results/chip_sim up to date
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
+make[1]: Leaving directory `/home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/csrc'
+CPU time: .701 seconds to compile + .642 seconds to elab + .273 seconds to link
+./sim_results/chip_sim
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06_Full64; Runtime version T-2022.06_Full64;  May 26 14:42 2026
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 35000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 35000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 35000 in file Testbed/chip_tb.v line 64
+
+Starting search stage...
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 120000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 120000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 120000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 210000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 210000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 210000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 300000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 300000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 300000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 390000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 390000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 390000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 480000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 480000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 480000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 570000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBD', truncating to target size 10 bits
+  at time 570000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBE', truncating to target size 10 bits
+  at time 570000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 660000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA8', truncating to target size 10 bits
+  at time 660000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 660000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 750000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 750000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 750000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 840000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 840000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 840000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 930000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 930000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 930000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 1020000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 1020000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 1020000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 1110000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 1110000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 1110000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 1200000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 1200000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 1200000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 1290000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 1290000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FC0', truncating to target size 10 bits
+  at time 1290000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 1380000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 1380000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 1380000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 1470000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 1470000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 1470000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 1560000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 1560000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 1560000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 1650000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 1650000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 1650000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 1740000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 1740000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 1740000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 1830000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 1830000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 1830000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 1920000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 1920000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 1920000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBB', truncating to target size 10 bits
+  at time 2010000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA4', truncating to target size 10 bits
+  at time 2010000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 2010000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 2100000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 2100000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 2100000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 2190000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 2190000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 2190000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 2280000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 2280000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 2280000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 2370000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBD', truncating to target size 10 bits
+  at time 2370000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 2370000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 2460000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 2460000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 2460000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 2550000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 2550000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 2550000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 2640000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 2640000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 2640000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 2730000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 2730000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 2730000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 2820000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 2820000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 2820000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 2910000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 2910000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 2910000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 3000000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 3000000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 3000000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 3090000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 3090000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 3090000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 3180000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA8', truncating to target size 10 bits
+  at time 3180000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 3180000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 3270000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 3270000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 3270000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 3360000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 3360000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 3360000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 3450000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 3450000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 3450000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 3540000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 3540000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 3540000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 3630000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 3630000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 3630000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 3720000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 3720000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 3720000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 3810000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 3810000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 3810000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 3900000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 3900000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 3900000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 3990000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA8', truncating to target size 10 bits
+  at time 3990000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 3990000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 4080000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 4080000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 4080000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FFE', truncating to target size 10 bits
+  at time 4170000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 4170000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 4170000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 4170000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 4260000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 4260000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBB', truncating to target size 10 bits
+  at time 4260000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 4350000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 4350000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 4350000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 4440000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 4440000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 4440000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 4530000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 4530000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 4530000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 4620000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 4620000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 4620000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 4710000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 4710000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA5', truncating to target size 10 bits
+  at time 4710000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 4800000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 4800000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 4800000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA1', truncating to target size 10 bits
+  at time 4890000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBE', truncating to target size 10 bits
+  at time 4890000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 4890000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 4980000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 4980000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 4980000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBD', truncating to target size 10 bits
+  at time 5070000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 5070000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5070000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 5160000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 5160000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5160000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5250000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 5250000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 5250000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 5340000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA8', truncating to target size 10 bits
+  at time 5340000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 5340000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5430000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 5430000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 5430000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 5520000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 5520000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 5520000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5610000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBB', truncating to target size 10 bits
+  at time 5610000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 5610000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 5700000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 5700000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 5700000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5790000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 5790000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 5790000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 5880000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 5880000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FC0', truncating to target size 10 bits
+  at time 5880000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 5970000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 5970000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 5970000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 6060000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 6060000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 6060000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 6150000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 6150000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 6150000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 6240000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 6240000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 6240000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 6330000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA8', truncating to target size 10 bits
+  at time 6330000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 6330000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 6420000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 6420000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 6420000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 6510000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 6510000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 6510000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 6600000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA6', truncating to target size 10 bits
+  at time 6600000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 6600000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 6690000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBD', truncating to target size 10 bits
+  at time 6690000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 6690000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 6780000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 6780000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 6780000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 6870000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB0', truncating to target size 10 bits
+  at time 6870000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 6870000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAD', truncating to target size 10 bits
+  at time 6960000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 6960000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 6960000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FA7', truncating to target size 10 bits
+  at time 7050000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB2', truncating to target size 10 bits
+  at time 7050000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 7050000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 7140000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 7140000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 7140000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FC0', truncating to target size 10 bits
+  at time 7230000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 7230000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FBB', truncating to target size 10 bits
+  at time 7230000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 7320000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 7320000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 7320000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAB', truncating to target size 10 bits
+  at time 7410000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 7410000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 7410000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 7500000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 7500000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAF', truncating to target size 10 bits
+  at time 7500000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 7590000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB1', truncating to target size 10 bits
+  at time 7590000 in file Testbed/chip_tb.v line 64
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 7590000 in file Testbed/chip_tb.v line 64
+
+Search stage complete after 85 groups.
+Starting track stage...
+
+Warning: Too many digits in hexadecimal number 'F9E', truncating to target size 10 bits
+  at time 7775000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 7775000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F9E', truncating to target size 10 bits
+  at time 7775000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 1 expected e2, got e6
+
+Warning: Too many digits in hexadecimal number 'FFB', truncating to target size 10 bits
+  at time 8207000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FA5', truncating to target size 10 bits
+  at time 8207000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 8207000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 8207000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 2 expected e3, got e4
+
+Warning: Too many digits in hexadecimal number 'F98', truncating to target size 10 bits
+  at time 8557000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC3', truncating to target size 10 bits
+  at time 8557000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F93', truncating to target size 10 bits
+  at time 8557000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 3 expected e2, got e3
+
+Warning: Too many digits in hexadecimal number 'FB4', truncating to target size 10 bits
+  at time 8907000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 8907000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FAE', truncating to target size 10 bits
+  at time 8907000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 4 expected e3, got e1
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 9257000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB3', truncating to target size 10 bits
+  at time 9257000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FA5', truncating to target size 10 bits
+  at time 9257000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FAA', truncating to target size 10 bits
+  at time 9607000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB6', truncating to target size 10 bits
+  at time 9607000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F9D', truncating to target size 10 bits
+  at time 9607000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 6 expected e4, got e3
+
+Warning: Too many digits in hexadecimal number 'FA9', truncating to target size 10 bits
+  at time 9957000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC7', truncating to target size 10 bits
+  at time 9957000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF8', truncating to target size 10 bits
+  at time 9957000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FA1', truncating to target size 10 bits
+  at time 9957000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 7 expected e6, got e4
+
+Warning: Too many digits in hexadecimal number 'FC3', truncating to target size 10 bits
+  at time 10307000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FAC', truncating to target size 10 bits
+  at time 10307000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB8', truncating to target size 10 bits
+  at time 10307000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F9C', truncating to target size 10 bits
+  at time 10657000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FD6', truncating to target size 10 bits
+  at time 10657000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FE8', truncating to target size 10 bits
+  at time 10657000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F9F', truncating to target size 10 bits
+  at time 10657000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 9 expected e6, got e9
+
+Warning: Too many digits in hexadecimal number 'FDD', truncating to target size 10 bits
+  at time 11007000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FBA', truncating to target size 10 bits
+  at time 11007000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDD', truncating to target size 10 bits
+  at time 11007000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FBF', truncating to target size 10 bits
+  at time 11007000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 10 expected e9, got ec
+
+Warning: Too many digits in hexadecimal number 'FCB', truncating to target size 10 bits
+  at time 11357000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC2', truncating to target size 10 bits
+  at time 11357000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FCA', truncating to target size 10 bits
+  at time 11357000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 11357000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 11 expected e9, got e7
+
+Warning: Too many digits in hexadecimal number 'FCF', truncating to target size 10 bits
+  at time 11707000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FCE', truncating to target size 10 bits
+  at time 11707000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB9', truncating to target size 10 bits
+  at time 11707000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FD1', truncating to target size 10 bits
+  at time 11707000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 12 expected e9, got eb
+
+Warning: Too many digits in hexadecimal number 'FD0', truncating to target size 10 bits
+  at time 12057000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDD', truncating to target size 10 bits
+  at time 12057000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F9F', truncating to target size 10 bits
+  at time 12057000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FE7', truncating to target size 10 bits
+  at time 12057000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 13 expected ea, got e9
+
+Warning: Too many digits in hexadecimal number 'FCC', truncating to target size 10 bits
+  at time 12407000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FCF', truncating to target size 10 bits
+  at time 12407000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 12407000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDA', truncating to target size 10 bits
+  at time 12407000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 14 expected ed, got ee
+
+Warning: Too many digits in hexadecimal number 'FE5', truncating to target size 10 bits
+  at time 12757000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDC', truncating to target size 10 bits
+  at time 12757000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FA0', truncating to target size 10 bits
+  at time 12757000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FFA', truncating to target size 10 bits
+  at time 12757000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 15 expected ed, got eb
+
+Warning: Too many digits in hexadecimal number 'FCB', truncating to target size 10 bits
+  at time 13107000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF1', truncating to target size 10 bits
+  at time 13107000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'F8E', truncating to target size 10 bits
+  at time 13107000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDB', truncating to target size 10 bits
+  at time 13107000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 16 expected ee, got e8
+
+Warning: Too many digits in hexadecimal number 'FE7', truncating to target size 10 bits
+  at time 13457000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF0', truncating to target size 10 bits
+  at time 13457000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FA3', truncating to target size 10 bits
+  at time 13457000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 17 expected ee, got f2
+
+Warning: Too many digits in hexadecimal number 'FC6', truncating to target size 10 bits
+  at time 13807000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FD2', truncating to target size 10 bits
+  at time 13807000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 18 expected f0, got f1
+
+Warning: Too many digits in hexadecimal number 'FEC', truncating to target size 10 bits
+  at time 14157000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FE8', truncating to target size 10 bits
+  at time 14157000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB7', truncating to target size 10 bits
+  at time 14157000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 19 expected f1, got f0
+
+Warning: Too many digits in hexadecimal number 'FE2', truncating to target size 10 bits
+  at time 14507000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF3', truncating to target size 10 bits
+  at time 14507000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FB5', truncating to target size 10 bits
+  at time 14507000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 20 expected f2, got ef
+
+Warning: Too many digits in hexadecimal number 'FF5', truncating to target size 10 bits
+  at time 14857000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FE4', truncating to target size 10 bits
+  at time 14857000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 21 expected f2, got f3
+
+Warning: Too many digits in hexadecimal number 'FE9', truncating to target size 10 bits
+  at time 15207000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC9', truncating to target size 10 bits
+  at time 15207000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FEC', truncating to target size 10 bits
+  at time 15557000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FD1', truncating to target size 10 bits
+  at time 15557000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FE1', truncating to target size 10 bits
+  at time 15907000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC9', truncating to target size 10 bits
+  at time 15907000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 24 expected f6, got f5
+
+Warning: Too many digits in hexadecimal number 'FE3', truncating to target size 10 bits
+  at time 16257000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 25 expected f6, got f9
+
+Warning: Too many digits in hexadecimal number 'FFD', truncating to target size 10 bits
+  at time 16607000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 26 expected fa, got f9
+
+Warning: Too many digits in hexadecimal number 'FE5', truncating to target size 10 bits
+  at time 16957000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDB', truncating to target size 10 bits
+  at time 17307000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 28 expected f9, got fa
+ERROR: track group 29 expected fa, got fd
+ERROR: track group 30 expected fc, got fe
+ERROR: track group 32 expected fd, got fe
+ERROR: track group 33 expected fe, got 02
+ERROR: track group 34 expected 01, got 03
+ERROR: track group 36 expected 03, got 01
+
+Warning: Too many digits in hexadecimal number 'FE4', truncating to target size 10 bits
+  at time 20457000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 37 expected 01, got 03
+
+Warning: Too many digits in hexadecimal number 'FE8', truncating to target size 10 bits
+  at time 20807000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 38 expected 03, got 06
+
+Warning: Too many digits in hexadecimal number 'FFC', truncating to target size 10 bits
+  at time 21157000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF6', truncating to target size 10 bits
+  at time 21157000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FFF', truncating to target size 10 bits
+  at time 21157000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 39 expected 06, got 08
+
+Warning: Too many digits in hexadecimal number 'FFD', truncating to target size 10 bits
+  at time 21507000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FDF', truncating to target size 10 bits
+  at time 21857000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FF3', truncating to target size 10 bits
+  at time 21857000 in file Testbed/chip_tb.v line 79
+
+
+Warning: Too many digits in hexadecimal number 'FC3', truncating to target size 10 bits
+  at time 21857000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 41 expected 07, got 0c
+
+Warning: Too many digits in hexadecimal number 'FBC', truncating to target size 10 bits
+  at time 22207000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 42 expected 0b, got 07
+
+Warning: Too many digits in hexadecimal number 'FD1', truncating to target size 10 bits
+  at time 22557000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 43 expected 07, got 05
+
+Warning: Too many digits in hexadecimal number 'FCF', truncating to target size 10 bits
+  at time 22907000 in file Testbed/chip_tb.v line 79
+
+ERROR: track group 44 expected 05, got 08
+Track stage complete after 44 groups.
+========================================
+chip_tb summary: errors = 36
+FAIL
+========================================
+$finish called from file "Testbed/chip_tb.v", line 208.
+$finish at simulation time             23277000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 23277000 ps
+CPU Time:      0.870 seconds;       Data structure size:   0.0Mb
+Tue May 26 14:42:06 2026
+RTL simulation complete!

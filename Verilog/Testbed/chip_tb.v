@@ -122,13 +122,13 @@ module chip_tb;
 		group_count = 0;
 		track_stage_started = 1'b0;
 
-		search_fd = $fopen("search_stage_golden.mem", "r");
+		search_fd = $fopen("Testbed/search_stage_golden.mem", "r");
 		if (search_fd == 0) begin
 			$display("ERROR: Unable to open search_stage_golden.mem");
 			$finish;
 		end
 
-		track_fd = $fopen("track_stage_golden.mem", "r");
+		track_fd = $fopen("Testbed/track_stage_golden.mem", "r");
 		if (track_fd == 0) begin
 			$display("ERROR: Unable to open track_stage_golden.mem");
 			$finish;
