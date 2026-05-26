@@ -24,6 +24,11 @@ module chip_tb;
 	integer group_count;
 	integer error_count;
 	integer timeout_count;
+	integer result_fd;
+	integer diff;
+	integer abs_err;
+	integer max_abs_err;
+	integer max_abs_err_group;
 
 	reg signed [IW-1:0] search_vec [0:7];
 	reg signed [IW-1:0] track_vec [0:7];
@@ -39,7 +44,6 @@ module chip_tb;
 		.rst_n(rst_n),
 		.valid_in(valid_in),
 		.data_in(data_in),
-		.q_in(q_in),
 		.in_en(in_en),
 		.valid_out(valid_out),
 		.data_out(data_out)
@@ -121,6 +125,8 @@ module chip_tb;
 		error_count = 0;
 		group_count = 0;
 		track_stage_started = 1'b0;
+		max_abs_err = 0;
+		max_abs_err_group = 0;
 
 		search_fd = $fopen("Testbed/search_stage_golden.mem", "r");
 		if (search_fd == 0) begin
@@ -133,6 +139,13 @@ module chip_tb;
 			$display("ERROR: Unable to open track_stage_golden.mem");
 			$finish;
 		end
+
+		result_fd = $fopen("Testbed/chip_output_results.log", "w");
+		if (result_fd == 0) begin
+			$display("ERROR: Unable to open chip_output_results.log for writing");
+			$finish;
+		end
+		$fdisplay(result_fd, "group expected got abs_err status");
 
 		#20;
 		rst_n = 1;
@@ -179,12 +192,26 @@ module chip_tb;
 
 			if (!valid_out) begin
 				$display("ERROR: timed out waiting for valid_out on track group %0d", group_count + 1);
+				$fdisplay(result_fd, "%0d %02h %02h NA TIMEOUT", group_count + 1, track_expected[7:0], data_out[7:0]);
 				error_count = error_count + 1;
 			end else begin
 				#1;
+				diff = $signed(data_out[7:0]) - $signed(track_expected[7:0]);
+				if (diff < 0) begin
+					abs_err = -diff;
+				end else begin
+					abs_err = diff;
+				end
+				if (abs_err > max_abs_err) begin
+					max_abs_err = abs_err;
+					max_abs_err_group = group_count + 1;
+				end
 				if (data_out[7:0] !== track_expected[7:0]) begin
 					$display("ERROR: track group %0d expected %h, got %h", group_count + 1, track_expected[7:0], data_out[7:0]);
+					$fdisplay(result_fd, "%0d %02h %02h %0d FAIL", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
 					error_count = error_count + 1;
+				end else begin
+					$fdisplay(result_fd, "%0d %02h %02h %0d PASS", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
 				end
 			end
 
@@ -195,6 +222,7 @@ module chip_tb;
 		$display("Track stage complete after %0d groups.", group_count);
 		$display("========================================");
 		$display("chip_tb summary: errors = %0d", error_count);
+		$display("max abs error = %0d (group %0d)", max_abs_err, max_abs_err_group);
 		if (error_count == 0) begin
 			$display("PASS");
 		end else begin
@@ -204,6 +232,7 @@ module chip_tb;
 
 		$fclose(search_fd);
 		$fclose(track_fd);
+		$fclose(result_fd);
 		#20;
 		$finish;
 	end

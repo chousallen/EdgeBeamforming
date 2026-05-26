@@ -8,7 +8,7 @@
 set company {NTUGIEE}
 set designer {Student}
 
-set search_path [concat  [list ./ ../db] $search_path]
+set search_path [concat  [list ./ ./db] $search_path]
 set link_library [list "fsa0m_a_generic_core_tt1p8v25c.db" "fsa0m_a_generic_core_ss1p62v125c.db" "fsa0m_a_generic_core_ff1p98vm40c.db" "fsa0m_a_t33_generic_io_tt1p8v25c.db" "fsa0m_a_t33_generic_io_ss1p62v125c.db" "fsa0m_a_t33_generic_io_ff1p98vm40c.db" ]
 set target_library [list "fsa0m_a_generic_core_tt1p8v25c.db" "fsa0m_a_generic_core_ss1p62v125c.db" "fsa0m_a_generic_core_ff1p98vm40c.db" "fsa0m_a_t33_generic_io_tt1p8v25c.db" "fsa0m_a_t33_generic_io_ss1p62v125c.db" "fsa0m_a_t33_generic_io_ff1p98vm40c.db" ]
 set symbol_library [list "generic.sdb"]

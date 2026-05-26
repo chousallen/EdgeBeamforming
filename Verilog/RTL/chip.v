@@ -8,7 +8,6 @@ module chip #(
     input wire rst_n,
     input wire valid_in,
     input wire signed [IW-1:0] data_in,
-    input wire signed [IW-1:0] q_in,
     output wire in_en,
     output wire valid_out,
     output wire [OW-1:0] data_out

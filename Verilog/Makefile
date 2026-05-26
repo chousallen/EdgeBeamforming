@@ -5,6 +5,7 @@
 RTL_DIR = RTL
 TB_DIR = Testbed
 SYNTH_DIR = Synthesis
+SIM_DIR = RTL/sim
 
 # Define source files
 RTL_FILES = $(RTL_DIR)/chip.v \
@@ -20,11 +21,12 @@ TB_FILES = $(TB_DIR)/chip_tb.v
 # VCS compilation flags
 VCS_FLAGS = -full64 -timescale=1ns/1ps
 
-# Simulation output
-SIM_DIR = sim_results
+# Synthesis output
+SYNTH_SCRIPT = $(SYNTH_DIR)/synthesis.tcl
+SYNTH_OUT_DIR = $(SYNTH_DIR)/ultra
 
 # Default target
-.PHONY: rtl clean sim_clean help
+.PHONY: rtl syn clean sim_clean help
 
 # RTL Simulation target
 rtl: $(RTL_FILES) $(TB_FILES)
@@ -33,6 +35,12 @@ rtl: $(RTL_FILES) $(TB_FILES)
 	vcs $(VCS_FLAGS) -o $(SIM_DIR)/chip_sim $(RTL_FILES) $(TB_FILES)
 	./$(SIM_DIR)/chip_sim
 	@echo "RTL simulation complete!"
+
+# Synthesis target
+syn:
+	@echo "Starting synthesis with Design Compiler..."
+	cd $(SYNTH_DIR) && dc_shell -f synthesis.tcl
+	@echo "Synthesis complete!"
 
 # Clean simulation artifacts
 sim_clean:
@@ -48,6 +56,7 @@ clean: sim_clean
 help:
 	@echo "Available targets:"
 	@echo "  make rtl       - Run RTL simulation"
+	@echo "  make syn       - Run synthesis with Design Compiler"
 	@echo "  make sim_clean - Clean simulation artifacts"
 	@echo "  make clean     - Clean all generated files"
 	@echo "  make help      - Display this help message"

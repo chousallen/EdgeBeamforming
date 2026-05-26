@@ -2,3 +2,4 @@ reference/
 .vscode/
 *.vcd
 codegen/
+**/db/
