@@ -35,7 +35,11 @@ module CHIP_syn_tb;
 	reg [15:0] track_expected;
 	reg track_stage_started;
 
+`ifdef DUT_BEAMFORMING
+	beamforming dut (
+`else
 	CHIP dut (
+`endif
 		.clk(clk),
 		.rst_n(rst_n),
 		.valid_in(valid_in),
@@ -160,9 +164,13 @@ module CHIP_syn_tb;
 			$finish;
 		end
 
+`ifdef DUT_BEAMFORMING
+		result_fd = $fopen("../Testbed/beamforming_syn_output_results.log", "w");
+`else
 		result_fd = $fopen("../Testbed/CHIP_syn_output_results.log", "w");
+`endif
 		if (result_fd == 0) begin
-			$display("ERROR: Unable to open CHIP_syn_output_results.log for writing");
+			$display("ERROR: Unable to open gate-level output results log for writing");
 			$finish;
 		end
 		$fdisplay(result_fd, "group expected got abs_err status");

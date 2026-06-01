@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : beamforming
+Version: U-2022.12
+Date   : Tue Jun  2 05:19:38 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
+Wire Load Model Mode: top
+
+  Startpoint: steer_inst/valid_sr_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: steer_inst/u_c1s1/ya_r_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  beamforming        G200K                 fsa0m_a_generic_core_tt1p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  steer_inst/valid_sr_reg[1]/CK (QDFFRBP)                 0.00 #     0.50 r
+  steer_inst/valid_sr_reg[1]/Q (QDFFRBP)                  0.42       0.92 r
+  U3374/O (INV3)                                          0.09       1.02 f
+  U3613/O (INV4)                                          0.14       1.15 r
+  U2933/O (NR2P)                                          0.19       1.34 f
+  U8047/O (INV2)                                          0.19       1.53 r
+  U4352/O (BUF1)                                          0.35       1.88 r
+  U10443/O (INV1S)                                        0.18       2.06 f
+  U6652/O (INV1)                                          0.35       2.42 r
+  U3550/O (INV2)                                          0.17       2.59 f
+  U3317/O (OR2B1S)                                        0.27       2.86 f
+  U5497/O (NR2)                                           0.26       3.12 r
+  U5498/OB (MXL2HS)                                       0.18       3.30 f
+  U5499/O (INV2)                                          0.12       3.42 r
+  U4917/S (FA1)                                           0.45       3.87 f
+  U5503/O (NR2P)                                          0.23       4.10 r
+  U5504/O (NR2)                                           0.13       4.23 f
+  U5554/O (AOI12HS)                                       0.22       4.45 r
+  U5555/O (OAI12H)                                        0.16       4.61 f
+  U6165/O (AOI12HS)                                       0.20       4.81 r
+  U6166/O (XOR2HS)                                        0.16       4.98 r
+  U6167/O (ND2P)                                          0.08       5.06 f
+  U6170/O (ND2P)                                          0.10       5.15 r
+  U6171/O (ND2P)                                          0.05       5.20 f
+  U3632/O (OAI12HS)                                       0.09       5.30 r
+  steer_inst/u_c1s1/ya_r_reg[6]/D (QDFFRBN)               0.00       5.30 r
+  data arrival time                                                  5.30
+
+  clock clk (rise edge)                                   5.00       5.00
+  clock network delay (ideal)                             0.50       5.50
+  clock uncertainty                                      -0.10       5.40
+  steer_inst/u_c1s1/ya_r_reg[6]/CK (QDFFRBN)              0.00       5.40 r
+  library setup time                                     -0.10       5.30
+  data required time                                                 5.30
+  --------------------------------------------------------------------------
+  data required time                                                 5.30
+  data arrival time                                                 -5.30
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
