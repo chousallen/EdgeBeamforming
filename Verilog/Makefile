@@ -1,5 +1,5 @@
 # Makefile for RTL Simulation and Synthesis
-# VCS RTL simulation for chip design
+# VCS RTL simulation for beamforming design
 
 # Define source file directories
 RTL_DIR = RTL
@@ -8,7 +8,7 @@ SYNTH_DIR = Synthesis
 SIM_DIR = RTL/sim
 
 # Define source files
-RTL_FILES = $(RTL_DIR)/chip.v \
+RTL_FILES = $(RTL_DIR)/beamforming.v \
             $(RTL_DIR)/phi_table.v \
             $(RTL_DIR)/track.v \
             $(RTL_DIR)/steer.v \
@@ -16,7 +16,7 @@ RTL_FILES = $(RTL_DIR)/chip.v \
             $(RTL_DIR)/cordic_vector.v \
             $(RTL_DIR)/comparison.v
 
-TB_FILES = $(TB_DIR)/chip_tb.v
+TB_FILES = $(TB_DIR)/beamforming_tb.v
 
 # VCS compilation flags
 VCS_FLAGS = -full64 -timescale=1ns/1ps

@@ -1,4 +1,4 @@
-# Synopsys Design Constraints (SDC) file for chip
+# Synopsys Design Constraints (SDC) file for beamforming
 # Clock and timing constraints
 
 # Define cycle time (in nanoseconds)
@@ -24,5 +24,5 @@ set_operating_conditions -min_library fsa0m_a_generic_core_ff1p98vm40c -min BCCO
 set_wire_load_model -name G200K -library fsa0m_a_generic_core_tt1p8v25c
 
 set_max_area 0
-set_max_fanout 6 chip
+set_max_fanout 6 beamforming
 set_boundary_optimization {"*"}

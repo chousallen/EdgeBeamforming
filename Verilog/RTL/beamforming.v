@@ -1,5 +1,5 @@
-// module for top-level chip that integrates the track and cordic modules
-module chip #(
+// module for top-level beamforming logic that integrates the track and cordic modules
+module beamforming #(
     parameter IW = 10, // Input width for I and Q
     parameter OW = 10, // Output width for I, Q and angle
     parameter TW = 8   // Input width for theta

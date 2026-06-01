@@ -1,5 +1,5 @@
-../Testbed/chip_tb.v
-./chip.v
+../Testbed/beamforming_tb.v
+./beamforming.v
 ./phi_table.v
 ./track.v
 ./steer.v

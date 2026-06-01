@@ -5,9 +5,9 @@ read_file -format verilog ../RTL/cordic_vector.v
 read_file -format verilog ../RTL/comparison.v
 read_file -format verilog ../RTL/steer.v
 read_file -format verilog ../RTL/track.v
-read_file -format verilog ../RTL/chip.v
+read_file -format verilog ../RTL/beamforming.v
 
-current_design chip
+current_design beamforming
 uniquify
 link
 
@@ -35,8 +35,8 @@ report_power > "$out_dir/power.out"
 report_timing -path full -delay max > "$out_dir/timing.out"
 
 #write -format db -hierarchy -output $active_design.db
-write -format verilog -hierarchy -output "$out_dir/chip_syn.v"
-write_sdf -version 2.1 -context verilog "$out_dir/chip.sdf"
-write_sdc "$out_dir/chip.sdc"
+write -format verilog -hierarchy -output "$out_dir/beamforming_syn.v"
+write_sdf -version 2.1 -context verilog "$out_dir/beamforming.sdf"
+write_sdc "$out_dir/beamforming.sdc"
 
 exit
