@@ -25,13 +25,14 @@ if nargin < 4 || isempty(cordic_iters), cordic_iters = 8; end
 if nargin < 5 || isempty(theta_init), theta_init = 15; end
 if nargin < 6 || isempty(K_track), K_track = 2^(-5); end
 
-theta_track = zeros(1, num_samples);
+theta_track = zeros(1, num_samples + 1);
 theta_track(1) = theta_init;
 
 steered_q = zeros(N, num_samples);
 steered_i = zeros(N, num_samples);
 
-for n = 1:num_samples-1
+
+for n = 1:num_samples
     % Use the pre-generated received sample for this time index
     X_sample = X(:, n);
 
@@ -45,6 +46,7 @@ for n = 1:num_samples-1
         X_steered(k) = Q_rot + 1j * I_rot;
         steered_q(k, n) = Q_rot;
         steered_i(k, n) = I_rot;
+        % fprintf('Sample %d, Antenna %d: q_in = %s, i_in = %s, phi_target = %d, Q_rot = %s, I_rot = %s\n', n, k, dec2hex(floor(q_in * 2^4), 3), dec2hex(floor(i_in * 2^4), 3), phi_target, dec2hex(floor(Q_rot * 2^4), 3), dec2hex(floor(I_rot * 2^4), 3));
     end
 
     % Sub-array grouping (Left and Right halves)
@@ -60,13 +62,36 @@ for n = 1:num_samples-1
     % fprintf('Iteration %d: phi_L = 0x%s, phi_R = 0x%s\n', n, dec2hex(phi_L), dec2hex(phi_R));
     % phase_diff = wrapToPi(phi_L - phi_R);
     % Fixed-point friendly phase wrapping to [-pi, pi]
+
+    fprintf('Iteration %d: phi_L = %x, phi_R = %x\n', n, phi_L, phi_R);
+
     phase_diff = phi_L - phi_R;
     phase_diff = phase_diff - 2*128*floor((phase_diff + 128)/(2*128));
     % fprintf('Iteration %d: phi_L = %d, phi_R = %d, phase_diff = %d\n', n, phi_L, phi_R, phase_diff);
-
     theta_track(n+1) = theta_track(n) + floor(K_track * phase_diff);
+    if (theta_track(n+1) > 42) 
+        theta_track(n+1) = 42; 
+    end
+    if (theta_track(n+1) < -42) 
+        theta_track(n+1) = -42; 
+    end
+
 end
 
+fid = fopen('steer_golden.mem', 'w');
+for n = 1:num_samples-1
+    fprintf(fid, '%s\n', dec2hex(floor(theta_track(n)), 3));
+    for k = 1:N
+        fprintf(fid, '%s\n', dec2hex(floor(real(X(k, n)) * 2^4), 3));
+        fprintf(fid, '%s\n', dec2hex(floor(imag(X(k, n)) * 2^4), 3));
+    end
+    for k = 1:N
+        fprintf(fid, '%s\n', dec2hex(floor(steered_q(k, n) * 2^4), 3));
+        fprintf(fid, '%s\n', dec2hex(floor(steered_i(k, n) * 2^4), 3));
+    end
+    fprintf(fid, "\n");
+end
+fclose(fid);
 end
 
 function value = sind_lut(theta)

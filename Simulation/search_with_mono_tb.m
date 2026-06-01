@@ -10,7 +10,7 @@ scan_step = 1;          % Scan resolution (degrees)
 NUM_SCAN = (84/scan_step) + 1; % Number of samples for scanning from -60 to 60 degrees
 
 % Signal Settings
-theta_s = -30; % Desired signal angle
+theta_s = -38; % Desired signal angle
 theta_i = 30; % Interference signal angle
 SNR = 20; % Signal-to-Noise Ratio (dB)
 SIR = 10; % Signal-to-Interference Ratio (dB)
@@ -34,12 +34,12 @@ a_i = steering(theta_i); % Steering vector for interference signal
 % Received signal at the antenna array for scanning phase (with the desired signal present)
 X_scan = zeros(N, NUM_SCAN);
 for n = 1:NUM_SCAN
-    % X_scan(:, n) = a_s * sig_val + interference_val * a_i + noise(:, n);
-	X_scan(:, n) = a_s * sig_val + noise(:, n);
+    X_scan(:, n) = a_s * sig_val + interference_val * a_i + noise(:, n);
+	% X_scan(:, n) = a_s * sig_val + noise(:, n);
 end
 
 % Received signal for tracking phase (use the same signal for simplicity)
-angle_step = 4;
+angle_step = 8;
 angles = theta_s:angle_step:theta_s+angle_step*10;             % Change angle every 10 degrees for tracking phase
 % angles_1 = -60:2:0;			 % Change angle every 2 degrees for tracking phase
 % angles_2 = 0:-2:-20;			 % Change angle every 2 degrees for tracking phase
@@ -189,7 +189,7 @@ for n = 1:num_samples-NUM_SCAN
     for k = 1:size(hex_vals, 1)
         fprintf(fid, '%s\n', hex_vals(k, :));
     end
-    fprintf(fid, '%s\n', dec2hex(int8(degrees(n))));
+    fprintf(fid, '%s\n', dec2hex(int8(degrees(n+1))));
     fprintf(fid, '\n');
 end
 
