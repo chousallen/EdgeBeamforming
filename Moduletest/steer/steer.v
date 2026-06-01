@@ -261,7 +261,7 @@ module steer(
     end
 
     // =========================================================================
-    // Final CORDIC output hold registers
+    // Shared CORDIC gain compensation and output hold registers
     // =========================================================================
 
     // 10-iteration CORDIC rotation gain is about 1.64676, so multiply by
@@ -275,22 +275,31 @@ module steer(
         end
     endfunction
 
-    reg signed [5:-4] x1_hold, y1_hold;
     reg signed [5:-4] x3_hold, y3_hold;
     reg signed [5:-4] x4_hold, y4_hold;
 
+    wire signed [7:-4] scale_x_in = valid_sr[12] ? c1_xb_out :
+                                    valid_sr[13] ? c2_xa_out :
+                                                   c1_xa_out;
+    wire signed [7:-4] scale_y_in = valid_sr[12] ? c1_yb_out :
+                                    valid_sr[13] ? c2_ya_out :
+                                                   c1_ya_out;
+
+    wire signed [5:-4] scale_x_out = cordic_gain_comp(scale_x_in);
+    wire signed [5:-4] scale_y_out = cordic_gain_comp(scale_y_in);
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            x1_hold<=0; y1_hold<=0;
             x3_hold<=0; y3_hold<=0;
             x4_hold<=0; y4_hold<=0;
         end else begin
-            if (valid_sr[11]) begin         // cycle 12: latch ch1 and ch3
-                x1_hold <= cordic_gain_comp(c1_xa_out); y1_hold <= cordic_gain_comp(c1_ya_out);
-                x3_hold <= cordic_gain_comp(c1_xb_out); y3_hold <= cordic_gain_comp(c1_yb_out);
+            if (valid_sr[12]) begin         // cycle 13: scale and latch ch3 during ch2 passthrough
+                x3_hold <= scale_x_out;
+                y3_hold <= scale_y_out;
             end
-            if (valid_sr[12]) begin         // cycle 13: latch ch4
-                x4_hold <= cordic_gain_comp(c2_xa_out); y4_hold <= cordic_gain_comp(c2_ya_out);
+            if (valid_sr[13]) begin         // cycle 14: scale and latch ch4 during ch3 output
+                x4_hold <= scale_x_out;
+                y4_hold <= scale_y_out;
             end
         end
     end
@@ -309,11 +318,11 @@ module steer(
     assign o_x = valid_sr[12] ? x2_sr[12]          :
                  valid_sr[13] ? x3_hold             :
                  valid_sr[14] ? x4_hold             :
-                                cordic_gain_comp(c1_xa_out); // ch1: read live wire, not hold (hold updates same cycle)
+                                scale_x_out;         // ch1: scaled live on its output cycle
 
     assign o_y = valid_sr[12] ? y2_sr[12]          :
                  valid_sr[13] ? y3_hold             :
                  valid_sr[14] ? y4_hold             :
-                                cordic_gain_comp(c1_ya_out); // ch1: read live wire, not hold
+                                scale_y_out;         // ch1: scaled live on its output cycle
 
 endmodule

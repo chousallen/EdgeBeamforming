@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : steer
 Version: U-2022.12
-Date   : Sat May 16 22:11:28 2026
+Date   : Mon Jun  1 22:32:15 2026
 ****************************************
 
 
@@ -25,48 +25,56 @@ Design        Wire Load Model            Library
 steer                  G200K             fsa0m_a_generic_core_tt1p8v25c
 phi_table              enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+                       enG10K            fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN0
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN1
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN0
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_0_DW01_sub_2
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_0_DW01_sub_8
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_0_DW01_add_1
+cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_0_DW01_add_4
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_0_DW01_sub_11
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_0_DW01_add_10
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_6
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_7
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+steer_DW02_mult_0      enG5K             fsa0m_a_generic_core_tt1p8v25c
+steer_DW02_mult_1      enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_6
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_7
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_6
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_7
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_8
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_9
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+steer_DW01_add_6       enG5K             fsa0m_a_generic_core_tt1p8v25c
+steer_DW01_add_7       enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_10
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_11
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_8
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_9
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_10
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_11
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_3
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_4
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_6
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_7
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_6
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_7
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_5
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_5
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_14
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_15
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_8
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
@@ -84,14 +92,6 @@ cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_10
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN1_DW01_add_11
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_3
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_sub_4
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_3
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START0_OWN_ATAN0_DW01_add_4
-                       enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_3
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN0_DW01_sub_4
@@ -100,9 +100,13 @@ cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_3
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 cordic_stage_ITER_START5_OWN_ATAN0_DW01_add_4
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_12
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_17
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
-cordic_stage_ITER_START5_OWN_ATAN1_DW01_sub_13
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_17
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_sub_18
+                       enG5K             fsa0m_a_generic_core_tt1p8v25c
+cordic_stage_ITER_START0_OWN_ATAN1_DW01_add_18
                        enG5K             fsa0m_a_generic_core_tt1p8v25c
 
 
@@ -120,12 +124,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  13.3766 mW   (72%)
-  Net Switching Power  =   5.1085 mW   (28%)
+  Cell Internal Power  =  14.7456 mW   (70%)
+  Net Switching Power  =   6.3811 mW   (30%)
                          ---------
-Total Dynamic Power    =  18.4851 mW  (100%)
+Total Dynamic Power    =  21.1268 mW  (100%)
 
-Cell Leakage Power     = 608.9660 nW
+Cell Leakage Power     = 793.4263 nW
 
 
                  Internal         Switching           Leakage            Total
@@ -134,10 +138,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      9.6572            0.0000            0.0000            9.6572  (  52.24%)  i
-register           1.5725            0.2749        2.2610e+05            1.8477  (  10.00%)
+clock_network      9.7768            0.0000            0.0000            9.7768  (  46.27%)  i
+register           1.7333            0.3273        2.3879e+05            2.0609  (   9.75%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      2.1469            4.8335        3.8286e+05            6.9808  (  37.76%)
+combinational      3.2355            6.0538        5.5463e+05            9.2899  (  43.97%)
 --------------------------------------------------------------------------------------------------
-Total             13.3766 mW         5.1085 mW     6.0897e+05 pW        18.4857 mW
+Total             14.7456 mW         6.3811 mW     7.9343e+05 pW        21.1276 mW
 1
