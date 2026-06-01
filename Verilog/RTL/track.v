@@ -132,6 +132,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+reg signed [OW-1:0] phase_out_temp;
 localparam K = 3; // CORDIC gain for 10 iterations in s2.7 format (1/K = 0.607252935)
 // Phase difference calculation (s7.0 format to hold values up to +-180 degrees)
 always @(*) begin
@@ -142,7 +143,15 @@ always @(*) begin
         valid_out_next = valid_out; // Keep the output valid state unchanged when we have a new angle input
     end else if (valid_phase_r) begin
         phase_diff_next = L_phase_r - R_phase_r; // s8.0 format
-        phase_out_next = phase_out_r + (phase_diff_next >>> (K));
+        phase_out_temp = phase_out_r + (phase_diff_next >>> (K));
+        // Wrap to -42 to 42
+        if (phase_out_temp > 8'sd42) begin
+            phase_out_next = 8'sd42;
+        end else if (phase_out_temp < -8'sd42) begin
+            phase_out_next = -8'sd42;
+        end else begin
+            phase_out_next = phase_out_temp;
+        end
         valid_out_next = 1'b1; // Output is valid when we have a new phase difference
     end else begin
         phase_diff_next = phase_diff_r; // Hold previous value when not valid
@@ -150,6 +159,7 @@ always @(*) begin
         valid_out_next = 1'b0; // Output is not valid when we don't have a new phase difference
     end
 end
+
 
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin

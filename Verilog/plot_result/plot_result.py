@@ -43,7 +43,7 @@ def main():
 	# The log contains one row per 4-step sample. Use the sample sweep as the x-axis.
 	ideal_x = groups
 	ideal_steps = (groups.size + 3) // 4
-	ideal_y = np.repeat(np.arange(-26, -26 + 4 * ideal_steps, 4), 4)[: groups.size]
+	ideal_y = np.repeat(np.arange(-38, -38 + 8 * ideal_steps, 8), 4)[: groups.size]
 
 	plt.figure(figsize=(10, 5))
 	plt.plot(ideal_x, expected, marker="o", linewidth=1.5, label="expected")
