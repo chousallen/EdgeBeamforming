@@ -1,48 +1,46 @@
  
 ****************************************
 Report : area
-Design : chip
+Design : CHIP
 Version: U-2022.12
-Date   : Wed May 27 00:26:16 2026
+Date   : Tue Jun  2 04:35:56 2026
 ****************************************
 
 Information: Updating design information... (UID-85)
-Warning: Design 'chip' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'CHIP' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 Library(s) Used:
 
     fsa0m_a_generic_core_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/Synthesis/db/fsa0m_a_generic_core_tt1p8v25c.db)
+    fsa0m_a_t33_generic_io_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/Synthesis/db/fsa0m_a_t33_generic_io_tt1p8v25c.db)
 
-Number of ports:                          231
-Number of nets:                          8171
-Number of cells:                         7881
-Number of combinational cells:           6484
-Number of sequential cells:              1394
-Number of macros/black boxes:               0
-Number of buf/inv:                       1720
-Number of references:                      62
+Number of ports:                           25
+Number of nets:                         10449
+Number of cells:                        10128
+Number of combinational cells:           8702
+Number of sequential cells:              1401
+Number of macros/black boxes:              25
+Number of buf/inv:                       2219
+Number of references:                     120
 
-Combinational area:             104115.211087
-Buf/Inv area:                    15264.647859
-Noncombinational area:           82879.071110
-Macro/Black Box area:                0.000000
+Combinational area:             148087.396751
+Buf/Inv area:                    18514.439866
+Noncombinational area:           83379.039062
+Macro/Black Box area:           219357.861328
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                186994.282197
+Total cell area:                450824.297142
 Total area:                 undefined
 
 Hierarchical area distribution
 ------------------------------
 
-                                  Global cell area              Local cell area
-                                  --------------------  ------------------------------- 
+                                  Global cell area                Local cell area
+                                  --------------------  ------------------------------------ 
 Hierarchical cell                 Absolute     Percent  Combi-       Noncombi-   Black-
-                                  Total        Total    national     national    boxes   Design
---------------------------------  -----------  -------  -----------  ----------  ------  ----------
-chip                              186994.2822    100.0   28988.7696  17776.9873  0.0000  chip
-comparison_inst                    11368.0224      6.1    6974.5536   4393.4688  0.0000  comparison
-steer_inst                        128860.5028     68.9   65527.0558  60708.6150  0.0000  steer
-steer_inst/phi_gen                  2624.8320      1.4    2624.8320      0.0000  0.0000  phi_table
---------------------------------  -----------  -------  -----------  ----------  ------  ----------
-Total                                                   104115.2111  82879.0711  0.0000
+                                  Total        Total    national     national    boxes        Design
+--------------------------------  -----------  -------  -----------  ----------  -----------  ---------
+CHIP                              450824.2971    100.0  148087.3968  83379.0391  219357.8613  CHIP
+--------------------------------  -----------  -------  -----------  ----------  -----------  ---------
+Total                                                   148087.3968  83379.0391  219357.8613
 
 1

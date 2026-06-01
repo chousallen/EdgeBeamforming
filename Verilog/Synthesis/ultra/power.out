@@ -2,26 +2,24 @@
 ****************************************
 Report : power
         -analysis_effort low
-Design : chip
+Design : CHIP
 Version: U-2022.12
-Date   : Wed May 27 00:26:17 2026
+Date   : Tue Jun  2 04:35:57 2026
 ****************************************
 
 
 Library(s) Used:
 
     fsa0m_a_generic_core_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/Synthesis/db/fsa0m_a_generic_core_tt1p8v25c.db)
+    fsa0m_a_t33_generic_io_tt1p8v25c (File: /home/raid7_2/userb12/b12148/ICDLab/Final/Verilog/Synthesis/db/fsa0m_a_t33_generic_io_tt1p8v25c.db)
 
 
 Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
-Wire Load Model Mode: enclosed
+Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-chip                   G200K             fsa0m_a_generic_core_tt1p8v25c
-steer                  enG30K            fsa0m_a_generic_core_tt1p8v25c
-comparison             enG5K             fsa0m_a_generic_core_tt1p8v25c
-phi_table              enG5K             fsa0m_a_generic_core_tt1p8v25c
+CHIP                   G200K             fsa0m_a_generic_core_tt1p8v25c
 
 
 Global Operating Voltage = 1.62 
@@ -38,24 +36,24 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  16.1473 mW   (82%)
-  Net Switching Power  =   3.4674 mW   (18%)
+  Cell Internal Power  =  18.7547 mW    (3%)
+  Net Switching Power  = 529.5465 mW   (97%)
                          ---------
-Total Dynamic Power    =  19.6147 mW  (100%)
+Total Dynamic Power    = 548.3011 mW  (100%)
 
-Cell Leakage Power     = 744.0402 nW
+Cell Leakage Power     =   1.1518 uW
 
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
 --------------------------------------------------------------------------------------------------
-io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+io_pad             0.5665          525.2701        2.2832e+05          525.8368  (  95.90%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network     13.1722            0.0000            0.0000           13.1722  (  67.15%)  i
-register           0.9869            0.2216        3.0109e+05            1.2088  (   6.16%)
+clock_network     13.2392            0.0000            0.0000           13.2392  (   2.41%)  i
+register           1.2893            0.2419        3.0424e+05            1.5314  (   0.28%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      1.9883            3.2458        4.4295e+05            5.2345  (  26.69%)
+combinational      3.6598            4.0346        6.1928e+05            7.6951  (   1.40%)
 --------------------------------------------------------------------------------------------------
-Total             16.1473 mW         3.4674 mW     7.4404e+05 pW        19.6154 mW
+Total             18.7547 mW       529.5466 mW     1.1518e+06 pW       548.3024 mW
 1

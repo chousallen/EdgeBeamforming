@@ -6,8 +6,9 @@ read_file -format verilog ../RTL/comparison.v
 read_file -format verilog ../RTL/steer.v
 read_file -format verilog ../RTL/track.v
 read_file -format verilog ../RTL/beamforming.v
+read_file -format verilog ../RTL/CHIP.v
 
-current_design beamforming
+current_design CHIP
 uniquify
 link
 
@@ -18,7 +19,7 @@ set out_dir "./ultra"
 file mkdir $out_dir
 
 # Read design constraints
-source ./chip.sdc
+source ./CHIP.sdc
 
 
 check_design
@@ -28,6 +29,7 @@ check_design
 # Map and Optimize the Design
 # compile -map_effort medium
 compile_ultra
+compile_ultra -inc
 
 # Analyze and debug the design
 report_area -hierarchy > "$out_dir/area.out"
@@ -35,8 +37,9 @@ report_power > "$out_dir/power.out"
 report_timing -path full -delay max > "$out_dir/timing.out"
 
 #write -format db -hierarchy -output $active_design.db
-write -format verilog -hierarchy -output "$out_dir/beamforming_syn.v"
-write_sdf -version 2.1 -context verilog "$out_dir/beamforming.sdf"
-write_sdc "$out_dir/beamforming.sdc"
+write -format verilog -hierarchy -output "$out_dir/CHIP_syn.v"
+write -format ddc -hierarchy -output "$out_dir/CHIP_syn.ddc"
+write_sdf -version 2.1 -context verilog "$out_dir/CHIP_syn.sdf"
+write_sdc "$out_dir/CHIP_syn.sdc"
 
 exit

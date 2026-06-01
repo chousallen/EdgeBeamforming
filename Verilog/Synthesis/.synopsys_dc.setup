@@ -4,6 +4,7 @@
 #    and put this file in tool's invoking directory or your home directory.
 #	
 
+set_host_options -max_cores 4
 
 set company {NTUGIEE}
 set designer {Student}

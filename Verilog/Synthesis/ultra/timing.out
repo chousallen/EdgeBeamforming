@@ -4,71 +4,73 @@ Report : timing
         -path full
         -delay max
         -max_paths 1
-Design : chip
+Design : CHIP
 Version: U-2022.12
-Date   : Wed May 27 00:26:17 2026
+Date   : Tue Jun  2 04:35:58 2026
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
 
 Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
-Wire Load Model Mode: enclosed
+Wire Load Model Mode: top
 
-  Startpoint: steer_inst/valid_sr_reg[6]
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[13]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: steer_inst/u_c1s2/yb_r_reg[7]
+  Endpoint: beamforming_in/comparison_inst/I_acc_reg[9]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  chip               G200K                 fsa0m_a_generic_core_tt1p8v25c
-  steer              enG30K                fsa0m_a_generic_core_tt1p8v25c
+  CHIP               G200K                 fsa0m_a_generic_core_tt1p8v25c
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.50       0.50
-  steer_inst/valid_sr_reg[6]/CK (QDFFRBN)                 0.00 #     0.50 r
-  steer_inst/valid_sr_reg[6]/Q (QDFFRBN)                  0.37       0.87 f
-  steer_inst/U939/O (INV4)                                0.18       1.06 r
-  steer_inst/U82/O (INV6)                                 0.08       1.14 f
-  steer_inst/U842/O (NR2P)                                0.33       1.47 r
-  steer_inst/U941/O (OR2T)                                0.27       1.74 r
-  steer_inst/U595/O (NR2T)                                0.16       1.90 f
-  steer_inst/U69/O (INV3CK)                               0.09       2.00 r
-  steer_inst/U53/O (BUF2)                                 0.17       2.17 r
-  steer_inst/U135/O (NR2T)                                0.12       2.29 f
-  steer_inst/U764/O (BUF3)                                0.23       2.52 f
-  steer_inst/U1923/O (AOI22S)                             0.21       2.73 r
-  steer_inst/U763/O (ND3)                                 0.13       2.86 f
-  steer_inst/U762/O (XOR2HS)                              0.19       3.05 r
-  steer_inst/U1924/O (INV1S)                              0.12       3.17 f
-  steer_inst/U321/O (OAI12HS)                             0.27       3.44 r
-  steer_inst/U10/O (AOI12HS)                              0.18       3.62 f
-  steer_inst/U1939/O (OAI12H)                             0.24       3.85 r
-  steer_inst/U1947/O (AOI12H)                             0.14       3.99 f
-  steer_inst/U252/O (OAI12HP)                             0.17       4.17 r
-  steer_inst/U227/O (AOI12H)                              0.11       4.28 f
-  steer_inst/U1964/O (OAI12H)                             0.21       4.50 r
-  steer_inst/U223/O (AOI12H)                              0.12       4.62 f
-  steer_inst/U222/O (OAI12H)                              0.20       4.82 r
-  steer_inst/U2137/O (AOI12HS)                            0.12       4.94 f
-  steer_inst/U2138/O (XOR2HS)                             0.15       5.09 f
-  steer_inst/U2139/O (MUX2)                               0.25       5.33 f
-  steer_inst/u_c1s2/yb_r_reg[7]/D (QDFFRBN)               0.00       5.33 f
-  data arrival time                                                  5.33
+  beamforming_in/steer_inst/valid_sr_reg[13]/CK (QDFFRBT)
+                                                          0.00 #     0.50 r
+  beamforming_in/steer_inst/valid_sr_reg[13]/Q (QDFFRBT)
+                                                          0.41       0.91 r
+  U5322/O (OR2T)                                          0.25       1.16 r
+  U2693/O (INV3)                                          0.09       1.26 f
+  U5528/O (AO222)                                         0.48       1.74 f
+  U2878/O (INV2)                                          0.13       1.87 r
+  U5566/S (FA1)                                           0.50       2.37 f
+  U2834/S (FA1)                                           0.29       2.66 f
+  U2813/O (NR2T)                                          0.18       2.84 r
+  U5564/O (NR2T)                                          0.11       2.95 f
+  U2790/O (AOI12HP)                                       0.23       3.18 r
+  U5586/O (INV4)                                          0.09       3.26 f
+  U5597/O (XNR2HS)                                        0.20       3.46 f
+  U4999/O (ND2T)                                          0.10       3.56 r
+  U4420/O (ND3P)                                          0.08       3.64 f
+  U6819/O (INV2)                                          0.12       3.76 r
+  U6872/O (INV1S)                                         0.18       3.94 f
+  U4791/O (OR2)                                           0.26       4.20 f
+  U2637/O (AOI12H)                                        0.18       4.38 r
+  U4975/O (OAI12H)                                        0.13       4.51 f
+  U4462/O (AOI12HP)                                       0.19       4.70 r
+  U6748/O (INV3)                                          0.09       4.79 f
+  U6750/O (AOI12HS)                                       0.21       5.00 r
+  U6751/O (XOR2HS)                                        0.16       5.16 r
+  U6752/O (ND2P)                                          0.06       5.22 f
+  U6753/O (ND3P)                                          0.09       5.31 r
+  beamforming_in/comparison_inst/I_acc_reg[9]/D (QDFFRBP)
+                                                          0.00       5.31 r
+  data arrival time                                                  5.31
 
   clock clk (rise edge)                                   5.00       5.00
   clock network delay (ideal)                             0.50       5.50
   clock uncertainty                                      -0.10       5.40
-  steer_inst/u_c1s2/yb_r_reg[7]/CK (QDFFRBN)              0.00       5.40 r
-  library setup time                                     -0.06       5.34
-  data required time                                                 5.34
+  beamforming_in/comparison_inst/I_acc_reg[9]/CK (QDFFRBP)
+                                                          0.00       5.40 r
+  library setup time                                     -0.09       5.31
+  data required time                                                 5.31
   --------------------------------------------------------------------------
-  data required time                                                 5.34
-  data arrival time                                                 -5.33
+  data required time                                                 5.31
+  data arrival time                                                 -5.31
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 
