@@ -1,175 +1,257 @@
 `timescale 1ns/1ps
-// tb_steer.v — testbench for steer.v
+
+// tb_steer.v - testbench for steer.v
 //
-// Workflow:
-//   1. Run gen_steer_tb.py to produce steer_in.mem and steer_exp.mem.
-//   2. Simulate: iverilog -o sim tb_steer.v steer.v cordic_stage.v phi_table.v && vvp sim
-//      (or equivalent in your toolchain)
+// Golden file format:
+//   One vector per group, separated by blank lines.
+//   Sequence inside each group:
+//     i_theta, i_x1, i_y1, i_x2, i_y2, i_x3, i_y3, i_x4, i_y4,
+//     o_x1, o_y1, o_x2, o_y2, o_x3, o_y3, o_x4, o_y4
 //
-// Memory layout:
-//   steer_in.mem  [87:0]  {theta[7:0], x1[9:0],y1[9:0], x2[9:0],y2[9:0],
-//                                      x3[9:0],y3[9:0], x4[9:0],y4[9:0]}
-//   steer_exp.mem [79:0]  {xo1[9:0],yo1[9:0], xo2[9:0],yo2[9:0],
-//                          xo3[9:0],yo3[9:0], xo4[9:0],yo4[9:0]}
-//
-// Input period: GAP = 6 clock cycles (one i_valid pulse per batch).
-// Output order: channel 0 (ch1) → 1 (ch2) → 2 (ch3) → 3 (ch4), consecutive cycles.
-// Comparison fires when channel=3 arrives (all four outputs of that vector ready).
+// The DUT input is driven for one cycle with i_valid high.
+// Outputs are checked in the order they appear on o_x/o_y
+// while o_valid is high.
 
 module tb_steer;
 
-// ─── parameters (keep in sync with gen_steer_tb.py) ─────────────────────────
-localparam N_VEC = 8;   // number of test vectors
-localparam GAP   = 6;   // clock cycles between consecutive i_valid pulses
+	localparam integer MAX_WORD = 1024;
+	localparam integer MAX_ALLOWED_ERR = 5;
 
-// ─── DUT ports ───────────────────────────────────────────────────────────────
-reg         clk, rst_n, i_valid;
-reg  signed [0:-7]  i_theta;
-reg  signed [5:-4]  i_x1, i_y1, i_x2, i_y2, i_x3, i_y3, i_x4, i_y4;
+	reg clk;
+	reg rst_n;
+	reg i_valid;
+	reg signed [0:-7] i_theta;
+	reg signed [5:-4] i_x1, i_y1, i_x2, i_y2, i_x3, i_y3, i_x4, i_y4;
 
-wire        o_valid;
-wire signed [0:-7]  o_theta;
-wire [1:0]          channel;
-wire signed [5:-4]  o_x, o_y;
+	wire o_valid;
+	wire signed [0:-7] o_theta;
+	wire [1:0] channel;
+	wire signed [5:-4] o_x;
+	wire signed [5:-4] o_y;
 
-// Optional SDF path from runtime plusarg: +SDF=<path/to/file.sdf>
-reg [1023:0] sdf_file;
+	reg [11:0] golden_words [0:MAX_WORD-1];
 
-// ─── test memories ───────────────────────────────────────────────────────────
-reg [87:0] in_mem  [0:N_VEC-1];
-reg [79:0] exp_mem [0:N_VEC-1];
+	integer vec_idx;
+	integer recv_vec;
+	integer recv_slot;
+	integer base_idx;
+	integer pass_cnt;
+	integer fail_cnt;
+	integer word_cnt;
+	integer vec_cnt;
+	integer fd;
+	integer rc;
+	reg [1023:0] line;
+	integer parsed;
+	reg signed [9:0] got_x;
+	reg signed [9:0] got_y;
+	reg signed [9:0] exp_x;
+	reg signed [9:0] exp_y;
+	integer err_x;
+	integer err_y;
+	integer sample_err;
+	integer max_err_x;
+	integer max_err_y;
+	integer max_err;
+	integer max_err_vec;
+	integer max_err_slot;
 
-// ─── DUT instantiation ───────────────────────────────────────────────────────
-steer dut (
-    .clk(clk), .rst_n(rst_n), .i_valid(i_valid),
-    .i_theta(i_theta),
-    .i_x1(i_x1), .i_y1(i_y1),
-    .i_x2(i_x2), .i_y2(i_y2),
-    .i_x3(i_x3), .i_y3(i_y3),
-    .i_x4(i_x4), .i_y4(i_y4),
-    .o_valid(o_valid), .o_theta(o_theta),
-    .channel(channel),
-    .o_x(o_x), .o_y(o_y)
-);
+	function integer abs_diff;
+		input signed [9:0] lhs;
+		input signed [9:0] rhs;
+		integer diff;
+		begin
+			diff = lhs - rhs;
+			abs_diff = (diff < 0) ? -diff : diff;
+		end
+	endfunction
 
-// Optional back-annotation:
-// 1) Compile-time define: -DSDF_FILE=\"path/to/file.sdf\"
-// 2) Runtime plusarg:     +SDF=path/to/file.sdf
-initial begin
-`ifdef SDF_FILE
-    $display("[TB] Annotating SDF (define): %0s", `SDF_FILE);
-    $sdf_annotate(`SDF_FILE, dut);
-`else
-    if ($value$plusargs("SDF=%s", sdf_file)) begin
-        $display("[TB] Annotating SDF (plusarg): %0s", sdf_file);
-        $sdf_annotate(sdf_file, dut);
-    end
-`endif
-end
+	steer dut (
+		.clk(clk),
+		.rst_n(rst_n),
+		.i_valid(i_valid),
+		.i_theta(i_theta),
+		.i_x1(i_x1), .i_y1(i_y1),
+		.i_x2(i_x2), .i_y2(i_y2),
+		.i_x3(i_x3), .i_y3(i_y3),
+		.i_x4(i_x4), .i_y4(i_y4),
+		.o_valid(o_valid),
+		.o_theta(o_theta),
+		.channel(channel),
+		.o_x(o_x),
+		.o_y(o_y)
+	);
 
-// ─── clock (100 MHz) ─────────────────────────────────────────────────────────
-initial clk = 0;
-always  #5 clk = ~clk;
+	initial clk = 1'b0;
+	always #5 clk = ~clk;
 
-// ─── stimulus ────────────────────────────────────────────────────────────────
-integer n;
-integer pass_cnt, fail_cnt, out_vec;
+	initial begin
+		$dumpfile("tb_steer.vcd");
+		$dumpvars(0, tb_steer);
 
-initial begin
-    $dumpfile("tb_steer.vcd");
-    $dumpvars(0, tb_steer);
+		for (word_cnt = 0; word_cnt < MAX_WORD; word_cnt = word_cnt + 1) begin
+			golden_words[word_cnt] = 12'd0;
+		end
 
-    $readmemh("steer_in.mem",  in_mem);
-    $readmemh("steer_exp.mem", exp_mem);
+		fd = $fopen("steer_golden.mem", "r");
+		if (fd == 0) begin
+			$display("ERROR: cannot open steer_golden.mem");
+			$finish;
+		end
 
-    pass_cnt = 0;
-    fail_cnt = 0;
-    out_vec  = 0;
+		word_cnt = 0;
+		while (!$feof(fd)) begin
+			line = 0;
+			rc = $fgets(line, fd);
+			if (rc != 0 && $sscanf(line, "%h", parsed) == 1) begin
+				if (word_cnt >= MAX_WORD) begin
+					$display("ERROR: steer_golden.mem exceeds MAX_WORD=%0d", MAX_WORD);
+					$finish;
+				end
+				golden_words[word_cnt] = parsed[11:0];
+				word_cnt = word_cnt + 1;
+			end
+		end
+		$fclose(fd);
 
-    rst_n = 0; i_valid = 0;
-    i_theta = 0;
-    i_x1 = 0; i_y1 = 0; i_x2 = 0; i_y2 = 0;
-    i_x3 = 0; i_y3 = 0; i_x4 = 0; i_y4 = 0;
+		if ((word_cnt % 17) != 0) begin
+			$display("ERROR: steer_golden.mem word count %0d is not a multiple of 17", word_cnt);
+			$finish;
+		end
+		vec_cnt = word_cnt / 17;
+		$display("[TB] Loaded %0d vectors from steer_golden.mem", vec_cnt);
 
-    repeat(3) @(posedge clk);
-    @(posedge clk);
-    rst_n = 1;
+		rst_n = 1'b0;
+		i_valid = 1'b0;
+		i_theta = 0;
+		i_x1 = 0; i_y1 = 0;
+		i_x2 = 0; i_y2 = 0;
+		i_x3 = 0; i_y3 = 0;
+		i_x4 = 0; i_y4 = 0;
 
-    // Send N_VEC input vectors, one i_valid pulse every GAP cycles
-    for (n = 0; n < N_VEC; n = n + 1) begin
-        // Posedge-only sequencing: drive now, sampled on next posedge
-        @(posedge clk);
-        i_valid = 1;
-        i_theta = in_mem[n][87:80];
-        i_x1    = in_mem[n][79:70];  i_y1 = in_mem[n][69:60];
-        i_x2    = in_mem[n][59:50];  i_y2 = in_mem[n][49:40];
-        i_x3    = in_mem[n][39:30];  i_y3 = in_mem[n][29:20];
-        i_x4    = in_mem[n][19:10];  i_y4 = in_mem[n][9:0];
+		pass_cnt = 0;
+		fail_cnt = 0;
+		recv_vec = 0;
+		recv_slot = 0;
+		err_x = 0;
+		err_y = 0;
+		sample_err = 0;
+		max_err_x = 0;
+		max_err_y = 0;
+		max_err = 0;
+		max_err_vec = 0;
+		max_err_slot = 0;
 
-        // Keep valid through one full cycle
-        @(posedge clk);
-        i_valid = 0;
-        repeat(GAP - 2) @(posedge clk);
-    end
+		repeat (4) @(negedge clk);
+		rst_n = 1'b1;
 
-    // Drain pipeline (latency ≈ 15 cycles + margin)
-    repeat(25) @(posedge clk);
+		for (vec_idx = 0; vec_idx < vec_cnt; vec_idx = vec_idx + 1) begin
+			base_idx = vec_idx * 17;
 
-    $display("=== DONE ===  pass=%0d  fail=%0d  (%0d/%0d vectors received)",
-             pass_cnt, fail_cnt, out_vec, N_VEC);
-    if (out_vec < N_VEC)
-        $display("WARNING: only %0d of %0d vectors completed", out_vec, N_VEC);
-    $finish;
-end
+			@(negedge clk);
+			i_theta = golden_words[base_idx + 0][7:0];
+			i_x1    = golden_words[base_idx + 1][9:0];
+			i_y1    = golden_words[base_idx + 2][9:0];
+			i_x2    = golden_words[base_idx + 3][9:0];
+			i_y2    = golden_words[base_idx + 4][9:0];
+			i_x3    = golden_words[base_idx + 5][9:0];
+			i_y3    = golden_words[base_idx + 6][9:0];
+			i_x4    = golden_words[base_idx + 7][9:0];
+			i_y4    = golden_words[base_idx + 8][9:0];
+			i_valid = 1'b1;
 
-// ─── output checker ──────────────────────────────────────────────────────────
-// Collect each channel's output as it arrives, then compare the full set
-// when channel=3 (the last of the four) is seen.
+			@(negedge clk);
+			i_valid = 1'b0;
 
-reg signed [9:0] got_x [0:3];
-reg signed [9:0] got_y [0:3];
-integer ch;
-reg [9:0] ex, ey;
+			repeat (17) @(negedge clk);
+		end
 
-always @(posedge clk) begin
-    if (o_valid) begin
-        // Blocking assignment so got_x[3]/got_y[3] are visible below
-        got_x[channel] = $signed(o_x);
-        got_y[channel] = $signed(o_y);
+		repeat (30) @(negedge clk);
 
-        if (channel == 2'd3) begin
-            // All four channels for this vector are ready; compare to expected
-            for (ch = 0; ch < 4; ch = ch + 1) begin
-                case (ch)
-                    0: begin ex = exp_mem[out_vec][79:70]; ey = exp_mem[out_vec][69:60]; end
-                    1: begin ex = exp_mem[out_vec][59:50]; ey = exp_mem[out_vec][49:40]; end
-                    2: begin ex = exp_mem[out_vec][39:30]; ey = exp_mem[out_vec][29:20]; end
-                    3: begin ex = exp_mem[out_vec][19:10]; ey = exp_mem[out_vec][9:0];   end
-                endcase
+		$display("[TB] DONE pass=%0d fail=%0d vectors=%0d max_allowed_err=%0d",
+		         pass_cnt, fail_cnt, recv_vec, MAX_ALLOWED_ERR);
+		$display("[TB] MAX_ERR overall=%0d vec=%0d ch=%0d max_x=%0d max_y=%0d",
+		         max_err, max_err_vec, max_err_slot, max_err_x, max_err_y);
+		if (fail_cnt == 0 && recv_vec == vec_cnt) begin
+			$display("[TB] PASS");
+		end else begin
+			$display("[TB] FAIL");
+		end
+		$finish;
+	end
 
-                if (got_x[ch] === $signed(ex) && got_y[ch] === $signed(ey)) begin
-                    $display("PASS  vec=%0d ch=%0d  x=%5d y=%5d",
-                             out_vec, ch, got_x[ch], got_y[ch]);
-                    pass_cnt = pass_cnt + 1;
-                end else begin
-                    $display("FAIL  vec=%0d ch=%0d  got(%5d,%5d)  exp(%5d,%5d)",
-                             out_vec, ch,
-                             got_x[ch], got_y[ch],
-                             $signed(ex), $signed(ey));
-                    fail_cnt = fail_cnt + 1;
-                end
-            end
-            out_vec = out_vec + 1;
-        end
-    end
-end
+	always @(posedge clk) begin
+		#1;
+		if (!rst_n) begin
+			recv_slot <= 0;
+		end else if (o_valid) begin
+			base_idx = recv_vec * 17;
+			got_x = o_x;
+			got_y = o_y;
 
-// ─── watchdog ────────────────────────────────────────────────────────────────
-initial begin
-    #((N_VEC * GAP + 50) * 10);   // 10 ns per cycle
-    $display("TIMEOUT  pass=%0d  fail=%0d  vectors=%0d/%0d",
-             pass_cnt, fail_cnt, out_vec, N_VEC);
-    $finish;
-end
+			case (recv_slot)
+				0: begin
+					exp_x = golden_words[base_idx + 9][9:0];
+					exp_y = golden_words[base_idx + 10][9:0];
+				end
+				1: begin
+					exp_x = golden_words[base_idx + 11][9:0];
+					exp_y = golden_words[base_idx + 12][9:0];
+				end
+				2: begin
+					exp_x = golden_words[base_idx + 13][9:0];
+					exp_y = golden_words[base_idx + 14][9:0];
+				end
+				3: begin
+					exp_x = golden_words[base_idx + 15][9:0];
+					exp_y = golden_words[base_idx + 16][9:0];
+				end
+				default: begin
+					exp_x = 10'sd0;
+					exp_y = 10'sd0;
+				end
+			endcase
+
+			err_x = abs_diff(got_x, exp_x);
+			err_y = abs_diff(got_y, exp_y);
+			sample_err = (err_x > err_y) ? err_x : err_y;
+
+			if (err_x > max_err_x) begin
+				max_err_x = err_x;
+			end
+			if (err_y > max_err_y) begin
+				max_err_y = err_y;
+			end
+			if (sample_err > max_err) begin
+				max_err = sample_err;
+				max_err_vec = recv_vec;
+				max_err_slot = recv_slot;
+			end
+
+			if (channel !== recv_slot[1:0]) begin
+				$display("FAIL vec=%0d slot=%0d channel=%0d got(%0d,%0d)",
+				         recv_vec, recv_slot, channel, got_x, got_y);
+				$display("      exp(%0d,%0d) [channel mismatch]", exp_x, exp_y);
+				fail_cnt = fail_cnt + 1;
+			end else if (err_x <= MAX_ALLOWED_ERR && err_y <= MAX_ALLOWED_ERR) begin
+				$display("PASS vec=%0d ch=%0d got(%0d,%0d) exp(%0d,%0d) err(%0d,%0d)",
+				         recv_vec, channel, got_x, got_y, exp_x, exp_y, err_x, err_y);
+				pass_cnt = pass_cnt + 1;
+			end else begin
+				$display("FAIL vec=%0d ch=%0d got(%0d,%0d)",
+				         recv_vec, channel, got_x, got_y);
+				$display("      exp(%0d,%0d) err(%0d,%0d) max_allowed=%0d",
+				         exp_x, exp_y, err_x, err_y, MAX_ALLOWED_ERR);
+				fail_cnt = fail_cnt + 1;
+			end
+
+			if (recv_slot == 3) begin
+				recv_slot <= 0;
+				recv_vec <= recv_vec + 1;
+			end else begin
+				recv_slot <= recv_slot + 1;
+			end
+		end
+	end
 
 endmodule

@@ -126,6 +126,31 @@ module steer(
     wire signed [7:-4] y4_ext = y4_d[2];
 
     // =========================================================================
+    // Angle wrap / quadrant reduction for CORDIC input range
+    //   CORDIC stage is designed for angles within ±π/2. For larger angles,
+    //   reduce by π and invert the input vector: rotate(x,y,A) = rotate(-x,-y,A±π).
+    // =========================================================================
+    localparam signed [0:-13] HALF_PI_PHI = 14'sd4046;
+    wire signed [0:-13] phi_ch1    = -phi_r;
+    wire signed [0:-13] phi_ch3    =  phi_r;
+    wire signed [0:-13] phi_ch4    =  dphi_r;
+
+    wire                phi_ch1_large = (phi_ch1 > HALF_PI_PHI) | (phi_ch1 < -HALF_PI_PHI);
+    wire                phi_ch3_large = (phi_ch3 > HALF_PI_PHI) | (phi_ch3 < -HALF_PI_PHI);
+    wire                phi_ch4_large = (phi_ch4 > HALF_PI_PHI) | (phi_ch4 < -HALF_PI_PHI);
+
+    wire signed [0:-13] phi_ch1_wrapped = phi_ch1_large ? (phi_ch1 + (phi_ch1 > 0 ? -PI_PHI : PI_PHI)) : phi_ch1;
+    wire signed [0:-13] phi_ch3_wrapped = phi_ch3_large ? (phi_ch3 + (phi_ch3 > 0 ? -PI_PHI : PI_PHI)) : phi_ch3;
+    wire signed [0:-13] phi_ch4_wrapped = phi_ch4_large ? (phi_ch4 + (phi_ch4 > 0 ? -PI_PHI : PI_PHI)) : phi_ch4;
+
+    wire signed [7:-4] x1_rot = phi_ch1_large ? -x1_ext : x1_ext;
+    wire signed [7:-4] y1_rot = phi_ch1_large ? -y1_ext : y1_ext;
+    wire signed [7:-4] x3_rot = phi_ch3_large ? -x3_ext : x3_ext;
+    wire signed [7:-4] y3_rot = phi_ch3_large ? -y3_ext : y3_ext;
+    wire signed [7:-4] x4_rot = phi_ch4_large ? -x4_ext : x4_ext;
+    wire signed [7:-4] y4_rot = phi_ch4_large ? -y4_ext : y4_ext;
+
+    // =========================================================================
     // atan sharing
     //   cordic1_s1/s2 read the atan ROM (OWN_ATAN=1).
     //   cordic2_s1/s2 receive the value via a 1-cycle register because cordic2
@@ -165,8 +190,8 @@ module steer(
     // --- cordic1_s1: ch1 (angle = -phi_r), ch3 (angle = +phi_r), iter 0-4 ---
     cordic_stage #(.ITER_START(0), .OWN_ATAN(1)) u_c1s1 (
         .clk(clk), .rst_n(rst_n), .start(cordic1_s1_start),
-        .xa_in(x1_ext),  .ya_in(y1_ext),  .anga_in(-phi_r),  // ch1 rotates by -phi
-        .xb_in(x3_ext),  .yb_in(y3_ext),  .angb_in( phi_r),  // ch3 rotates by +phi
+        .xa_in(x1_rot),  .ya_in(y1_rot),  .anga_in(phi_ch1_wrapped),  // ch1 rotates by -phi with range reduction
+        .xb_in(x3_rot),  .yb_in(y3_rot),  .angb_in(phi_ch3_wrapped),  // ch3 rotates by +phi with range reduction
         .atan_in(14'sd0),           .atan_out(atan_s1_w),
         .xa_out(c1_xa_mid),         .ya_out(c1_ya_mid),    .anga_out(c1_anga_mid),
         .xb_out(c1_xb_mid),         .yb_out(c1_yb_mid),    .angb_out(c1_angb_mid),
@@ -176,7 +201,7 @@ module steer(
     // --- cordic2_s1: ch4 (angle = 2*phi = dphi_r), iter 0-4, atan from cordic1_s1 ---
     cordic_stage #(.ITER_START(0), .OWN_ATAN(0)) u_c2s1 (
         .clk(clk), .rst_n(rst_n), .start(cordic2_s1_start),
-        .xa_in(x4_ext),  .ya_in(y4_ext),  .anga_in(dphi_r),
+        .xa_in(x4_rot),  .ya_in(y4_rot),  .anga_in(phi_ch4_wrapped),
         .xb_in(12'sd0),  .yb_in(12'sd0),  .angb_in(14'sd0),
         .atan_in(atan_s1_r),        .atan_out(),
         .xa_out(c2_xa_mid),         .ya_out(c2_ya_mid),    .anga_out(c2_anga_mid),
@@ -236,12 +261,20 @@ module steer(
     end
 
     // =========================================================================
-    // Output hold registers
-    //   Latch cordic1_s2 outputs (ch1, ch3) when valid_sr[11] (cycle 12)
-    //   Latch cordic2_s2 outputs (ch4)      when valid_sr[12] (cycle 13)
-    //   Then serialize: ch1(cycle12) ch2(cycle13) ch3(cycle14) ch4(cycle15)
+    // Final CORDIC output hold registers
     // =========================================================================
-    // Discard guard bits [7:6]; the S5.4 result is at [5:-4]
+
+    // 10-iteration CORDIC rotation gain is about 1.64676, so multiply by
+    // 1/gain = 0.60725 before returning to the S5.4 output format.
+    function signed [5:-4] cordic_gain_comp;
+        input signed [7:-4] cordic_val;
+        reg signed [23:0] scaled;
+        begin
+            scaled = cordic_val * 11'sd622; // round(0.607252935 * 2^10)
+            cordic_gain_comp = scaled >>> 10;
+        end
+    endfunction
+
     reg signed [5:-4] x1_hold, y1_hold;
     reg signed [5:-4] x3_hold, y3_hold;
     reg signed [5:-4] x4_hold, y4_hold;
@@ -253,11 +286,11 @@ module steer(
             x4_hold<=0; y4_hold<=0;
         end else begin
             if (valid_sr[11]) begin         // cycle 12: latch ch1 and ch3
-                x1_hold <= c1_xa_out[5:-4]; y1_hold <= c1_ya_out[5:-4];
-                x3_hold <= c1_xb_out[5:-4]; y3_hold <= c1_yb_out[5:-4];
+                x1_hold <= cordic_gain_comp(c1_xa_out); y1_hold <= cordic_gain_comp(c1_ya_out);
+                x3_hold <= cordic_gain_comp(c1_xb_out); y3_hold <= cordic_gain_comp(c1_yb_out);
             end
             if (valid_sr[12]) begin         // cycle 13: latch ch4
-                x4_hold <= c2_xa_out[5:-4]; y4_hold <= c2_ya_out[5:-4];
+                x4_hold <= cordic_gain_comp(c2_xa_out); y4_hold <= cordic_gain_comp(c2_ya_out);
             end
         end
     end
@@ -276,11 +309,11 @@ module steer(
     assign o_x = valid_sr[12] ? x2_sr[12]          :
                  valid_sr[13] ? x3_hold             :
                  valid_sr[14] ? x4_hold             :
-                                c1_xa_out[5:-4];    // ch1: read live wire, not hold (hold updates same cycle)
+                                cordic_gain_comp(c1_xa_out); // ch1: read live wire, not hold (hold updates same cycle)
 
     assign o_y = valid_sr[12] ? y2_sr[12]          :
                  valid_sr[13] ? y3_hold             :
                  valid_sr[14] ? y4_hold             :
-                                c1_ya_out[5:-4];    // ch1: read live wire, not hold
+                                cordic_gain_comp(c1_ya_out); // ch1: read live wire, not hold
 
 endmodule
