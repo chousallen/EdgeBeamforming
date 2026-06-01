@@ -1,4 +1,4 @@
-./chip_tb.v
+../Testbed/chip_tb.v
 ./chip.v
 ./phi_table.v
 ./track.v

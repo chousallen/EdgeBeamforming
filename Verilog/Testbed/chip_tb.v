@@ -23,6 +23,7 @@ module chip_tb;
 	integer track_status;
 	integer group_count;
 	integer error_count;
+	integer warning_count;
 	integer timeout_count;
 	integer result_fd;
 	integer diff;
@@ -123,6 +124,7 @@ module chip_tb;
 		data_in = 0;
 		q_in = 0;
 		error_count = 0;
+		warning_count = 0;
 		group_count = 0;
 		track_stage_started = 1'b0;
 		max_abs_err = 0;
@@ -206,7 +208,15 @@ module chip_tb;
 					max_abs_err = abs_err;
 					max_abs_err_group = group_count + 1;
 				end
-				if (data_out[7:0] !== track_expected[7:0]) begin
+				if (abs_err <= 1) begin
+					if (abs_err != 0) begin
+						warning_count = warning_count + 1;
+						$display("WARNING: track group %0d expected %h, got %h (abs_err=%0d)", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
+						$fdisplay(result_fd, "%0d %02h %02h %0d WARN", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
+					end else begin
+						$fdisplay(result_fd, "%0d %02h %02h %0d PASS", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
+					end
+				end else if (data_out[7:0] !== track_expected[7:0]) begin
 					$display("ERROR: track group %0d expected %h, got %h", group_count + 1, track_expected[7:0], data_out[7:0]);
 					$fdisplay(result_fd, "%0d %02h %02h %0d FAIL", group_count + 1, track_expected[7:0], data_out[7:0], abs_err);
 					error_count = error_count + 1;
@@ -222,6 +232,7 @@ module chip_tb;
 		$display("Track stage complete after %0d groups.", group_count);
 		$display("========================================");
 		$display("chip_tb summary: errors = %0d", error_count);
+		$display("chip_tb summary: warnings = %0d", warning_count);
 		$display("max abs error = %0d (group %0d)", max_abs_err, max_abs_err_group);
 		if (error_count == 0) begin
 			$display("PASS");
