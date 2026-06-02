@@ -21,10 +21,10 @@ current_design CHIP
 link
 
 #read_sdc ./CHIP.sdc
-read_sdc ./CHIP_pt.sdc
+read_sdc ./CHIP_postAPR.sdc
 read_sdf -load_delay net ./CHIP.sdf
 
-read_vcd -strip_path ALU_test/top ./alu.vcd
+read_vcd -strip_path CHIP_syn_tb/dut ./CHIP_syn_tb.vcd
 
 update_timing
 update_power
