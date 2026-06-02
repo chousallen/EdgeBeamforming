@@ -1,5 +1,38 @@
-Information: Running time_based power analysis... (PWR-601)
-Information: Reading vcd file '/home/raid7_2/userb11/b11056/EdgeBeamforming/Verilog/APR/CHIP_syn_tb.vcd'
-Error: Can not find any event in the event file.  (PWR-248)
-Error: Power is not calculated. Please run update_power before report_power.  (PRPT-115)
-0
+****************************************
+Report : Time Based Power
+Design : CHIP
+Version: U-2022.12
+Date   : Wed Jun  3 00:05:23 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational              0.0107    0.0216 7.942e-07    0.0323 (66.04%)  
+sequential                 0.0145 3.774e-04 3.453e-07    0.0149 (30.47%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                  1.596e-03 1.067e-04 2.381e-07 1.703e-03 ( 3.48%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  =    0.0221   (45.13%)
+  Cell Internal Power  =    0.0268   (54.86%)
+  Cell Leakage Power   = 1.378e-06   ( 0.00%)
+                         ---------
+Total Power            =    0.0489  (100.00%)
+
+X Transition Power     =    0.0000
+Glitching Power        =    0.0000
+
+Peak Power             =    2.0428
+Peak Time              =  1568.184
+
+1
