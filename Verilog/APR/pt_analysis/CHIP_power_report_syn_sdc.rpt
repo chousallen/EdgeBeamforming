@@ -1,0 +1,5 @@
+Information: Running time_based power analysis... (PWR-601)
+Information: Reading vcd file '/home/raid7_2/userb11/b11056/EdgeBeamforming/Verilog/APR/CHIP_syn_tb.vcd'
+Error: Can not find any event in the event file.  (PWR-248)
+Error: Power is not calculated. Please run update_power before report_power.  (PRPT-115)
+0
