@@ -7,9 +7,562 @@ Report : timing
 	-sort_by slack
 Design : CHIP
 Version: U-2022.12
-Date   : Wed Jun  3 00:05:23 2026
+Date   : Wed Jun  3 01:01:02 2026
 ****************************************
 
-No constrained paths.
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/comparison_inst/Q_acc_reg[11]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L2_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                     Incr       Path
+  ------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                     0.00       0.00
+  clock network delay (propagated)                                         -0.30      -0.30
+  beamforming_in/steer_inst/valid_sr_reg[12]/CK (QDFFRBP)                   0.00      -0.30 r
+  beamforming_in/steer_inst/valid_sr_reg[12]/Q (QDFFRBP)                    0.41 *     0.11 f
+  FE_PHC2923_beamforming_in_steer_inst_valid_sr_12/O (DELC)                 0.94 *     1.05 f
+  FE_OFC472_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.22 *     1.27 f
+  FE_OFC476_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.16 *     1.42 f
+  U5323/O (NR2F)                                                            0.11 *     1.54 r
+  FE_OFC1245_n2837/O (BUF4CK)                                               0.19 *     1.73 r
+  FE_OFC1781_n2837/O (BUF2)                                                 0.18 *     1.91 r
+  FE_OFC1820_n2837/O (BUF1CK)                                               0.18 *     2.09 r
+  U5334/O (ND2)                                                             0.12 *     2.21 f
+  U2924/O (ND3P)                                                            0.22 *     2.44 r
+  U5345/O (INV2)                                                            0.10 *     2.54 f
+  U2885/CO (FA1)                                                            0.44 *     2.98 f
+  FE_RC_199_0/O (XOR2HS)                                                    0.21 *     3.19 f
+  FE_RC_455_0/O (XOR2H)                                                     0.21 *     3.40 f
+  U5352/O (NR2P)                                                            0.23 *     3.63 r
+  U5354/O (NR2T)                                                            0.17 *     3.80 f
+  U5389/O (AOI12HP)                                                         0.20 *     3.99 r
+  U5390/O (OAI12HP)                                                         0.13 *     4.12 f
+  U5422/O (AOI12HS)                                                         0.19 *     4.32 r
+  U3292/O (XOR2HS)                                                          0.22 *     4.54 r
+  FE_RC_75_0/O (AO12T)                                                      0.22 *     4.76 r
+  FE_PHC3206_n4379/O (BUF1S)                                                0.47 *     5.22 r
+  FE_OFC1500_n4379/O (BUF3)                                                 0.28 *     5.50 r
+  U5739/O (NR2P)                                                            0.12 *     5.62 f
+  U4396/O (NR2)                                                             0.26 *     5.88 r
+  U6726/O (ND2)                                                             0.14 *     6.01 f
+  U6729/O (OAI12H)                                                          0.21 *     6.23 r
+  U6733/O (AOI12H)                                                          0.12 *     6.34 f
+  U6734/O (XOR2HS)                                                          0.15 *     6.50 f
+  U6735/O (ND2S)                                                            0.12 *     6.62 r
+  U6736/O (ND3)                                                             0.11 *     6.73 f
+  beamforming_in/comparison_inst/Q_acc_reg[11]/D (QDFFRBN)                  0.00 *     6.73 f
+  data arrival time                                                                    6.73
+
+  clock clk (rise edge)                                                     5.00       5.00
+  clock network delay (propagated)                                          0.96 *     5.96
+  clock reconvergence pessimism                                             0.00       5.96
+  clock uncertainty                                                        -0.10       5.86
+  beamforming_in/comparison_inst/Q_acc_reg[11]/CK (QDFFRBN)                            5.86 r
+  library setup time                                                       -0.17 *     5.69
+  data required time                                                                   5.69
+  ------------------------------------------------------------------------------------------------
+  data required time                                                                   5.69
+  data arrival time                                                                   -6.73
+  ------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                    -1.03
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/comparison_inst/I_acc_reg[2]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L2_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                     Incr       Path
+  ------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                     0.00       0.00
+  clock network delay (propagated)                                         -0.30      -0.30
+  beamforming_in/steer_inst/valid_sr_reg[12]/CK (QDFFRBP)                   0.00      -0.30 r
+  beamforming_in/steer_inst/valid_sr_reg[12]/Q (QDFFRBP)                    0.40 *     0.10 r
+  FE_PHC2923_beamforming_in_steer_inst_valid_sr_12/O (DELC)                 0.96 *     1.06 r
+  FE_OFC472_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.17 *     1.23 r
+  FE_OFC476_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.14 *     1.37 r
+  U5323/O (NR2F)                                                            0.07 *     1.44 f
+  FE_OFC1245_n2837/O (BUF4CK)                                               0.16 *     1.60 f
+  FE_OFC1815_n2837/O (BUF1CK)                                               0.16 *     1.77 f
+  FE_OFC1246_n2837/O (BUF2)                                                 0.19 *     1.96 f
+  U5525/O (AO222P)                                                          0.49 *     2.45 f
+  U5562/O (NR2)                                                             0.19 *     2.64 r
+  FE_RC_325_0/O (XOR3)                                                      0.38 *     3.02 f
+  U2834/S (FA1)                                                             0.34 *     3.35 f
+  U2813/O (NR2P)                                                            0.18 *     3.53 r
+  U5564/O (NR2P)                                                            0.13 *     3.66 f
+  U2790/O (AOI12HP)                                                         0.22 *     3.88 r
+  U5586/O (INV2)                                                            0.10 *     3.99 f
+  U5597/O (XNR2HS)                                                          0.21 *     4.19 f
+  U4999/O (ND2P)                                                            0.15 *     4.34 r
+  FE_RC_520_0/O (ND2T)                                                      0.08 *     4.42 f
+  FE_OFC1457_n5142/O (BUF2)                                                 0.21 *     4.63 f
+  U3256/O (ND2)                                                             0.11 *     4.75 r
+  U3095/O (INV1S)                                                           0.13 *     4.87 f
+  U2637/O (AOI12H)                                                          0.19 *     5.06 r
+  U11139/O (INV1S)                                                          0.16 *     5.22 f
+  U11144/O (XNR2HS)                                                         0.22 *     5.44 f
+  U3444/O (AO222)                                                           0.44 *     5.88 f
+  FE_PHC3177_n1648/O (DELC)                                                 0.84 *     6.72 f
+  beamforming_in/comparison_inst/I_acc_reg[2]/D (QDFFRBN)                   0.00 *     6.72 f
+  data arrival time                                                                    6.72
+
+  clock clk (rise edge)                                                     5.00       5.00
+  clock network delay (propagated)                                          0.96 *     5.96
+  clock reconvergence pessimism                                             0.00       5.96
+  clock uncertainty                                                        -0.10       5.86
+  beamforming_in/comparison_inst/I_acc_reg[2]/CK (QDFFRBN)                             5.86 r
+  library setup time                                                       -0.17 *     5.70
+  data required time                                                                   5.70
+  ------------------------------------------------------------------------------------------------
+  data required time                                                                   5.70
+  data arrival time                                                                   -6.72
+  ------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                    -1.03
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[6]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/steer_inst/u_c1s2/ya_out_reg[7]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_INV_clk_G0_L4_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                      Incr       Path
+  -------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                      0.00       0.00
+  clock network delay (propagated)                                           0.03 *     0.03
+  beamforming_in/steer_inst/valid_sr_reg[6]/CK (QDFFRBP)                     0.00       0.03 r
+  beamforming_in/steer_inst/valid_sr_reg[6]/Q (QDFFRBP)                      0.40 *     0.43 f
+  FE_PHC2899_beamforming_in_steer_inst_valid_sr_6/O (DELC)                   1.01 *     1.44 f
+  FE_OFC1249_beamforming_in_steer_inst_valid_sr_6/O (BUF1CK)                 0.26 *     1.70 f
+  FE_OFC1257_beamforming_in_steer_inst_valid_sr_6/O (BUF2)                   0.23 *     1.93 f
+  FE_OFC1779_beamforming_in_steer_inst_valid_sr_6/O (BUF2)                   0.20 *     2.13 f
+  FE_OFC1819_beamforming_in_steer_inst_valid_sr_6/O (BUF2)                   0.19 *     2.32 f
+  U9150/O (ND2)                                                              0.09 *     2.42 r
+  U2888/O (OAI12HS)                                                          0.17 *     2.58 f
+  U9747/O (MUX2)                                                             0.33 *     2.91 f
+  FE_RC_523_0/O (OA12P)                                                      0.25 *     3.16 f
+  U4612/O (AO112)                                                            0.35 *     3.51 f
+  U4939/O (XOR2HS)                                                           0.18 *     3.70 r
+  U9769/O (NR2T)                                                             0.12 *     3.82 f
+  U9799/O (OAI12HS)                                                          0.25 *     4.06 r
+  U3122/O (AOI12H)                                                           0.10 *     4.16 f
+  U9807/O (OAI12H)                                                           0.21 *     4.37 r
+  U9815/O (AOI12H)                                                           0.15 *     4.52 f
+  U4990/O (OAI12H)                                                           0.22 *     4.74 r
+  U9831/O (AOI12H)                                                           0.15 *     4.89 f
+  FE_RC_205_0/O (MOAI1H)                                                     0.19 *     5.08 r
+  U4734/O (AOI12H)                                                           0.14 *     5.23 f
+  U3442/O (OAI12H)                                                           0.22 *     5.45 r
+  U10015/O (AOI12HS)                                                         0.14 *     5.59 f
+  U10016/O (XOR2HS)                                                          0.17 *     5.76 f
+  U11078/O (MUX2)                                                            0.37 *     6.12 f
+  FE_PHC3170_n1738/O (DELB)                                                  0.57 *     6.70 f
+  beamforming_in/steer_inst/u_c1s2/ya_out_reg[7]/D (QDFFRBN)                 0.00 *     6.70 f
+  data arrival time                                                                     6.70
+
+  clock clk (rise edge)                                                      5.00       5.00
+  clock network delay (propagated)                                           0.94 *     5.94
+  clock reconvergence pessimism                                              0.00       5.94
+  clock uncertainty                                                         -0.10       5.84
+  beamforming_in/steer_inst/u_c1s2/ya_out_reg[7]/CK (QDFFRBN)                           5.84 r
+  library setup time                                                        -0.16 *     5.68
+  data required time                                                                    5.68
+  -------------------------------------------------------------------------------------------------
+  data required time                                                                    5.68
+  data arrival time                                                                    -6.70
+  -------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                     -1.02
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/steer_inst/u_c2s1/anga_out_reg[-3]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L6_3/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                               Incr       Path
+  ----------------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                               0.00       0.00
+  clock network delay (propagated)                                                    0.13 *     0.13
+  beamforming_in/steer_inst/valid_sr_reg[2]/CK (QDFFRBP)                              0.00       0.13 r
+  beamforming_in/steer_inst/valid_sr_reg[2]/Q (QDFFRBP)                               0.42 *     0.55 f
+  FE_PHC2926_beamforming_in_steer_inst_valid_sr_2/O (DELC)                            0.96 *     1.51 f
+  FE_OFC1580_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                            0.23 *     1.74 f
+  FE_PHC3098_FE_OFN5993_beamforming_in_steer_inst_valid_sr_2/O (DELC)                 0.91 *     2.65 f
+  FE_OFC538_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                             0.30 *     2.95 f
+  U3056/O (ND2S)                                                                      0.15 *     3.11 r
+  U3081/O (MOAI1S)                                                                    0.15 *     3.26 f
+  U7307/O (AO12)                                                                      0.35 *     3.60 f
+  U7308/O (OR2T)                                                                      0.19 *     3.79 f
+  FE_OFC1596_n6240/O (INV3)                                                           0.09 *     3.88 r
+  FE_OFC1597_n6240/O (BUF3)                                                           0.20 *     4.08 r
+  FE_OFC1794_FE_DBTN5_n6240/O (BUF1)                                                  0.30 *     4.38 r
+  U8127/O (XOR2HS)                                                                    0.22 *     4.60 r
+  U8149/O (ND2)                                                                       0.09 *     4.69 f
+  FE_PHC3100_n5898/O (DELB)                                                           0.57 *     5.26 f
+  U8150/O (OAI12HS)                                                                   0.15 *     5.42 r
+  U8171/O (INV1S)                                                                     0.12 *     5.54 f
+  U8172/O (OAI12HS)                                                                   0.19 *     5.73 r
+  U8173/O (AOI12HS)                                                                   0.09 *     5.82 f
+  U8174/O (XOR2HS)                                                                    0.15 *     5.98 f
+  FE_PHC3807_n7106/O (BUF1S)                                                          0.26 *     6.24 f
+  U9087/O (MUX2)                                                                      0.28 *     6.52 f
+  FE_PHC3814_n1948/O (BUF1CK)                                                         0.14 *     6.67 f
+  beamforming_in/steer_inst/u_c2s1/anga_out_reg[-3]/D (QDFFRBN)                       0.00 *     6.67 f
+  data arrival time                                                                              6.67
+
+  clock clk (rise edge)                                                               5.00       5.00
+  clock network delay (propagated)                                                    0.94 *     5.94
+  clock reconvergence pessimism                                                       0.00       5.94
+  clock uncertainty                                                                  -0.10       5.84
+  beamforming_in/steer_inst/u_c2s1/anga_out_reg[-3]/CK (QDFFRBN)                                 5.84 r
+  library setup time                                                                 -0.16 *     5.68
+  data required time                                                                             5.68
+  ----------------------------------------------------------------------------------------------------------
+  data required time                                                                             5.68
+  data arrival time                                                                             -6.67
+  ----------------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                              -0.99
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[7]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/steer_inst/u_c2s2/anga_r_reg[0]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_INV_clk_G0_L4_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                      Incr       Path
+  -------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                      0.00       0.00
+  clock network delay (propagated)                                           0.03 *     0.03
+  beamforming_in/steer_inst/valid_sr_reg[7]/CK (QDFFRBP)                     0.00       0.03 r
+  beamforming_in/steer_inst/valid_sr_reg[7]/Q (QDFFRBP)                      0.40 *     0.43 f
+  FE_PHC2892_beamforming_in_steer_inst_valid_sr_7/O (DELC)                   0.94 *     1.37 f
+  U4938/O (MUX2)                                                             0.51 *     1.88 f
+  FE_OFC1408_n6925/O (INV2)                                                  0.21 *     2.09 r
+  FE_OFC1793_FE_OFN915_FE_DBTN32_n6925/O (BUF2)                              0.23 *     2.32 r
+  FE_OFC1794_FE_OFN915_FE_DBTN32_n6925/O (BUF1CK)                            0.21 *     2.53 r
+  U9028/O (XOR2HS)                                                           0.15 *     2.68 r
+  U9029/O (OR2)                                                              0.21 *     2.89 r
+  U3112/O (AOI12HS)                                                          0.13 *     3.03 f
+  U9035/O (OAI12HS)                                                          0.28 *     3.31 r
+  U9040/O (AOI12HS)                                                          0.17 *     3.48 f
+  U9044/O (OAI12HS)                                                          0.29 *     3.77 r
+  U4978/O (AOI12HS)                                                          0.25 *     4.02 f
+  FE_RC_568_0/O (OAI12HP)                                                    0.25 *     4.27 r
+  FE_RC_476_0/O (AOI22HP)                                                    0.10 *     4.37 f
+  U9061/O (OAI12HS)                                                          0.29 *     4.67 r
+  U9067/O (AOI12HS)                                                          0.18 *     4.84 f
+  U9072/O (OAI12HS)                                                          0.28 *     5.13 r
+  U4979/O (AOI12HS)                                                          0.18 *     5.31 f
+  U5000/O (OA12)                                                             0.27 *     5.57 f
+  FE_PHC3009_n7198/O (DELC)                                                  0.81 *     6.39 f
+  U9138/O (MUX2)                                                             0.29 *     6.68 f
+  beamforming_in/steer_inst/u_c2s2/anga_r_reg[0]/D (QDFFRBN)                 0.00 *     6.68 f
+  data arrival time                                                                     6.68
+
+  clock clk (rise edge)                                                      5.00       5.00
+  clock network delay (propagated)                                           0.96 *     5.96
+  clock reconvergence pessimism                                              0.00       5.96
+  clock uncertainty                                                         -0.10       5.86
+  beamforming_in/steer_inst/u_c2s2/anga_r_reg[0]/CK (QDFFRBN)                           5.86 r
+  library setup time                                                        -0.16 *     5.70
+  data required time                                                                    5.70
+  -------------------------------------------------------------------------------------------------
+  data required time                                                                    5.70
+  data arrival time                                                                    -6.68
+  -------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                     -0.98
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/steer_inst/u_c2s1/anga_r_reg[-3]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L6_3/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                               Incr       Path
+  ----------------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                               0.00       0.00
+  clock network delay (propagated)                                                    0.13 *     0.13
+  beamforming_in/steer_inst/valid_sr_reg[2]/CK (QDFFRBP)                              0.00       0.13 r
+  beamforming_in/steer_inst/valid_sr_reg[2]/Q (QDFFRBP)                               0.42 *     0.55 f
+  FE_PHC2926_beamforming_in_steer_inst_valid_sr_2/O (DELC)                            0.96 *     1.51 f
+  FE_OFC1580_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                            0.23 *     1.74 f
+  FE_PHC3098_FE_OFN5993_beamforming_in_steer_inst_valid_sr_2/O (DELC)                 0.91 *     2.65 f
+  FE_OFC538_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                             0.30 *     2.95 f
+  U3056/O (ND2S)                                                                      0.15 *     3.11 r
+  U3081/O (MOAI1S)                                                                    0.15 *     3.26 f
+  U7307/O (AO12)                                                                      0.35 *     3.60 f
+  U7308/O (OR2T)                                                                      0.19 *     3.79 f
+  FE_OFC1596_n6240/O (INV3)                                                           0.09 *     3.88 r
+  FE_OFC1597_n6240/O (BUF3)                                                           0.20 *     4.08 r
+  FE_OFC1794_FE_DBTN5_n6240/O (BUF1)                                                  0.30 *     4.38 r
+  U8127/O (XOR2HS)                                                                    0.22 *     4.60 r
+  U8149/O (ND2)                                                                       0.09 *     4.69 f
+  FE_PHC3100_n5898/O (DELB)                                                           0.57 *     5.26 f
+  U8150/O (OAI12HS)                                                                   0.15 *     5.42 r
+  U8171/O (INV1S)                                                                     0.12 *     5.54 f
+  U8172/O (OAI12HS)                                                                   0.19 *     5.73 r
+  U8173/O (AOI12HS)                                                                   0.09 *     5.82 f
+  U8174/O (XOR2HS)                                                                    0.15 *     5.98 f
+  FE_PHC3807_n7106/O (BUF1S)                                                          0.26 *     6.24 f
+  U8175/O (MUX2)                                                                      0.29 *     6.53 f
+  FE_PHC3813_n1381/O (BUF1CK)                                                         0.15 *     6.67 f
+  beamforming_in/steer_inst/u_c2s1/anga_r_reg[-3]/D (QDFFRBN)                         0.00 *     6.67 f
+  data arrival time                                                                              6.67
+
+  clock clk (rise edge)                                                               5.00       5.00
+  clock network delay (propagated)                                                    0.97 *     5.97
+  clock reconvergence pessimism                                                       0.00       5.97
+  clock uncertainty                                                                  -0.10       5.87
+  beamforming_in/steer_inst/u_c2s1/anga_r_reg[-3]/CK (QDFFRBN)                                   5.87 r
+  library setup time                                                                 -0.16 *     5.71
+  data required time                                                                             5.71
+  ----------------------------------------------------------------------------------------------------------
+  data required time                                                                             5.71
+  data arrival time                                                                             -6.67
+  ----------------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                              -0.96
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/steer_inst/u_c2s1/anga_out_reg[-10]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L6_3/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                               Incr       Path
+  ----------------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                               0.00       0.00
+  clock network delay (propagated)                                                    0.13 *     0.13
+  beamforming_in/steer_inst/valid_sr_reg[2]/CK (QDFFRBP)                              0.00       0.13 r
+  beamforming_in/steer_inst/valid_sr_reg[2]/Q (QDFFRBP)                               0.42 *     0.55 f
+  FE_PHC2926_beamforming_in_steer_inst_valid_sr_2/O (DELC)                            0.96 *     1.51 f
+  FE_OFC1580_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                            0.23 *     1.74 f
+  FE_PHC3098_FE_OFN5993_beamforming_in_steer_inst_valid_sr_2/O (DELC)                 0.91 *     2.65 f
+  FE_OFC538_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                             0.30 *     2.95 f
+  FE_OFC540_beamforming_in_steer_inst_valid_sr_2/O (BUF1)                             0.27 *     3.22 f
+  U8102/O (MUX2)                                                                      0.29 *     3.51 f
+  FE_PHC3101_n5814/O (DELC)                                                           0.85 *     4.36 f
+  U8104/O (NR2)                                                                       0.26 *     4.62 r
+  U8105/O (NR2)                                                                       0.11 *     4.73 f
+  U8109/O (AOI12HS)                                                                   0.23 *     4.95 r
+  U2617/O (INV1S)                                                                     0.29 *     5.24 f
+  U8211/O (XNR2HS)                                                                    0.24 *     5.48 f
+  U9117/O (MUX2)                                                                      0.30 *     5.78 f
+  FE_PHC3184_n1955/O (DELC)                                                           0.85 *     6.63 f
+  beamforming_in/steer_inst/u_c2s1/anga_out_reg[-10]/D (QDFFRBN)                      0.00 *     6.63 f
+  data arrival time                                                                              6.63
+
+  clock clk (rise edge)                                                               5.00       5.00
+  clock network delay (propagated)                                                    0.94 *     5.94
+  clock reconvergence pessimism                                                       0.00       5.94
+  clock uncertainty                                                                  -0.10       5.84
+  beamforming_in/steer_inst/u_c2s1/anga_out_reg[-10]/CK (QDFFRBN)                                5.84 r
+  library setup time                                                                 -0.17 *     5.67
+  data required time                                                                             5.67
+  ----------------------------------------------------------------------------------------------------------
+  data required time                                                                             5.67
+  data arrival time                                                                             -6.63
+  ----------------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                              -0.96
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/comparison_inst/Q_acc_reg[9]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L2_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                     Incr       Path
+  ------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                     0.00       0.00
+  clock network delay (propagated)                                         -0.30      -0.30
+  beamforming_in/steer_inst/valid_sr_reg[12]/CK (QDFFRBP)                   0.00      -0.30 r
+  beamforming_in/steer_inst/valid_sr_reg[12]/Q (QDFFRBP)                    0.41 *     0.11 f
+  FE_PHC2923_beamforming_in_steer_inst_valid_sr_12/O (DELC)                 0.94 *     1.05 f
+  FE_OFC472_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.22 *     1.27 f
+  FE_OFC476_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.16 *     1.42 f
+  U5323/O (NR2F)                                                            0.11 *     1.54 r
+  FE_OFC1245_n2837/O (BUF4CK)                                               0.19 *     1.73 r
+  FE_OFC1781_n2837/O (BUF2)                                                 0.18 *     1.91 r
+  FE_OFC1820_n2837/O (BUF1CK)                                               0.18 *     2.09 r
+  U5334/O (ND2)                                                             0.12 *     2.21 f
+  U2924/O (ND3P)                                                            0.22 *     2.44 r
+  U5345/O (INV2)                                                            0.10 *     2.54 f
+  U2885/CO (FA1)                                                            0.44 *     2.98 f
+  FE_RC_199_0/O (XOR2HS)                                                    0.21 *     3.19 f
+  FE_RC_455_0/O (XOR2H)                                                     0.21 *     3.40 f
+  U5352/O (NR2P)                                                            0.23 *     3.63 r
+  U5354/O (NR2T)                                                            0.17 *     3.80 f
+  U5389/O (AOI12HP)                                                         0.20 *     3.99 r
+  U5390/O (OAI12HP)                                                         0.13 *     4.12 f
+  U5422/O (AOI12HS)                                                         0.19 *     4.32 r
+  U3292/O (XOR2HS)                                                          0.22 *     4.54 r
+  FE_RC_75_0/O (AO12T)                                                      0.22 *     4.76 r
+  FE_PHC3206_n4379/O (BUF1S)                                                0.46 *     5.22 r
+  FE_OFC1500_n4379/O (BUF3)                                                 0.28 *     5.50 r
+  U5739/O (NR2P)                                                            0.12 *     5.62 f
+  U4479/O (OAI12H)                                                          0.24 *     5.86 r
+  U5745/O (INV1S)                                                           0.11 *     5.97 f
+  U5746/O (OAI12HS)                                                         0.19 *     6.16 r
+  U5747/O (AOI12HS)                                                         0.09 *     6.26 f
+  U5748/O (XOR2HS)                                                          0.16 *     6.41 f
+  U5749/O (ND2S)                                                            0.12 *     6.54 r
+  U5751/O (ND3)                                                             0.11 *     6.65 f
+  beamforming_in/comparison_inst/Q_acc_reg[9]/D (QDFFRBN)                   0.00 *     6.65 f
+  data arrival time                                                                    6.65
+
+  clock clk (rise edge)                                                     5.00       5.00
+  clock network delay (propagated)                                          0.96 *     5.96
+  clock reconvergence pessimism                                             0.00       5.96
+  clock uncertainty                                                        -0.10       5.86
+  beamforming_in/comparison_inst/Q_acc_reg[9]/CK (QDFFRBN)                             5.86 r
+  library setup time                                                       -0.17 *     5.69
+  data required time                                                                   5.69
+  ------------------------------------------------------------------------------------------------
+  data required time                                                                   5.69
+  data arrival time                                                                   -6.65
+  ------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                    -0.96
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/track_inst/R_acc_i_r_reg[5]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L2_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                     Incr       Path
+  ------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                     0.00       0.00
+  clock network delay (propagated)                                         -0.30      -0.30
+  beamforming_in/steer_inst/valid_sr_reg[12]/CK (QDFFRBP)                   0.00      -0.30 r
+  beamforming_in/steer_inst/valid_sr_reg[12]/Q (QDFFRBP)                    0.40 *     0.10 r
+  FE_PHC2923_beamforming_in_steer_inst_valid_sr_12/O (DELC)                 0.96 *     1.06 r
+  FE_OFC472_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.17 *     1.23 r
+  FE_OFC476_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.14 *     1.37 r
+  U5323/O (NR2F)                                                            0.07 *     1.44 f
+  FE_OFC1245_n2837/O (BUF4CK)                                               0.16 *     1.60 f
+  FE_OFC1815_n2837/O (BUF1CK)                                               0.16 *     1.77 f
+  FE_OFC1246_n2837/O (BUF2)                                                 0.19 *     1.96 f
+  U5525/O (AO222P)                                                          0.49 *     2.45 f
+  U5562/O (NR2)                                                             0.19 *     2.64 r
+  FE_RC_325_0/O (XOR3)                                                      0.38 *     3.02 f
+  U2834/S (FA1)                                                             0.34 *     3.35 f
+  U2813/O (NR2P)                                                            0.18 *     3.53 r
+  U5564/O (NR2P)                                                            0.13 *     3.66 f
+  U2790/O (AOI12HP)                                                         0.22 *     3.88 r
+  U5586/O (INV2)                                                            0.10 *     3.99 f
+  U2763/O (AOI12HS)                                                         0.19 *     4.18 r
+  U7305/O (XOR2HS)                                                          0.16 *     4.34 f
+  U7283/O (AO12)                                                            0.40 *     4.73 f
+  U3266/O (ND2)                                                             0.17 *     4.90 r
+  FE_OFC1658_n9936/O (INV2CK)                                               0.13 *     5.03 f
+  U5697/O (AOI12HP)                                                         0.16 *     5.19 r
+  FE_RC_112_0/O (OAI13HP)                                                   0.15 *     5.35 f
+  U4674/O (INV2)                                                            0.12 *     5.46 r
+  U11247/O (OAI12HS)                                                        0.12 *     5.58 f
+  U11248/O (XNR2HS)                                                         0.16 *     5.74 f
+  U11249/O (AO222)                                                          0.33 *     6.07 f
+  FE_PHC3198_n1552/O (DELB)                                                 0.55 *     6.61 f
+  beamforming_in/track_inst/R_acc_i_r_reg[5]/D (QDFFRBS)                    0.00 *     6.61 f
+  data arrival time                                                                    6.61
+
+  clock clk (rise edge)                                                     5.00       5.00
+  clock network delay (propagated)                                          0.92 *     5.92
+  clock reconvergence pessimism                                             0.00       5.92
+  clock uncertainty                                                        -0.10       5.82
+  beamforming_in/track_inst/R_acc_i_r_reg[5]/CK (QDFFRBS)                              5.82 r
+  library setup time                                                       -0.16 *     5.66
+  data required time                                                                   5.66
+  ------------------------------------------------------------------------------------------------
+  data required time                                                                   5.66
+  data arrival time                                                                   -6.61
+  ------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                    -0.95
+
+
+  Startpoint: beamforming_in/steer_inst/valid_sr_reg[12]
+               (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: beamforming_in/comparison_inst/I_acc_reg[4]
+               (rising edge-triggered flip-flop clocked by clk)
+  Last common pin: CTS_ccl_a_INV_clk_G0_L2_1/O
+  Path Group: clk
+  Path Type: max
+
+  Point                                                                     Incr       Path
+  ------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                     0.00       0.00
+  clock network delay (propagated)                                         -0.30      -0.30
+  beamforming_in/steer_inst/valid_sr_reg[12]/CK (QDFFRBP)                   0.00      -0.30 r
+  beamforming_in/steer_inst/valid_sr_reg[12]/Q (QDFFRBP)                    0.40 *     0.10 r
+  FE_PHC2923_beamforming_in_steer_inst_valid_sr_12/O (DELC)                 0.96 *     1.06 r
+  FE_OFC472_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.17 *     1.23 r
+  FE_OFC476_beamforming_in_steer_inst_valid_sr_12/O (BUF6)                  0.14 *     1.37 r
+  U5323/O (NR2F)                                                            0.07 *     1.44 f
+  FE_OFC1245_n2837/O (BUF4CK)                                               0.16 *     1.60 f
+  FE_OFC1815_n2837/O (BUF1CK)                                               0.16 *     1.77 f
+  FE_OFC1246_n2837/O (BUF2)                                                 0.19 *     1.96 f
+  U5525/O (AO222P)                                                          0.49 *     2.45 f
+  U5562/O (NR2)                                                             0.19 *     2.64 r
+  FE_RC_325_0/O (XOR3)                                                      0.38 *     3.02 f
+  U2834/S (FA1)                                                             0.34 *     3.35 f
+  U2813/O (NR2P)                                                            0.18 *     3.53 r
+  U5564/O (NR2P)                                                            0.13 *     3.66 f
+  U2790/O (AOI12HP)                                                         0.22 *     3.88 r
+  U5586/O (INV2)                                                            0.10 *     3.99 f
+  U5587/O (AOI12HS)                                                         0.19 *     4.18 r
+  U7328/O (XOR2HS)                                                          0.20 *     4.38 r
+  U4416/O (AO12P)                                                           0.32 *     4.70 r
+  FE_RC_461_0/O (NR2T)                                                      0.09 *     4.80 f
+  FE_RC_462_0/O (INV2)                                                      0.09 *     4.89 r
+  FE_RC_98_0/O (OAI12HS)                                                    0.12 *     5.01 f
+  U4975/O (OAI12H)                                                          0.27 *     5.28 r
+  U4998/O (INV1S)                                                           0.18 *     5.46 f
+  U11134/O (XOR2HS)                                                         0.18 *     5.64 f
+  U11135/O (AO222)                                                          0.41 *     6.05 f
+  FE_PHC3194_n1646/O (DELB)                                                 0.55 *     6.60 f
+  beamforming_in/comparison_inst/I_acc_reg[4]/D (QDFFRBN)                   0.00 *     6.60 f
+  data arrival time                                                                    6.60
+
+  clock clk (rise edge)                                                     5.00       5.00
+  clock network delay (propagated)                                          0.91 *     5.91
+  clock reconvergence pessimism                                             0.00       5.91
+  clock uncertainty                                                        -0.10       5.81
+  beamforming_in/comparison_inst/I_acc_reg[4]/CK (QDFFRBN)                             5.81 r
+  library setup time                                                       -0.16 *     5.65
+  data required time                                                                   5.65
+  ------------------------------------------------------------------------------------------------
+  data required time                                                                   5.65
+  data arrival time                                                                   -6.60
+  ------------------------------------------------------------------------------------------------
+  slack (VIOLATED)                                                                    -0.95
+
+Warning: report_timing has satisfied the max_paths criteria. There are 369 further endpoints which have paths of interest with slack less than   999.00 that were not considered when generating this report. (UITE-502)
 
 1
