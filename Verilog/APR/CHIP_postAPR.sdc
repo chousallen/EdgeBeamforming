@@ -4,7 +4,7 @@
 #  Generated on:      Sat Jun  6 23:51:01 2026
 #  Design:            CHIP
 ###############################################################
-current_design CHIP
+#current_design CHIP
 create_clock [get_ports {clk}]  -name clk -period 5.000000 -waveform {0.000000 2.000000}
 set_clock_latency 0.5  [get_clocks {clk}]
 set_propagated_clock  [get_ports {clk}]
@@ -45,7 +45,7 @@ set_load -pin_load -max  10  [get_ports {data_out[1]}]
 set_load -pin_load -min  10  [get_ports {data_out[1]}]
 set_load -pin_load -max  10  [get_ports {data_out[0]}]
 set_load -pin_load -min  10  [get_ports {data_out[0]}]
-set_max_fanout 6  [get_designs {CHIP}]
+set_max_fanout 6  [current_design]
 set_input_delay -add_delay 1 -max -clock [get_clocks {clk}] [get_ports {data_in[4]}]
 set_input_delay -add_delay 1 -max -clock [get_clocks {clk}] [get_ports {data_in[2]}]
 set_input_delay -add_delay 1 -max -clock [get_clocks {clk}] [get_ports {rst_n}]
