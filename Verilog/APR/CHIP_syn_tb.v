@@ -139,7 +139,7 @@ module CHIP_syn_tb;
 	initial begin
 `ifdef DUMP
 		$dumpfile("CHIP_syn_tb.vcd");
-		$dumpvars(1, CHIP_syn_tb);
+		$dumpvars;
 `endif
 
 		clk = 0;
