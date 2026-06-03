@@ -5,7 +5,7 @@ module CHIP_syn_tb;
 
 	parameter IW = 10;
 	parameter OW = 10;
-	parameter CLK_PERIOD = 5;
+	parameter CLK_PERIOD = 6.5;
 	parameter MAX_WAIT_CYCLES = 1000;
 
 	reg clk;
