@@ -4,7 +4,7 @@
 set CYCLE_TIME 5
 
 # Set the optimization constraints
-create_clock -period $CYCLE_TIME -name "clk" -waveform [list 0 [expr $CYCLE_TIME / 2]] "clk"
+create_clock -name clk -period $CYCLE_TIME -waveform [list 0 [expr {$CYCLE_TIME / 2.0}]] [get_ports clk]
 set_dont_touch_network [get_ports clk]
 set_fix_hold [get_clocks clk]
 
