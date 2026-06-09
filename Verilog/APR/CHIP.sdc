@@ -25,7 +25,7 @@ set_load -pin_load 10 [get_ports {data_out[3]}]
 set_load -pin_load 10 [get_ports {data_out[2]}]
 set_load -pin_load 10 [get_ports {data_out[1]}]
 set_load -pin_load 10 [get_ports {data_out[0]}]
-create_clock [get_ports clk]  -period 5  -waveform {0 2}
+create_clock [get_ports clk]  -period 6  -waveform {0 3}
 set_clock_latency 0.5  [get_clocks clk]
 set_clock_uncertainty 0.1  [get_clocks clk]
 set_input_delay -clock clk  -max 1  [get_ports clk]

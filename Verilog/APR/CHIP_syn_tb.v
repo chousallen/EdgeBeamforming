@@ -1,11 +1,10 @@
 `timescale 1ns / 10ps
-`define SDFFILE   "./CHIP.sdf"
 
 module CHIP_syn_tb;
 
 	parameter IW = 10;
 	parameter OW = 10;
-	parameter CLK_PERIOD = 6.5;
+	parameter CLK_PERIOD = 6;
 	parameter MAX_WAIT_CYCLES = 1000;
 
 	reg clk;
@@ -52,7 +51,7 @@ module CHIP_syn_tb;
 
 `ifdef SDF
 	initial begin
-		$sdf_annotate(`SDFFILE, dut);
+		$sdf_annotate(`SDF, dut);
 	end
 `endif
 
@@ -168,7 +167,7 @@ module CHIP_syn_tb;
 `ifdef DUT_BEAMFORMING
 		result_fd = $fopen("../Testbed/beamforming_syn_output_results.log", "w");
 `else
-		result_fd = $fopen("../Testbed/CHIP_syn_output_results.log", "w");
+		result_fd = $fopen("../CHIP_syn_output_results.log", "w");
 `endif
 		if (result_fd == 0) begin
 			$display("ERROR: Unable to open gate-level output results log for writing");

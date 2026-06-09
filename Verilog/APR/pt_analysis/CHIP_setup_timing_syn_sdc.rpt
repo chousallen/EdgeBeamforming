@@ -7,7 +7,7 @@ Report : timing
 	-sort_by slack
 Design : CHIP
 Version: U-2022.12
-Date   : Tue Jun  9 14:57:08 2026
+Date   : Tue Jun  9 16:07:06 2026
 ****************************************
 
 
@@ -53,18 +53,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/xa_r_reg[-1]/D (QDFFRBN)                  0.00 *     5.98 f
   data arrival time                                                                     5.98
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/xa_r_reg[-1]/CK (QDFFRBN)                            5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/xa_r_reg[-1]/CK (QDFFRBN)                            6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.98
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.74
+  slack (MET)                                                                           0.26
 
 
   Startpoint: beamforming_in/steer_inst/u_c1s1/iter_r_reg[0]
@@ -112,18 +112,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c1s1/xb_r_reg[5]/D (QDFFRBP)                       0.00 *     5.88 f
   data arrival time                                                                         5.88
 
-  clock clk (rise edge)                                                          5.00       5.00
-  clock network delay (ideal)                                                    0.50       5.50
-  clock reconvergence pessimism                                                  0.00       5.50
-  clock uncertainty                                                             -0.10       5.40
-  beamforming_in/steer_inst/u_c1s1/xb_r_reg[5]/CK (QDFFRBP)                                 5.40 r
-  library setup time                                                            -0.16 *     5.24
-  data required time                                                                        5.24
+  clock clk (rise edge)                                                          6.00       6.00
+  clock network delay (ideal)                                                    0.50       6.50
+  clock reconvergence pessimism                                                  0.00       6.50
+  clock uncertainty                                                             -0.10       6.40
+  beamforming_in/steer_inst/u_c1s1/xb_r_reg[5]/CK (QDFFRBP)                                 6.40 r
+  library setup time                                                            -0.16 *     6.24
+  data required time                                                                        6.24
   -----------------------------------------------------------------------------------------------------
-  data required time                                                                        5.24
+  data required time                                                                        6.24
   data arrival time                                                                        -5.88
   -----------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                         -0.64
+  slack (MET)                                                                               0.36
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -165,18 +165,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_out_reg[5]/D (QDFFRBS)                 0.00 *     5.86 f
   data arrival time                                                                     5.86
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_out_reg[5]/CK (QDFFRBS)                           5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_out_reg[5]/CK (QDFFRBS)                           6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.86
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.61
+  slack (MET)                                                                           0.39
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -221,18 +221,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_out_reg[2]/D (QDFFRBN)                 0.00 *     5.82 f
   data arrival time                                                                     5.82
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_out_reg[2]/CK (QDFFRBN)                           5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_out_reg[2]/CK (QDFFRBN)                           6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.82
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.58
+  slack (MET)                                                                           0.42
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -277,18 +277,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_r_reg[2]/D (QDFFRBN)                   0.00 *     5.82 f
   data arrival time                                                                     5.82
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_r_reg[2]/CK (QDFFRBN)                             5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_r_reg[2]/CK (QDFFRBN)                             6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.82
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.58
+  slack (MET)                                                                           0.42
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -330,18 +330,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_r_reg[-1]/D (QDFFRBN)                  0.00 *     5.79 f
   data arrival time                                                                     5.79
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_r_reg[-1]/CK (QDFFRBN)                            5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_r_reg[-1]/CK (QDFFRBN)                            6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.79
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.55
+  slack (MET)                                                                           0.45
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -383,18 +383,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_out_reg[1]/D (QDFFRBN)                 0.00 *     5.78 f
   data arrival time                                                                     5.78
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_out_reg[1]/CK (QDFFRBN)                           5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_out_reg[1]/CK (QDFFRBN)                           6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.78
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.54
+  slack (MET)                                                                           0.46
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -436,18 +436,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_r_reg[1]/D (QDFFRBN)                   0.00 *     5.78 f
   data arrival time                                                                     5.78
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_r_reg[1]/CK (QDFFRBN)                             5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_r_reg[1]/CK (QDFFRBN)                             6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.78
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.54
+  slack (MET)                                                                           0.46
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -493,18 +493,18 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/xa_out_reg[3]/D (QDFFRBN)                 0.00 *     5.78 f
   data arrival time                                                                     5.78
 
-  clock clk (rise edge)                                                      5.00       5.00
-  clock network delay (ideal)                                                0.50       5.50
-  clock reconvergence pessimism                                              0.00       5.50
-  clock uncertainty                                                         -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/xa_out_reg[3]/CK (QDFFRBN)                           5.40 r
-  library setup time                                                        -0.16 *     5.24
-  data required time                                                                    5.24
+  clock clk (rise edge)                                                      6.00       6.00
+  clock network delay (ideal)                                                0.50       6.50
+  clock reconvergence pessimism                                              0.00       6.50
+  clock uncertainty                                                         -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/xa_out_reg[3]/CK (QDFFRBN)                           6.40 r
+  library setup time                                                        -0.16 *     6.24
+  data required time                                                                    6.24
   -------------------------------------------------------------------------------------------------
-  data required time                                                                    5.24
+  data required time                                                                    6.24
   data arrival time                                                                    -5.78
   -------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                     -0.54
+  slack (MET)                                                                           0.46
 
 
   Startpoint: beamforming_in/steer_inst/valid_sr_reg[2]
@@ -546,19 +546,19 @@ Date   : Tue Jun  9 14:57:08 2026
   beamforming_in/steer_inst/u_c2s1/ya_out_reg[-1]/D (QDFFRBN)                 0.00 *     5.78 f
   data arrival time                                                                      5.78
 
-  clock clk (rise edge)                                                       5.00       5.00
-  clock network delay (ideal)                                                 0.50       5.50
-  clock reconvergence pessimism                                               0.00       5.50
-  clock uncertainty                                                          -0.10       5.40
-  beamforming_in/steer_inst/u_c2s1/ya_out_reg[-1]/CK (QDFFRBN)                           5.40 r
-  library setup time                                                         -0.16 *     5.24
-  data required time                                                                     5.24
+  clock clk (rise edge)                                                       6.00       6.00
+  clock network delay (ideal)                                                 0.50       6.50
+  clock reconvergence pessimism                                               0.00       6.50
+  clock uncertainty                                                          -0.10       6.40
+  beamforming_in/steer_inst/u_c2s1/ya_out_reg[-1]/CK (QDFFRBN)                           6.40 r
+  library setup time                                                         -0.16 *     6.24
+  data required time                                                                     6.24
   --------------------------------------------------------------------------------------------------
-  data required time                                                                     5.24
+  data required time                                                                     6.24
   data arrival time                                                                     -5.78
   --------------------------------------------------------------------------------------------------
-  slack (VIOLATED)                                                                      -0.54
+  slack (MET)                                                                            0.46
 
-Warning: report_timing has satisfied the max_paths criteria. There are 158 further endpoints which have paths of interest with slack less than   999.00 that were not considered when generating this report. (UITE-502)
+Warning: report_timing has satisfied the max_paths criteria. There are 2792 further endpoints which have paths of interest with slack less than   999.00 that were not considered when generating this report. (UITE-502)
 
 1

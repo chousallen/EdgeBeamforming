@@ -2,7 +2,7 @@
 Report : Time Based Power
 Design : CHIP
 Version: U-2022.12
-Date   : Tue Jun  9 15:05:56 2026
+Date   : Tue Jun  9 16:05:48 2026
 ****************************************
 
 
@@ -15,24 +15,24 @@ Date   : Tue Jun  9 15:05:56 2026
                         Internal  Switching  Leakage    Total
 Power Group             Power     Power      Power      Power   (     %)  Attrs
 --------------------------------------------------------------------------------
-clock_network              0.0135 6.996e-03 1.318e-08    0.0205 (44.03%)  i
-register                1.605e-03 3.832e-04 3.463e-07 1.988e-03 ( 4.27%)  
-combinational           8.423e-03    0.0130 8.469e-07    0.0214 (45.98%)  
+clock_network              0.0124 6.413e-03 1.318e-08    0.0188 (44.11%)  i
+register                1.385e-03 3.513e-04 3.463e-07 1.736e-03 ( 4.08%)  
+combinational           7.723e-03    0.0119 8.469e-07    0.0196 (46.09%)  
 sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
 memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
-io_pad                  1.452e-03 1.205e-03 2.381e-07 2.658e-03 ( 5.71%)  
+io_pad                  1.331e-03 1.105e-03 2.381e-07 2.436e-03 ( 5.73%)  
 black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
 
-  Net Switching Power  =    0.0216   (46.33%)
-  Cell Internal Power  =    0.0250   (53.67%)
+  Net Switching Power  =    0.0198   (46.43%)
+  Cell Internal Power  =    0.0228   (53.57%)
   Cell Leakage Power   = 1.444e-06   ( 0.00%)
                          ---------
-Total Power            =    0.0465  (100.00%)
+Total Power            =    0.0426  (100.00%)
 
 X Transition Power     =    0.0000
 Glitching Power        =    0.0000
 
-Peak Power             =    1.5475
-Peak Time              =  1926.318
+Peak Power             =    1.5321
+Peak Time              =  2101.317
 
 1
