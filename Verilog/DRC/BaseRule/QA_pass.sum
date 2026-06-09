@@ -3,7 +3,7 @@
 ==================================================================================
 === CALIBRE::DRC-F SUMMARY REPORT
 ===
-Execution Date/Time:       Tue Jun  2 11:43:55 2026
+Execution Date/Time:       Tue Jun  9 14:44:24 2026
 Calibre Version:           v2022.3_33.19    Tue Sep 6 12:10:05 PDT 2022
 Rule File Pathname:        G-DF-Mixed_Mode_RFCMOS18-1.8v_3.3v-1P6M-MMC-Calibre-DRC-2.11_P2
 Rule File Title:           
@@ -32,17 +32,17 @@ Keep Empty Checks:         NO
 ---
 LAYER IND ......... TOTAL Original Geometry Count = 0
 LAYER M1RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME1 ......... TOTAL Original Geometry Count = 249164
+LAYER ME1 ......... TOTAL Original Geometry Count = 282139
 LAYER M2RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME2 ......... TOTAL Original Geometry Count = 144326
+LAYER ME2 ......... TOTAL Original Geometry Count = 132020
 LAYER M3RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME3 ......... TOTAL Original Geometry Count = 81404
+LAYER ME3 ......... TOTAL Original Geometry Count = 69446
 LAYER M4RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME4 ......... TOTAL Original Geometry Count = 31084
+LAYER ME4 ......... TOTAL Original Geometry Count = 18180
 LAYER M5RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME5 ......... TOTAL Original Geometry Count = 13716
+LAYER ME5 ......... TOTAL Original Geometry Count = 2667
 LAYER M6RESMK ..... TOTAL Original Geometry Count = 0
-LAYER ME6 ......... TOTAL Original Geometry Count = 12069
+LAYER ME6 ......... TOTAL Original Geometry Count = 132
 LAYER PAD ......... TOTAL Original Geometry Count = 0
 LAYER NWR ......... TOTAL Original Geometry Count = 0
 LAYER NWEL ........ TOTAL Original Geometry Count = 0
@@ -78,11 +78,11 @@ LAYER VTNHL ....... TOTAL Original Geometry Count = 0
 LAYER NPLUS ....... TOTAL Original Geometry Count = 0
 LAYER RSYMBOL ..... TOTAL Original Geometry Count = 0
 LAYER PSYMBOL ..... TOTAL Original Geometry Count = 0
-LAYER VI1 ......... TOTAL Original Geometry Count = 52296
-LAYER VI2 ......... TOTAL Original Geometry Count = 40822
-LAYER VI3 ......... TOTAL Original Geometry Count = 21528
-LAYER VI4 ......... TOTAL Original Geometry Count = 23566
-LAYER VI5 ......... TOTAL Original Geometry Count = 2
+LAYER VI1 ......... TOTAL Original Geometry Count = 64645
+LAYER VI2 ......... TOTAL Original Geometry Count = 49600
+LAYER VI3 ......... TOTAL Original Geometry Count = 30740
+LAYER VI4 ......... TOTAL Original Geometry Count = 24284
+LAYER VI5 ......... TOTAL Original Geometry Count = 0
 LAYER MMC ......... TOTAL Original Geometry Count = 0
 LAYER SEALRMARK ... TOTAL Original Geometry Count = 0
 LAYER M1SLMK ...... TOTAL Original Geometry Count = 0
@@ -376,16 +376,16 @@ RULECHECK 4.22G ................................... TOTAL Result Count = 1
 RULECHECK 4.24F ................................... TOTAL Result Count = 1
 RULECHECK 4.24G ................................... TOTAL Result Count = 1
 RULECHECK 4.26F ................................... TOTAL Result Count = 1
-RULECHECK 4.26G ................................... TOTAL Result Count = 4
+RULECHECK 4.26G ................................... TOTAL Result Count = 1
 RULECHECK 4.28F ................................... TOTAL Result Count = 1
-RULECHECK 4.28G ................................... TOTAL Result Count = 3
+RULECHECK 4.28G ................................... TOTAL Result Count = 1
 RULECHECK 4.31E ................................... TOTAL Result Count = 1
-RULECHECK 4.31F ................................... TOTAL Result Count = 4
-RULECHECK 4.20C ................................... TOTAL Result Count = 0
-RULECHECK 4.22C ................................... TOTAL Result Count = 0
-RULECHECK 4.24C ................................... TOTAL Result Count = 0
+RULECHECK 4.31F ................................... TOTAL Result Count = 1
+RULECHECK 4.20C ................................... TOTAL Result Count = 4
+RULECHECK 4.22C ................................... TOTAL Result Count = 4
+RULECHECK 4.24C ................................... TOTAL Result Count = 4
 RULECHECK 4.26C ................................... TOTAL Result Count = 0
-RULECHECK 4.28C ................................... TOTAL Result Count = 0
+RULECHECK 4.28C ................................... TOTAL Result Count = 2
 RULECHECK 6Aa.ME1 ................................. NOT EXECUTED
 RULECHECK 6Ab.ME1 ................................. NOT EXECUTED
 RULECHECK 6Ba.ME1 ................................. NOT EXECUTED
@@ -747,8 +747,8 @@ RULECHECK LOGO_5.20B .............................. TOTAL Result Count = 0
 ----------------------------------------------------------------------------------
 --- SUMMARY
 ---
-TOTAL CPU Time:                  18
-TOTAL REAL Time:                 18
-TOTAL Original Layer Geometries: 669977
+TOTAL CPU Time:                  13
+TOTAL REAL Time:                 14
+TOTAL Original Layer Geometries: 673853
 TOTAL DRC RuleChecks Executed:   581
-TOTAL DRC Results Generated:     55
+TOTAL DRC Results Generated:     61

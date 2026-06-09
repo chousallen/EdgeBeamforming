@@ -17,7 +17,7 @@ SOURCE NAME:              CHIP.spi ('CHIP')
 RULE FILE:                G-DF-MIXED_MODE_RFCMOS18-1.8V_3.3V-1P6M-MMC_CALIBRE-LVS-2.1-P8.txt
 RULE FILE TITLE:          LVS of UMC 0.18um 1.8V/3.3V 1P6M MMC Mixed Mode/RFCMOS Process
 HCELL FILE:               (-automatch)
-CREATION TIME:            Tue Jun  2 11:40:40 2026
+CREATION TIME:            Tue Jun  9 14:50:20 2026
 CURRENT DIRECTORY:        /home/raid7_2/userb11/b11056/EdgeBeamforming/Verilog/LVS
 USER NAME:                b11056
 CALIBRE VERSION:          v2022.3_33.19    Tue Sep 6 12:10:05 PDT 2022
@@ -274,154 +274,155 @@ INITIAL NUMBERS OF OBJECTS
                 ------    ------         --------------
  Ports:             27        27
 
- Nets:           12748     12747    *
+ Nets:           12990     12989    *
 
- Instances:         74        74         AN2 (5 pins)
-                     6         6         AN2B1 (5 pins)
+ Instances:         76        76         AN2 (5 pins)
+                     2         2         AN2B1 (5 pins)
                      1         1         AN2B1P (5 pins)
-                     7         7         AN2B1S (5 pins)
-                     4         4         AN2B1T (5 pins)
-                    13        13         AN2S (5 pins)
-                     7         7         AN2T (5 pins)
+                     8         8         AN2B1S (5 pins)
+                     2         2         AN2B1T (5 pins)
+                     1         1         AN2P (5 pins)
+                     7         7         AN2S (5 pins)
+                    15        15         AN2T (5 pins)
                      4         4         AN3 (6 pins)
-                     1         1         AN3B2 (6 pins)
                      2         2         AN3B2S (6 pins)
                      3         3         AN3S (6 pins)
-                     3         3         AN4B1 (7 pins)
                      3         3         AN4B1S (7 pins)
                      1         1         AN4P (7 pins)
-                     6         6         AO112 (7 pins)
-                    76        76         AO12 (6 pins)
-                     3         3         AO12P (6 pins)
-                     3         3         AO12S (6 pins)
-                     5         5         AO12T (6 pins)
-                     1         1         AO13 (7 pins)
-                    10        10         AO22 (7 pins)
-                    55        55         AO222 (9 pins)
-                     9         9         AO222P (9 pins)
+                     5         5         AO112 (7 pins)
+                    58        58         AO12 (6 pins)
+                     1         1         AO12S (6 pins)
+                     7         7         AO12T (6 pins)
+                     5         5         AO22 (7 pins)
+                    43        43         AO222 (9 pins)
+                     6         6         AO222P (9 pins)
                      1         1         AO222S (9 pins)
-                    84        84         AOI12H (6 pins)
-                    15        15         AOI12HP (6 pins)
-                   233       233         AOI12HS (6 pins)
-                     4         4         AOI13H (7 pins)
-                     3         3         AOI13HS (7 pins)
-                     1         1         AOI22HP (7 pins)
-                   117       117         AOI22S (7 pins)
-                   628       628         BUF1 (4 pins)
-                     2         2         BUF12CK (4 pins)
-                   485       485         BUF1CK (4 pins)
-                    49        49         BUF1S (4 pins)
-                   118       118         BUF2 (4 pins)
-                    25        25         BUF2CK (4 pins)
-                    25        25         BUF3 (4 pins)
-                     9         9         BUF3CK (4 pins)
-                     3         3         BUF4 (4 pins)
+                     2         2         AO22P (7 pins)
+                   113       113         AOI12H (6 pins)
+                    73        73         AOI12HP (6 pins)
+                   134       134         AOI12HS (6 pins)
+                    15        15         AOI12HT (6 pins)
+                     2         2         AOI13HP (7 pins)
+                     2         2         AOI13HS (7 pins)
+                     1         1         AOI13HT (7 pins)
+                    58        58         AOI22H (7 pins)
+                    19        19         AOI22HP (7 pins)
+                     1         1         AOI22HT (7 pins)
+                   139       139         AOI22S (7 pins)
+                   782       782         BUF1 (4 pins)
+                     3         3         BUF12CK (4 pins)
+                   132       132         BUF1CK (4 pins)
+                   279       279         BUF1S (4 pins)
+                    98        98         BUF2 (4 pins)
+                    50        50         BUF2CK (4 pins)
+                    14        14         BUF3 (4 pins)
+                     6         6         BUF3CK (4 pins)
+                     9         9         BUF4 (4 pins)
                     14        14         BUF4CK (4 pins)
-                    13        13         BUF6 (4 pins)
-                     2         2         BUF6CK (4 pins)
+                    25        25         BUF6 (4 pins)
+                     8         8         BUF6CK (4 pins)
                      3         3         BUF8 (4 pins)
-                    46        46         DELA (4 pins)
-                    98        98         DELB (4 pins)
-                  1246      1246         DELC (4 pins)
-                     2         2         DFFRBN (7 pins)
+                     9         9         BUF8CK (4 pins)
+                   548       548         DELA (4 pins)
+                   372       372         DELB (4 pins)
+                   194       194         DELC (4 pins)
+                     1         1         DFFRBN (7 pins)
                      5         5         DFFRBP (7 pins)
-                     1         1         DFFRBS (7 pins)
+                     2         2         DFFRBS (7 pins)
                     12        12         DFFSBN (7 pins)
-                   117       117         FA1 (7 pins)
-                    30        30         FA1S (7 pins)
-                    72        72         HA1 (6 pins)
-                     1         1         INV1 (4 pins)
-                    30        30         INV12CK (4 pins)
-                     2         2         INV1CK (4 pins)
-                  1367      1367         INV1S (4 pins)
-                   221       221         INV2 (4 pins)
-                    13        13         INV2CK (4 pins)
-                    19        19         INV3 (4 pins)
-                     7         7         INV3CK (4 pins)
-                     6         6         INV4 (4 pins)
-                     7         7         INV4CK (4 pins)
-                    24        24         INV6CK (4 pins)
+                   140       140         FA1 (7 pins)
+                    28        28         FA1S (7 pins)
+                    66        66         HA1 (6 pins)
+                     2         2         HA1P (6 pins)
+                     3         3         INV1 (4 pins)
+                    37        37         INV12CK (4 pins)
+                     3         3         INV1CK (4 pins)
+                  1429      1429         INV1S (4 pins)
+                   257       257         INV2 (4 pins)
+                    14        14         INV2CK (4 pins)
+                    46        46         INV3 (4 pins)
+                     1         1         INV3CK (4 pins)
+                    21        21         INV4 (4 pins)
+                     4         4         INV4CK (4 pins)
+                     7         7         INV6 (4 pins)
+                     8         8         INV6CK (4 pins)
                      1         1         INV8 (4 pins)
-                    12        12         INV8CK (4 pins)
-                    73        73         MAO222 (6 pins)
-                     4         4         MAO222P (6 pins)
-                     3         3         MAOI1 (7 pins)
-                     1         1         MAOI1H (7 pins)
-                    13        13         MOAI1 (7 pins)
-                     2         2         MOAI1H (7 pins)
-                   165       165         MOAI1S (7 pins)
-                   757       757         MUX2 (6 pins)
-                     6         6         MUX2P (6 pins)
-                     5         5         MUX2S (6 pins)
-                     4         4         MUXB2 (7 pins)
-                    17        17         MXL2H (6 pins)
-                   269       269         MXL2HS (6 pins)
-                   558       558         ND2 (5 pins)
-                     3         3         ND2F (5 pins)
-                    54        54         ND2P (5 pins)
-                   951       951         ND2S (5 pins)
-                    11        11         ND2T (5 pins)
-                   129       129         ND3 (6 pins)
-                     5         5         ND3HT (6 pins)
-                    14        14         ND3P (6 pins)
-                     5         5         ND3S (6 pins)
-                   650       650         NR2 (5 pins)
-                     9         9         NR2F (5 pins)
-                   140       140         NR2P (5 pins)
-                    23        23         NR2T (5 pins)
-                    26        26         NR3 (6 pins)
-                     1         1         NR3H (6 pins)
-                     2         2         NR3HP (6 pins)
-                     1         1         NR3HT (6 pins)
-                     1         1         OA112 (7 pins)
-                    53        53         OA12 (6 pins)
-                    14        14         OA12P (6 pins)
-                     4         4         OA12S (6 pins)
-                     1         1         OA12T (6 pins)
+                     3         3         INV8CK (4 pins)
+                    22        22         MAO222 (6 pins)
+                     6         6         MAO222P (6 pins)
+                     4         4         MAOI1 (7 pins)
+                     2         2         MAOI1H (7 pins)
+                    39        39         MOAI1 (7 pins)
+                    14        14         MOAI1H (7 pins)
+                     2         2         MOAI1HP (7 pins)
+                   129       129         MOAI1S (7 pins)
+                   694       694         MUX2 (6 pins)
+                     1         1         MUX2F (6 pins)
+                     5         5         MUX2P (6 pins)
+                    14        14         MUX2T (6 pins)
+                     1         1         MUXB2 (7 pins)
+                   105       105         MXL2H (6 pins)
+                    13        13         MXL2HP (6 pins)
+                   171       171         MXL2HS (6 pins)
+                   708       708         ND2 (5 pins)
+                    16        16         ND2F (5 pins)
+                   225       225         ND2P (5 pins)
+                   939       939         ND2S (5 pins)
+                    38        38         ND2T (5 pins)
+                   122       122         ND3 (6 pins)
+                    21        21         ND3HT (6 pins)
+                    28        28         ND3P (6 pins)
+                     3         3         ND3S (6 pins)
+                   515       515         NR2 (5 pins)
+                    44        44         NR2F (5 pins)
+                   181       181         NR2P (5 pins)
+                   104       104         NR2T (5 pins)
+                    21        21         NR3 (6 pins)
+                     5         5         NR3H (6 pins)
+                     1         1         NR3HP (6 pins)
+                     5         5         NR3HT (6 pins)
+                     3         3         OA112 (7 pins)
+                    46        46         OA12 (6 pins)
+                     6         6         OA12P (6 pins)
+                     5         5         OA12S (6 pins)
                      2         2         OA13S (7 pins)
                      1         1         OA22 (7 pins)
                      4         4         OA222 (9 pins)
                      1         1         OAI112HP (7 pins)
-                    39        39         OAI112HS (7 pins)
-                    81        81         OAI12H (6 pins)
-                    13        13         OAI12HP (6 pins)
-                   329       329         OAI12HS (6 pins)
-                     3         3         OAI13H (7 pins)
-                     3         3         OAI13HP (7 pins)
-                     1         1         OAI13HS (7 pins)
-                     5         5         OAI222S (9 pins)
-                    18        18         OAI22S (7 pins)
-                   245       245         OR2 (5 pins)
+                    46        46         OAI112HS (7 pins)
+                   140       140         OAI12H (6 pins)
+                    54        54         OAI12HP (6 pins)
+                   237       237         OAI12HS (6 pins)
+                    20        20         OAI12HT (6 pins)
+                     6         6         OAI222S (9 pins)
+                     1         1         OAI22H (7 pins)
+                    19        19         OAI22S (7 pins)
+                   271       271         OR2 (5 pins)
                      1         1         OR2B1 (5 pins)
-                     3         3         OR2B1P (5 pins)
-                    53        53         OR2B1S (5 pins)
-                     1         1         OR2B1T (5 pins)
-                     6         6         OR2P (5 pins)
+                     4         4         OR2B1P (5 pins)
+                    54        54         OR2B1S (5 pins)
+                     2         2         OR2B1T (5 pins)
+                    14        14         OR2P (5 pins)
                      3         3         OR2S (5 pins)
-                    14        14         OR2T (5 pins)
-                     1         1         OR3 (6 pins)
-                     1         1         OR3B1 (6 pins)
+                    22        22         OR2T (5 pins)
                      5         5         OR3B2 (6 pins)
                      1         1         OR3B2S (6 pins)
-                  1217      1217         QDFFRBN (6 pins)
-                    27        27         QDFFRBP (6 pins)
-                   136       136         QDFFRBS (6 pins)
+                  1182      1182         QDFFRBN (6 pins)
+                    43        43         QDFFRBP (6 pins)
+                   155       155         QDFFRBS (6 pins)
                      1         1         QDFFRBT (6 pins)
                      1         1         TIE0 (3 pins)
                      1         1         TIE1 (3 pins)
                     13        13         XMD (5 pins)
-                     3         3         XNR2H (5 pins)
-                   253       253         XNR2HS (5 pins)
-                     7         7         XNR3 (6 pins)
-                     6         6         XOR2H (5 pins)
-                   462       462         XOR2HS (5 pins)
-                    71        71         XOR3 (6 pins)
-                     1         1         XOR3P (6 pins)
-                     1         1         XOR3S (6 pins)
-                     3         3         XOR3T (6 pins)
+                     6         6         XNR2H (5 pins)
+                   237       237         XNR2HS (5 pins)
+                    20        20         XOR2H (5 pins)
+                     3         3         XOR2HP (5 pins)
+                   393       393         XOR2HS (5 pins)
+                    39        39         XOR3 (6 pins)
                     12        12         YA2GSD (7 pins)
                 ------    ------
- Total Inst:     12493     12493
+ Total Inst:     12718     12718
 
 
 NUMBERS OF OBJECTS AFTER TRANSFORMATION
@@ -431,154 +432,155 @@ NUMBERS OF OBJECTS AFTER TRANSFORMATION
                 ------    ------         --------------
  Ports:             27        27
 
- Nets:           12747     12747
+ Nets:           12989     12989
 
- Instances:         74        74         AN2 (5 pins)
-                     6         6         AN2B1 (5 pins)
+ Instances:         76        76         AN2 (5 pins)
+                     2         2         AN2B1 (5 pins)
                      1         1         AN2B1P (5 pins)
-                     7         7         AN2B1S (5 pins)
-                     4         4         AN2B1T (5 pins)
-                    13        13         AN2S (5 pins)
-                     7         7         AN2T (5 pins)
+                     8         8         AN2B1S (5 pins)
+                     2         2         AN2B1T (5 pins)
+                     1         1         AN2P (5 pins)
+                     7         7         AN2S (5 pins)
+                    15        15         AN2T (5 pins)
                      4         4         AN3 (6 pins)
-                     1         1         AN3B2 (6 pins)
                      2         2         AN3B2S (6 pins)
                      3         3         AN3S (6 pins)
-                     3         3         AN4B1 (7 pins)
                      3         3         AN4B1S (7 pins)
                      1         1         AN4P (7 pins)
-                     6         6         AO112 (7 pins)
-                    76        76         AO12 (6 pins)
-                     3         3         AO12P (6 pins)
-                     3         3         AO12S (6 pins)
-                     5         5         AO12T (6 pins)
-                     1         1         AO13 (7 pins)
-                    10        10         AO22 (7 pins)
-                    55        55         AO222 (9 pins)
-                     9         9         AO222P (9 pins)
+                     5         5         AO112 (7 pins)
+                    58        58         AO12 (6 pins)
+                     1         1         AO12S (6 pins)
+                     7         7         AO12T (6 pins)
+                     5         5         AO22 (7 pins)
+                    43        43         AO222 (9 pins)
+                     6         6         AO222P (9 pins)
                      1         1         AO222S (9 pins)
-                    84        84         AOI12H (6 pins)
-                    15        15         AOI12HP (6 pins)
-                   233       233         AOI12HS (6 pins)
-                     4         4         AOI13H (7 pins)
-                     3         3         AOI13HS (7 pins)
-                     1         1         AOI22HP (7 pins)
-                   117       117         AOI22S (7 pins)
-                   628       628         BUF1 (4 pins)
-                     2         2         BUF12CK (4 pins)
-                   485       485         BUF1CK (4 pins)
-                    49        49         BUF1S (4 pins)
-                   118       118         BUF2 (4 pins)
-                    25        25         BUF2CK (4 pins)
-                    25        25         BUF3 (4 pins)
-                     9         9         BUF3CK (4 pins)
-                     3         3         BUF4 (4 pins)
+                     2         2         AO22P (7 pins)
+                   113       113         AOI12H (6 pins)
+                    73        73         AOI12HP (6 pins)
+                   134       134         AOI12HS (6 pins)
+                    15        15         AOI12HT (6 pins)
+                     2         2         AOI13HP (7 pins)
+                     2         2         AOI13HS (7 pins)
+                     1         1         AOI13HT (7 pins)
+                    58        58         AOI22H (7 pins)
+                    19        19         AOI22HP (7 pins)
+                     1         1         AOI22HT (7 pins)
+                   139       139         AOI22S (7 pins)
+                   782       782         BUF1 (4 pins)
+                     3         3         BUF12CK (4 pins)
+                   132       132         BUF1CK (4 pins)
+                   279       279         BUF1S (4 pins)
+                    98        98         BUF2 (4 pins)
+                    50        50         BUF2CK (4 pins)
+                    14        14         BUF3 (4 pins)
+                     6         6         BUF3CK (4 pins)
+                     9         9         BUF4 (4 pins)
                     14        14         BUF4CK (4 pins)
-                    13        13         BUF6 (4 pins)
-                     2         2         BUF6CK (4 pins)
+                    25        25         BUF6 (4 pins)
+                     8         8         BUF6CK (4 pins)
                      3         3         BUF8 (4 pins)
-                    46        46         DELA (4 pins)
-                    98        98         DELB (4 pins)
-                  1246      1246         DELC (4 pins)
-                     2         2         DFFRBN (7 pins)
+                     9         9         BUF8CK (4 pins)
+                   548       548         DELA (4 pins)
+                   372       372         DELB (4 pins)
+                   194       194         DELC (4 pins)
+                     1         1         DFFRBN (7 pins)
                      5         5         DFFRBP (7 pins)
-                     1         1         DFFRBS (7 pins)
+                     2         2         DFFRBS (7 pins)
                     12        12         DFFSBN (7 pins)
-                   117       117         FA1 (7 pins)
-                    30        30         FA1S (7 pins)
-                    72        72         HA1 (6 pins)
-                     1         1         INV1 (4 pins)
-                    30        30         INV12CK (4 pins)
-                     2         2         INV1CK (4 pins)
-                  1367      1367         INV1S (4 pins)
-                   221       221         INV2 (4 pins)
-                    13        13         INV2CK (4 pins)
-                    19        19         INV3 (4 pins)
-                     7         7         INV3CK (4 pins)
-                     6         6         INV4 (4 pins)
-                     7         7         INV4CK (4 pins)
-                    24        24         INV6CK (4 pins)
+                   140       140         FA1 (7 pins)
+                    28        28         FA1S (7 pins)
+                    66        66         HA1 (6 pins)
+                     2         2         HA1P (6 pins)
+                     3         3         INV1 (4 pins)
+                    37        37         INV12CK (4 pins)
+                     3         3         INV1CK (4 pins)
+                  1429      1429         INV1S (4 pins)
+                   257       257         INV2 (4 pins)
+                    14        14         INV2CK (4 pins)
+                    46        46         INV3 (4 pins)
+                     1         1         INV3CK (4 pins)
+                    21        21         INV4 (4 pins)
+                     4         4         INV4CK (4 pins)
+                     7         7         INV6 (4 pins)
+                     8         8         INV6CK (4 pins)
                      1         1         INV8 (4 pins)
-                    12        12         INV8CK (4 pins)
-                    73        73         MAO222 (6 pins)
-                     4         4         MAO222P (6 pins)
-                     3         3         MAOI1 (7 pins)
-                     1         1         MAOI1H (7 pins)
-                    13        13         MOAI1 (7 pins)
-                     2         2         MOAI1H (7 pins)
-                   165       165         MOAI1S (7 pins)
-                   757       757         MUX2 (6 pins)
-                     6         6         MUX2P (6 pins)
-                     5         5         MUX2S (6 pins)
-                     4         4         MUXB2 (7 pins)
-                    17        17         MXL2H (6 pins)
-                   269       269         MXL2HS (6 pins)
-                   558       558         ND2 (5 pins)
-                     3         3         ND2F (5 pins)
-                    54        54         ND2P (5 pins)
-                   951       951         ND2S (5 pins)
-                    11        11         ND2T (5 pins)
-                   129       129         ND3 (6 pins)
-                     5         5         ND3HT (6 pins)
-                    14        14         ND3P (6 pins)
-                     5         5         ND3S (6 pins)
-                   650       650         NR2 (5 pins)
-                     9         9         NR2F (5 pins)
-                   140       140         NR2P (5 pins)
-                    23        23         NR2T (5 pins)
-                    26        26         NR3 (6 pins)
-                     1         1         NR3H (6 pins)
-                     2         2         NR3HP (6 pins)
-                     1         1         NR3HT (6 pins)
-                     1         1         OA112 (7 pins)
-                    53        53         OA12 (6 pins)
-                    14        14         OA12P (6 pins)
-                     4         4         OA12S (6 pins)
-                     1         1         OA12T (6 pins)
+                     3         3         INV8CK (4 pins)
+                    22        22         MAO222 (6 pins)
+                     6         6         MAO222P (6 pins)
+                     4         4         MAOI1 (7 pins)
+                     2         2         MAOI1H (7 pins)
+                    39        39         MOAI1 (7 pins)
+                    14        14         MOAI1H (7 pins)
+                     2         2         MOAI1HP (7 pins)
+                   129       129         MOAI1S (7 pins)
+                   694       694         MUX2 (6 pins)
+                     1         1         MUX2F (6 pins)
+                     5         5         MUX2P (6 pins)
+                    14        14         MUX2T (6 pins)
+                     1         1         MUXB2 (7 pins)
+                   105       105         MXL2H (6 pins)
+                    13        13         MXL2HP (6 pins)
+                   171       171         MXL2HS (6 pins)
+                   708       708         ND2 (5 pins)
+                    16        16         ND2F (5 pins)
+                   225       225         ND2P (5 pins)
+                   939       939         ND2S (5 pins)
+                    38        38         ND2T (5 pins)
+                   122       122         ND3 (6 pins)
+                    21        21         ND3HT (6 pins)
+                    28        28         ND3P (6 pins)
+                     3         3         ND3S (6 pins)
+                   515       515         NR2 (5 pins)
+                    44        44         NR2F (5 pins)
+                   181       181         NR2P (5 pins)
+                   104       104         NR2T (5 pins)
+                    21        21         NR3 (6 pins)
+                     5         5         NR3H (6 pins)
+                     1         1         NR3HP (6 pins)
+                     5         5         NR3HT (6 pins)
+                     3         3         OA112 (7 pins)
+                    46        46         OA12 (6 pins)
+                     6         6         OA12P (6 pins)
+                     5         5         OA12S (6 pins)
                      2         2         OA13S (7 pins)
                      1         1         OA22 (7 pins)
                      4         4         OA222 (9 pins)
                      1         1         OAI112HP (7 pins)
-                    39        39         OAI112HS (7 pins)
-                    81        81         OAI12H (6 pins)
-                    13        13         OAI12HP (6 pins)
-                   329       329         OAI12HS (6 pins)
-                     3         3         OAI13H (7 pins)
-                     3         3         OAI13HP (7 pins)
-                     1         1         OAI13HS (7 pins)
-                     5         5         OAI222S (9 pins)
-                    18        18         OAI22S (7 pins)
-                   245       245         OR2 (5 pins)
+                    46        46         OAI112HS (7 pins)
+                   140       140         OAI12H (6 pins)
+                    54        54         OAI12HP (6 pins)
+                   237       237         OAI12HS (6 pins)
+                    20        20         OAI12HT (6 pins)
+                     6         6         OAI222S (9 pins)
+                     1         1         OAI22H (7 pins)
+                    19        19         OAI22S (7 pins)
+                   271       271         OR2 (5 pins)
                      1         1         OR2B1 (5 pins)
-                     3         3         OR2B1P (5 pins)
-                    53        53         OR2B1S (5 pins)
-                     1         1         OR2B1T (5 pins)
-                     6         6         OR2P (5 pins)
+                     4         4         OR2B1P (5 pins)
+                    54        54         OR2B1S (5 pins)
+                     2         2         OR2B1T (5 pins)
+                    14        14         OR2P (5 pins)
                      3         3         OR2S (5 pins)
-                    14        14         OR2T (5 pins)
-                     1         1         OR3 (6 pins)
-                     1         1         OR3B1 (6 pins)
+                    22        22         OR2T (5 pins)
                      5         5         OR3B2 (6 pins)
                      1         1         OR3B2S (6 pins)
-                  1217      1217         QDFFRBN (6 pins)
-                    27        27         QDFFRBP (6 pins)
-                   136       136         QDFFRBS (6 pins)
+                  1182      1182         QDFFRBN (6 pins)
+                    43        43         QDFFRBP (6 pins)
+                   155       155         QDFFRBS (6 pins)
                      1         1         QDFFRBT (6 pins)
                      1         1         TIE0 (3 pins)
                      1         1         TIE1 (3 pins)
                     13        13         XMD (5 pins)
-                     3         3         XNR2H (5 pins)
-                   253       253         XNR2HS (5 pins)
-                     7         7         XNR3 (6 pins)
-                     6         6         XOR2H (5 pins)
-                   462       462         XOR2HS (5 pins)
-                    71        71         XOR3 (6 pins)
-                     1         1         XOR3P (6 pins)
-                     1         1         XOR3S (6 pins)
-                     3         3         XOR3T (6 pins)
+                     6         6         XNR2H (5 pins)
+                   237       237         XNR2HS (5 pins)
+                    20        20         XOR2H (5 pins)
+                     3         3         XOR2HP (5 pins)
+                   393       393         XOR2HS (5 pins)
+                    39        39         XOR3 (6 pins)
                     12        12         YA2GSD (7 pins)
                 ------    ------
- Total Inst:     12493     12493
+ Total Inst:     12718     12718
 
 
        * = Number of objects in layout different from number in source.
@@ -595,154 +597,155 @@ NUMBERS OF OBJECTS AFTER TRANSFORMATION
                   -------    -------    ---------    ---------    ---------
    Ports:              27         27            0            0
 
-   Nets:            12747      12747            0            0
+   Nets:            12989      12989            0            0
 
-   Instances:          74         74            0            0    AN2
-                        6          6            0            0    AN2B1
+   Instances:          76         76            0            0    AN2
+                        2          2            0            0    AN2B1
                         1          1            0            0    AN2B1P
-                        7          7            0            0    AN2B1S
-                        4          4            0            0    AN2B1T
-                       13         13            0            0    AN2S
-                        7          7            0            0    AN2T
+                        8          8            0            0    AN2B1S
+                        2          2            0            0    AN2B1T
+                        1          1            0            0    AN2P
+                        7          7            0            0    AN2S
+                       15         15            0            0    AN2T
                         4          4            0            0    AN3
-                        1          1            0            0    AN3B2
                         2          2            0            0    AN3B2S
                         3          3            0            0    AN3S
-                        3          3            0            0    AN4B1
                         3          3            0            0    AN4B1S
                         1          1            0            0    AN4P
-                        6          6            0            0    AO112
-                       76         76            0            0    AO12
-                        3          3            0            0    AO12P
-                        3          3            0            0    AO12S
-                        5          5            0            0    AO12T
-                        1          1            0            0    AO13
-                       10         10            0            0    AO22
-                       55         55            0            0    AO222
-                        9          9            0            0    AO222P
+                        5          5            0            0    AO112
+                       58         58            0            0    AO12
+                        1          1            0            0    AO12S
+                        7          7            0            0    AO12T
+                        5          5            0            0    AO22
+                       43         43            0            0    AO222
+                        6          6            0            0    AO222P
                         1          1            0            0    AO222S
-                       84         84            0            0    AOI12H
-                       15         15            0            0    AOI12HP
-                      233        233            0            0    AOI12HS
-                        4          4            0            0    AOI13H
-                        3          3            0            0    AOI13HS
-                        1          1            0            0    AOI22HP
-                      117        117            0            0    AOI22S
-                      628        628            0            0    BUF1
-                        2          2            0            0    BUF12CK
-                      485        485            0            0    BUF1CK
-                       49         49            0            0    BUF1S
-                      118        118            0            0    BUF2
-                       25         25            0            0    BUF2CK
-                       25         25            0            0    BUF3
-                        9          9            0            0    BUF3CK
-                        3          3            0            0    BUF4
+                        2          2            0            0    AO22P
+                      113        113            0            0    AOI12H
+                       73         73            0            0    AOI12HP
+                      134        134            0            0    AOI12HS
+                       15         15            0            0    AOI12HT
+                        2          2            0            0    AOI13HP
+                        2          2            0            0    AOI13HS
+                        1          1            0            0    AOI13HT
+                       58         58            0            0    AOI22H
+                       19         19            0            0    AOI22HP
+                        1          1            0            0    AOI22HT
+                      139        139            0            0    AOI22S
+                      782        782            0            0    BUF1
+                        3          3            0            0    BUF12CK
+                      132        132            0            0    BUF1CK
+                      279        279            0            0    BUF1S
+                       98         98            0            0    BUF2
+                       50         50            0            0    BUF2CK
+                       14         14            0            0    BUF3
+                        6          6            0            0    BUF3CK
+                        9          9            0            0    BUF4
                        14         14            0            0    BUF4CK
-                       13         13            0            0    BUF6
-                        2          2            0            0    BUF6CK
+                       25         25            0            0    BUF6
+                        8          8            0            0    BUF6CK
                         3          3            0            0    BUF8
-                       46         46            0            0    DELA
-                       98         98            0            0    DELB
-                     1246       1246            0            0    DELC
-                        2          2            0            0    DFFRBN
+                        9          9            0            0    BUF8CK
+                      548        548            0            0    DELA
+                      372        372            0            0    DELB
+                      194        194            0            0    DELC
+                        1          1            0            0    DFFRBN
                         5          5            0            0    DFFRBP
-                        1          1            0            0    DFFRBS
+                        2          2            0            0    DFFRBS
                        12         12            0            0    DFFSBN
-                      117        117            0            0    FA1
-                       30         30            0            0    FA1S
-                       72         72            0            0    HA1
-                        1          1            0            0    INV1
-                       30         30            0            0    INV12CK
-                        2          2            0            0    INV1CK
-                     1367       1367            0            0    INV1S
-                      221        221            0            0    INV2
-                       13         13            0            0    INV2CK
-                       19         19            0            0    INV3
-                        7          7            0            0    INV3CK
-                        6          6            0            0    INV4
-                        7          7            0            0    INV4CK
-                       24         24            0            0    INV6CK
+                      140        140            0            0    FA1
+                       28         28            0            0    FA1S
+                       66         66            0            0    HA1
+                        2          2            0            0    HA1P
+                        3          3            0            0    INV1
+                       37         37            0            0    INV12CK
+                        3          3            0            0    INV1CK
+                     1429       1429            0            0    INV1S
+                      257        257            0            0    INV2
+                       14         14            0            0    INV2CK
+                       46         46            0            0    INV3
+                        1          1            0            0    INV3CK
+                       21         21            0            0    INV4
+                        4          4            0            0    INV4CK
+                        7          7            0            0    INV6
+                        8          8            0            0    INV6CK
                         1          1            0            0    INV8
-                       12         12            0            0    INV8CK
-                       73         73            0            0    MAO222
-                        4          4            0            0    MAO222P
-                        3          3            0            0    MAOI1
-                        1          1            0            0    MAOI1H
-                       13         13            0            0    MOAI1
-                        2          2            0            0    MOAI1H
-                      165        165            0            0    MOAI1S
-                      757        757            0            0    MUX2
-                        6          6            0            0    MUX2P
-                        5          5            0            0    MUX2S
-                        4          4            0            0    MUXB2
-                       17         17            0            0    MXL2H
-                      269        269            0            0    MXL2HS
-                      558        558            0            0    ND2
-                        3          3            0            0    ND2F
-                       54         54            0            0    ND2P
-                      951        951            0            0    ND2S
-                       11         11            0            0    ND2T
-                      129        129            0            0    ND3
-                        5          5            0            0    ND3HT
-                       14         14            0            0    ND3P
-                        5          5            0            0    ND3S
-                      650        650            0            0    NR2
-                        9          9            0            0    NR2F
-                      140        140            0            0    NR2P
-                       23         23            0            0    NR2T
-                       26         26            0            0    NR3
-                        1          1            0            0    NR3H
-                        2          2            0            0    NR3HP
-                        1          1            0            0    NR3HT
-                        1          1            0            0    OA112
-                       53         53            0            0    OA12
-                       14         14            0            0    OA12P
-                        4          4            0            0    OA12S
-                        1          1            0            0    OA12T
+                        3          3            0            0    INV8CK
+                       22         22            0            0    MAO222
+                        6          6            0            0    MAO222P
+                        4          4            0            0    MAOI1
+                        2          2            0            0    MAOI1H
+                       39         39            0            0    MOAI1
+                       14         14            0            0    MOAI1H
+                        2          2            0            0    MOAI1HP
+                      129        129            0            0    MOAI1S
+                      694        694            0            0    MUX2
+                        1          1            0            0    MUX2F
+                        5          5            0            0    MUX2P
+                       14         14            0            0    MUX2T
+                        1          1            0            0    MUXB2
+                      105        105            0            0    MXL2H
+                       13         13            0            0    MXL2HP
+                      171        171            0            0    MXL2HS
+                      708        708            0            0    ND2
+                       16         16            0            0    ND2F
+                      225        225            0            0    ND2P
+                      939        939            0            0    ND2S
+                       38         38            0            0    ND2T
+                      122        122            0            0    ND3
+                       21         21            0            0    ND3HT
+                       28         28            0            0    ND3P
+                        3          3            0            0    ND3S
+                      515        515            0            0    NR2
+                       44         44            0            0    NR2F
+                      181        181            0            0    NR2P
+                      104        104            0            0    NR2T
+                       21         21            0            0    NR3
+                        5          5            0            0    NR3H
+                        1          1            0            0    NR3HP
+                        5          5            0            0    NR3HT
+                        3          3            0            0    OA112
+                       46         46            0            0    OA12
+                        6          6            0            0    OA12P
+                        5          5            0            0    OA12S
                         2          2            0            0    OA13S
                         1          1            0            0    OA22
                         4          4            0            0    OA222
                         1          1            0            0    OAI112HP
-                       39         39            0            0    OAI112HS
-                       81         81            0            0    OAI12H
-                       13         13            0            0    OAI12HP
-                      329        329            0            0    OAI12HS
-                        3          3            0            0    OAI13H
-                        3          3            0            0    OAI13HP
-                        1          1            0            0    OAI13HS
-                        5          5            0            0    OAI222S
-                       18         18            0            0    OAI22S
-                      245        245            0            0    OR2
+                       46         46            0            0    OAI112HS
+                      140        140            0            0    OAI12H
+                       54         54            0            0    OAI12HP
+                      237        237            0            0    OAI12HS
+                       20         20            0            0    OAI12HT
+                        6          6            0            0    OAI222S
+                        1          1            0            0    OAI22H
+                       19         19            0            0    OAI22S
+                      271        271            0            0    OR2
                         1          1            0            0    OR2B1
-                        3          3            0            0    OR2B1P
-                       53         53            0            0    OR2B1S
-                        1          1            0            0    OR2B1T
-                        6          6            0            0    OR2P
+                        4          4            0            0    OR2B1P
+                       54         54            0            0    OR2B1S
+                        2          2            0            0    OR2B1T
+                       14         14            0            0    OR2P
                         3          3            0            0    OR2S
-                       14         14            0            0    OR2T
-                        1          1            0            0    OR3
-                        1          1            0            0    OR3B1
+                       22         22            0            0    OR2T
                         5          5            0            0    OR3B2
                         1          1            0            0    OR3B2S
-                     1217       1217            0            0    QDFFRBN
-                       27         27            0            0    QDFFRBP
-                      136        136            0            0    QDFFRBS
+                     1182       1182            0            0    QDFFRBN
+                       43         43            0            0    QDFFRBP
+                      155        155            0            0    QDFFRBS
                         1          1            0            0    QDFFRBT
                         1          1            0            0    TIE0
                         1          1            0            0    TIE1
                        13         13            0            0    XMD
-                        3          3            0            0    XNR2H
-                      253        253            0            0    XNR2HS
-                        7          7            0            0    XNR3
-                        6          6            0            0    XOR2H
-                      462        462            0            0    XOR2HS
-                       71         71            0            0    XOR3
-                        1          1            0            0    XOR3P
-                        1          1            0            0    XOR3S
-                        3          3            0            0    XOR3T
+                        6          6            0            0    XNR2H
+                      237        237            0            0    XNR2HS
+                       20         20            0            0    XOR2H
+                        3          3            0            0    XOR2HP
+                      393        393            0            0    XOR2HS
+                       39         39            0            0    XOR3
                        12         12            0            0    YA2GSD
                   -------    -------    ---------    ---------
-   Total Inst:      12493      12493            0            0
+   Total Inst:      12718      12718            0            0
 
 
 o Statistics:
@@ -752,10 +755,10 @@ o Statistics:
 
 o Initial Correspondence Points:
 
-   Ports:        VCC GND data_in[8] clk rst_n valid_in data_in[0] data_in[1] data_in[2]
-                 data_in[3] data_in[4] data_out[7] data_out[3] data_out[5] valid_out data_out[1]
-                 data_out[0] in_en data_out[4] data_out[2] data_out[9] data_out[6] data_in[9]
-                 data_in[7] data_in[6] data_out[8] data_in[5]
+   Ports:        VCC GND data_out[7] data_out[3] data_out[5] valid_out data_out[1] clk rst_n
+                 valid_in data_in[0] data_in[1] data_in[2] data_in[3] data_in[4] data_out[0]
+                 in_en data_out[4] data_out[2] data_out[9] data_out[6] data_in[9] data_in[8]
+                 data_in[7] data_out[8] data_in[6] data_in[5]
 
 
 o Voltage Names Matched by Wildcard:

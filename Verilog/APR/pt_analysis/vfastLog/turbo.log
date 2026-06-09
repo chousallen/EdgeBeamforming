@@ -1,3 +1,0 @@
-Command Line: /usr/spring_soft/verdi/cur/platform/LINUXAMD64/bin/vfast -silent -del . -o /home/raid7_2/userb11/b11056/EdgeBeamforming/Verilog/APR/CHIP_syn_tb.vcd.fsdb -ft verilog /home/raid7_2/userb11/b11056/EdgeBeamforming/Verilog/APR/CHIP_syn_tb.vcd
-uname(Linux cad16 3.10.0-1160.88.1.el7.x86_64 #1 SMP Tue Mar 7 15:41:52 UTC 2023 x86_64)
-au time 5.129974 3.069676 0.112813 delta 49958912 49958912 total 147984384 147984384

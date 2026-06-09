@@ -7,366 +7,338 @@ Report : timing
 	-sort_by slack
 Design : CHIP
 Version: U-2022.12
-Date   : Wed Jun  3 15:26:50 2026
+Date   : Tue Jun  9 15:05:56 2026
 ****************************************
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/xa_out_reg[7]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L10_8/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.93 *     0.93
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/CK (QDFFRBN)                 0.00       0.93 r
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/Q (QDFFRBN)                  0.19 *     1.13 r
-  U3381/O (ND2S)                                                              0.04 *     1.16 f
-  U9313/O (OAI12HS)                                                           0.06 *     1.22 r
-  U9317/O (ND2)                                                               0.04 *     1.26 f
-  U9318/O (INV1S)                                                             0.04 *     1.30 r
-  U4740/O (AOI12HS)                                                           0.04 *     1.34 f
-  FE_RC_235_0/O (XNR2H)                                                       0.06 *     1.39 r
-  U10020/O (MUX2)                                                             0.10 *     1.50 r
-  beamforming_in/steer_inst/u_c1s2/xa_out_reg[7]/D (QDFFRBN)                  0.00 *     1.50 r
-  data arrival time                                                                      1.50
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC590_beamforming_in_steer_inst_u_c1s1_anga_r__4/O (DELA)                 0.10 *     1.06 r
+  U9443/O (MUX2)                                                                0.08 *     1.14 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]/D (QDFFRBN)                   0.00 *     1.14 r
+  data arrival time                                                                        1.14
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.62 *     0.62
-  clock reconvergence pessimism                                               0.00       0.62
-  clock uncertainty                                                           0.10       0.72
-  beamforming_in/steer_inst/u_c1s2/xa_out_reg[7]/CK (QDFFRBN)                            0.72 r
-  library hold time                                                           0.00 *     0.72
-  data required time                                                                     0.72
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.72
-  data arrival time                                                                     -1.50
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.77
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-4]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.14
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/xa_r_reg[7]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L10_8/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_15/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.93 *     0.93
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/CK (QDFFRBN)                 0.00       0.93 r
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/Q (QDFFRBN)                  0.19 *     1.13 r
-  U3381/O (ND2S)                                                              0.04 *     1.16 f
-  U9313/O (OAI12HS)                                                           0.06 *     1.22 r
-  U9317/O (ND2)                                                               0.04 *     1.26 f
-  U9318/O (INV1S)                                                             0.04 *     1.30 r
-  U4740/O (AOI12HS)                                                           0.04 *     1.34 f
-  FE_RC_235_0/O (XNR2H)                                                       0.06 *     1.39 r
-  U9321/O (MUX2)                                                              0.10 *     1.49 r
-  beamforming_in/steer_inst/u_c1s2/xa_r_reg[7]/D (QDFFRBN)                    0.00 *     1.49 r
-  data arrival time                                                                      1.49
+  Point                                                                          Incr       Path
+  -----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]/CK (QDFFRBS)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]/Q (QDFFRBS)                   0.17 *     0.95 r
+  FE_PHC759_beamforming_in_steer_inst_u_c1s1_angb_r__13/O (DELA)                 0.11 *     1.06 r
+  U10332/O (MUX2)                                                                0.08 *     1.14 r
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]/D (QDFFRBS)                   0.00 *     1.14 r
+  data arrival time                                                                         1.14
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.60 *     0.60
-  clock reconvergence pessimism                                               0.00       0.60
-  clock uncertainty                                                           0.10       0.70
-  beamforming_in/steer_inst/u_c1s2/xa_r_reg[7]/CK (QDFFRBN)                              0.70 r
-  library hold time                                                           0.00 *     0.70
-  data required time                                                                     0.70
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.70
-  data arrival time                                                                     -1.49
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.79
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.51 *     0.51
+  clock reconvergence pessimism                                                  0.00       0.51
+  clock uncertainty                                                              0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-13]/CK (QDFFRBS)                             0.61 r
+  library hold time                                                              0.00 *     0.61
+  data required time                                                                        0.61
+  -----------------------------------------------------------------------------------------------------
+  data required time                                                                        0.61
+  data arrival time                                                                        -1.14
+  -----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                               0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/xa_r_reg[6]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L10_8/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.93 *     0.93
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/CK (QDFFRBN)                 0.00       0.93 r
-  beamforming_in/steer_inst/u_c1s1/xa_out_reg[6]/Q (QDFFRBN)                  0.19 *     1.13 r
-  U3381/O (ND2S)                                                              0.04 *     1.16 f
-  U9313/O (OAI12HS)                                                           0.06 *     1.22 r
-  U9317/O (ND2)                                                               0.04 *     1.26 f
-  U3936/O (ND2S)                                                              0.06 *     1.32 r
-  U9696/O (XNR2HS)                                                            0.07 *     1.39 f
-  U9698/O (MUX2)                                                              0.11 *     1.51 f
-  beamforming_in/steer_inst/u_c1s2/xa_r_reg[6]/D (QDFFRBN)                    0.00 *     1.51 f
-  data arrival time                                                                      1.51
+  Point                                                                          Incr       Path
+  -----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.78 *     0.78
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]/CK (QDFFRBN)                  0.00       0.78 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC646_beamforming_in_steer_inst_u_c1s1_anga_r__10/O (DELA)                 0.11 *     1.06 r
+  U9481/O (MUX2)                                                                 0.08 *     1.14 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]/D (QDFFRBN)                   0.00 *     1.14 r
+  data arrival time                                                                         1.14
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.60 *     0.60
-  clock reconvergence pessimism                                               0.00       0.60
-  clock uncertainty                                                           0.10       0.70
-  beamforming_in/steer_inst/u_c1s2/xa_r_reg[6]/CK (QDFFRBN)                              0.70 r
-  library hold time                                                           0.00 *     0.70
-  data required time                                                                     0.70
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.70
-  data arrival time                                                                     -1.51
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.80
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.51 *     0.51
+  clock reconvergence pessimism                                                  0.00       0.51
+  clock uncertainty                                                              0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-10]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                              0.00 *     0.61
+  data required time                                                                        0.61
+  -----------------------------------------------------------------------------------------------------
+  data required time                                                                        0.61
+  data arrival time                                                                        -1.14
+  -----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                               0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s1/ya_out_reg[5]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/ya_r_reg[6]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L10_8/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.93 *     0.93
-  beamforming_in/steer_inst/u_c1s1/ya_out_reg[5]/CK (QDFFRBN)                 0.00       0.93 r
-  beamforming_in/steer_inst/u_c1s1/ya_out_reg[5]/Q (QDFFRBN)                  0.20 *     1.13 r
-  U3043/O (ND2S)                                                              0.05 *     1.17 f
-  U9187/O (OAI12HS)                                                           0.06 *     1.23 r
-  U9847/O (ND2)                                                               0.05 *     1.29 f
-  U3442/O (OAI12H)                                                            0.05 *     1.34 r
-  U9848/O (XNR2HS)                                                            0.05 *     1.39 f
-  U9849/O (MUX2)                                                              0.11 *     1.51 f
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[6]/D (QDFFRBN)                    0.00 *     1.51 f
-  data arrival time                                                                      1.51
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]/Q (QDFFRBN)                   0.17 *     0.96 r
+  FE_PHC601_beamforming_in_steer_inst_u_c1s1_anga_r__8/O (DELA)                 0.11 *     1.06 r
+  U9470/O (MUX2)                                                                0.08 *     1.15 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                        1.15
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.60 *     0.60
-  clock reconvergence pessimism                                               0.00       0.60
-  clock uncertainty                                                           0.10       0.70
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[6]/CK (QDFFRBN)                              0.70 r
-  library hold time                                                           0.00 *     0.70
-  data required time                                                                     0.70
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.70
-  data arrival time                                                                     -1.51
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.81
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-8]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.15
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: FE_USKC1937_CTS_230/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                     Incr       Path
-  ------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                     0.00       0.00
-  clock network delay (propagated)                                          0.99 *     0.99
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]/CK (QDFFRBS)                 0.00       0.99 r
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]/Q (QDFFRBS)                  0.22 *     1.21 r
-  U10018/O (MUX2S)                                                          0.09 *     1.30 r
-  FE_PHC3166_n1294/O (DELB)                                                 0.22 *     1.52 r
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]/D (QDFFRBS)                  0.00 *     1.52 r
-  data arrival time                                                                    1.52
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC627_beamforming_in_steer_inst_u_c1s1_anga_r__1/O (DELA)                 0.11 *     1.06 r
+  U9504/O (MUX2)                                                                0.08 *     1.14 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]/D (QDFFRBN)                   0.00 *     1.14 r
+  data arrival time                                                                        1.14
 
-  clock clk (rise edge)                                                     0.00       0.00
-  clock network delay (propagated)                                          0.60 *     0.60
-  clock reconvergence pessimism                                             0.00       0.60
-  clock uncertainty                                                         0.10       0.70
-  beamforming_in/steer_inst/u_c1s2/ya_r_reg[7]/CK (QDFFRBS)                            0.70 r
-  library hold time                                                         0.00 *     0.70
-  data required time                                                                   0.70
-  ------------------------------------------------------------------------------------------------
-  data required time                                                                   0.70
-  data arrival time                                                                   -1.52
-  ------------------------------------------------------------------------------------------------
-  slack (MET)                                                                          0.82
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-1]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.14
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c1s1/xb_out_reg[6]
+  Startpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c1s2/xb_r_reg[7]
+  Endpoint: beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_INV_clk_G0_L4_1/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.96 *     0.96
-  beamforming_in/steer_inst/u_c1s1/xb_out_reg[6]/CK (QDFFRBN)                 0.00       0.96 r
-  beamforming_in/steer_inst/u_c1s1/xb_out_reg[6]/Q (QDFFRBN)                  0.19 *     1.16 r
-  U10182/O (ND2S)                                                             0.04 *     1.19 f
-  U10183/O (OAI12HS)                                                          0.05 *     1.24 r
-  U4381/O (ND2S)                                                              0.04 *     1.28 f
-  U10188/O (INV1S)                                                            0.04 *     1.32 r
-  U10189/O (AOI12HS)                                                          0.03 *     1.35 f
-  FE_RC_493_0/O (XNR2HS)                                                      0.07 *     1.42 r
-  U10191/O (MUX2S)                                                            0.10 *     1.52 r
-  beamforming_in/steer_inst/u_c1s2/xb_r_reg[7]/D (QDFFRBS)                    0.00 *     1.52 r
-  data arrival time                                                                      1.52
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC631_beamforming_in_steer_inst_u_c1s1_anga_r__3/O (DELA)                 0.11 *     1.06 r
+  U9436/O (MUX2)                                                                0.08 *     1.15 r
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                        1.15
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.60 *     0.60
-  clock reconvergence pessimism                                               0.00       0.60
-  clock uncertainty                                                           0.10       0.70
-  beamforming_in/steer_inst/u_c1s2/xb_r_reg[7]/CK (QDFFRBS)                              0.70 r
-  library hold time                                                           0.00 *     0.70
-  data required time                                                                     0.70
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.70
-  data arrival time                                                                     -1.52
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.82
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/anga_r_reg[-3]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.15
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]
+  Startpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c2s1/xa_out_reg[1]
+  Endpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L7_3/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_15/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.96 *     0.96
-  beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]/CK (QDFFRBN)                 0.00       0.96 r
-  beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]/Q (QDFFRBN)                  0.17 *     1.14 r
-  U7409/O (NR2)                                                               0.03 *     1.17 f
-  U4274/O (ND3)                                                               0.13 *     1.30 r
-  U8864/O (MUX2)                                                              0.08 *     1.38 r
-  FE_PHC3790_n1686/O (DELA)                                                   0.11 *     1.49 r
-  beamforming_in/steer_inst/u_c2s1/xa_out_reg[1]/D (QDFFRBN)                  0.00 *     1.49 r
-  data arrival time                                                                      1.49
+  Point                                                                          Incr       Path
+  -----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC695_beamforming_in_steer_inst_u_c1s2_anga_r__12/O (DELA)                 0.10 *     1.06 r
+  U10005/O (MUX2)                                                                0.09 *     1.15 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                         1.15
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.57 *     0.57
-  clock reconvergence pessimism                                               0.00       0.57
-  clock uncertainty                                                           0.10       0.67
-  beamforming_in/steer_inst/u_c2s1/xa_out_reg[1]/CK (QDFFRBN)                            0.67 r
-  library hold time                                                           0.00 *     0.67
-  data required time                                                                     0.67
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.67
-  data arrival time                                                                     -1.49
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.82
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (propagated)                                               0.51 *     0.51
+  clock reconvergence pessimism                                                  0.00       0.51
+  clock uncertainty                                                              0.10       0.61
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-12]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                              0.00 *     0.61
+  data required time                                                                        0.61
+  -----------------------------------------------------------------------------------------------------
+  data required time                                                                        0.61
+  data arrival time                                                                        -1.15
+  -----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                               0.53
 
 
-  Startpoint: beamforming_in/valid_data_r_reg
+  Startpoint: beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/valid_data_r_reg
+  Endpoint: beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L11_4/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_15/O
   Path Group: clk
   Path Type: min
 
-  Point                                                           Incr       Path
-  --------------------------------------------------------------------------------------
-  clock clk (rise edge)                                           0.00       0.00
-  clock network delay (propagated)                                0.96 *     0.96
-  beamforming_in/valid_data_r_reg/CK (QDFFRBS)                    0.00       0.96 r
-  beamforming_in/valid_data_r_reg/Q (QDFFRBS)                     0.16 *     1.12 r
-  FE_PHC2851_beamforming_in_valid_data_r/O (DELB)                 0.23 *     1.35 r
-  U3146/O (NR2)                                                   0.05 *     1.40 f
-  U11327/O (NR2)                                                  0.07 *     1.47 r
-  beamforming_in/valid_data_r_reg/D (QDFFRBS)                     0.00 *     1.47 r
-  data arrival time                                                          1.47
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC609_beamforming_in_steer_inst_u_c1s1_angb_r__2/O (DELA)                 0.11 *     1.06 r
+  U10274/O (MUX2)                                                               0.08 *     1.15 r
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                        1.15
 
-  clock clk (rise edge)                                           0.00       0.00
-  clock network delay (propagated)                                0.55 *     0.55
-  clock reconvergence pessimism                                   0.00       0.55
-  clock uncertainty                                               0.10       0.65
-  beamforming_in/valid_data_r_reg/CK (QDFFRBS)                               0.65 r
-  library hold time                                               0.00 *     0.65
-  data required time                                                         0.65
-  --------------------------------------------------------------------------------------
-  data required time                                                         0.65
-  data arrival time                                                         -1.47
-  --------------------------------------------------------------------------------------
-  slack (MET)                                                                0.82
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s1/angb_r_reg[-2]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.15
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]
+  Startpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/u_c2s1/xa_out_reg[2]
+  Endpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L7_3/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                       Incr       Path
-  --------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.96 *     0.96
-  beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]/CK (QDFFRBN)                 0.00       0.96 r
-  beamforming_in/steer_inst/u_c2s1/iter_r_reg[3]/Q (QDFFRBN)                  0.17 *     1.14 r
-  U7409/O (NR2)                                                               0.03 *     1.17 f
-  U4274/O (ND3)                                                               0.13 *     1.30 r
-  U8859/O (MUX2)                                                              0.08 *     1.38 r
-  FE_PHC3793_n1685/O (DELA)                                                   0.12 *     1.49 r
-  beamforming_in/steer_inst/u_c2s1/xa_out_reg[2]/D (QDFFRBN)                  0.00 *     1.49 r
-  data arrival time                                                                      1.49
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC620_beamforming_in_steer_inst_u_c1s2_anga_r__7/O (DELA)                 0.11 *     1.06 r
+  U9983/O (MUX2)                                                                0.09 *     1.15 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                        1.15
 
-  clock clk (rise edge)                                                       0.00       0.00
-  clock network delay (propagated)                                            0.57 *     0.57
-  clock reconvergence pessimism                                               0.00       0.57
-  clock uncertainty                                                           0.10       0.67
-  beamforming_in/steer_inst/u_c2s1/xa_out_reg[2]/CK (QDFFRBN)                            0.67 r
-  library hold time                                                           0.00 *     0.67
-  data required time                                                                     0.67
-  --------------------------------------------------------------------------------------------------
-  data required time                                                                     0.67
-  data arrival time                                                                     -1.49
-  --------------------------------------------------------------------------------------------------
-  slack (MET)                                                                            0.82
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-7]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.15
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 
-  Startpoint: beamforming_in/steer_inst/theta_sr_reg[8][-5]
+  Startpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]
                (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: beamforming_in/steer_inst/theta_sr_reg[9][-5]
+  Endpoint: beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]
                (rising edge-triggered flip-flop clocked by clk)
-  Last common pin: CTS_ccl_a_INV_clk_G0_L8_8/O
+  Last common pin: CTS_ccl_a_INV_clk_G0_L7_16/O
   Path Group: clk
   Path Type: min
 
-  Point                                                                        Incr       Path
-  ---------------------------------------------------------------------------------------------------
-  clock clk (rise edge)                                                        0.00       0.00
-  clock network delay (propagated)                                             0.91 *     0.91
-  beamforming_in/steer_inst/theta_sr_reg[8][-5]/CK (QDFFRBN)                   0.00       0.91 r
-  beamforming_in/steer_inst/theta_sr_reg[8][-5]/Q (QDFFRBN)                    0.16 *     1.07 r
-  FE_PHC3270_beamforming_in_steer_inst_theta_sr_8__5/O (BUF1S)                 0.07 *     1.14 r
-  FE_PHC2735_beamforming_in_steer_inst_theta_sr_8__5/O (DELC)                  0.34 *     1.48 r
-  beamforming_in/steer_inst/theta_sr_reg[9][-5]/D (QDFFRBN)                    0.00 *     1.48 r
-  data arrival time                                                                       1.48
+  Point                                                                         Incr       Path
+  ----------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.79 *     0.79
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]/CK (QDFFRBN)                  0.00       0.79 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]/Q (QDFFRBN)                   0.17 *     0.95 r
+  FE_PHC640_beamforming_in_steer_inst_u_c1s2_anga_r__1/O (DELA)                 0.11 *     1.06 r
+  U9960/O (MUX2)                                                                0.09 *     1.15 r
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]/D (QDFFRBN)                   0.00 *     1.15 r
+  data arrival time                                                                        1.15
 
-  clock clk (rise edge)                                                        0.00       0.00
-  clock network delay (propagated)                                             0.56 *     0.56
-  clock reconvergence pessimism                                                0.00       0.56
-  clock uncertainty                                                            0.10       0.66
-  beamforming_in/steer_inst/theta_sr_reg[9][-5]/CK (QDFFRBN)                              0.66 r
-  library hold time                                                            0.00 *     0.66
-  data required time                                                                      0.66
-  ---------------------------------------------------------------------------------------------------
-  data required time                                                                      0.66
-  data arrival time                                                                      -1.48
-  ---------------------------------------------------------------------------------------------------
-  slack (MET)                                                                             0.82
+  clock clk (rise edge)                                                         0.00       0.00
+  clock network delay (propagated)                                              0.51 *     0.51
+  clock reconvergence pessimism                                                 0.00       0.51
+  clock uncertainty                                                             0.10       0.61
+  beamforming_in/steer_inst/u_c1s2/anga_r_reg[-1]/CK (QDFFRBN)                             0.61 r
+  library hold time                                                             0.00 *     0.61
+  data required time                                                                       0.61
+  ----------------------------------------------------------------------------------------------------
+  data required time                                                                       0.61
+  data arrival time                                                                       -1.15
+  ----------------------------------------------------------------------------------------------------
+  slack (MET)                                                                              0.53
 
 Warning: report_timing has satisfied the max_paths criteria. There are 1403 further endpoints which have paths of interest with slack less than   999.00 that were not considered when generating this report. (UITE-502)
 
